@@ -455,30 +455,26 @@
   </div>
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
     <div style="display:grid;grid-template-columns:{{ promoCols }};gap:16px">
-      <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;border-radius:22px;min-height:clamp(320px,30vw,440px);cursor:pointer;background:#2C2C2A;isolation:isolate" style-hover="box-shadow:0 22px 50px rgba(20,20,20,.22)">
-        <img src="{{ promoFadImg }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.1);transition:transform .8s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.15)">
+      <sc-for list="{{ promoBanners }}" as="bn" hint-placeholder-count="2">
+      <div onClick="{{ bn.onClick }}" style="position:relative;overflow:hidden;border-radius:22px;min-height:clamp(320px,30vw,440px);cursor:pointer;background:#2C2C2A;isolation:isolate" style-hover="box-shadow:0 22px 50px rgba(20,20,20,.22)">
+        <img src="{{ bn.img }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.1);transition:transform .8s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.15)">
         <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,20,20,0) 30%,rgba(20,20,20,.35) 55%,rgba(20,20,20,.86) 100%)"></div>
         <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,34px);color:#fff">
           <div style="border-left:4px solid #C8102E;padding-left:clamp(14px,1.6vw,20px)">
-          <div style="display:inline-flex;align-items:center;gap:7px;background:#C8102E;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19"></path></svg>Financiación · Fadonet</div>
-          <div style="margin-top:12px;font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:16em">Llevalo hoy y pagalo en cuotas.</div>
-          <div style="margin-top:8px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.85);max-width:30em">Financiá tus compras con Fadonet. Consultá plazos y requisitos con nuestros asesores.</div>
-          <span style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#C8102E;color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 20px rgba(200,16,46,.35)">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          <sc-if value="{{ bn.etiqueta }}">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#C8102E;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase"><sc-if value="{{ bn.icCard }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19"></path></svg></sc-if><sc-if value="{{ bn.icHeart }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg></sc-if><sc-if value="{{ bn.icTag }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.3" fill="#fff"></circle></svg></sc-if>{{ bn.etiqueta }}</div>
+          </sc-if>
+          <div style="margin-top:12px;font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:16em">{{ bn.titulo }}</div>
+          <sc-if value="{{ bn.texto }}">
+          <div style="margin-top:8px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.85);max-width:30em">{{ bn.texto }}</div>
+          </sc-if>
+          <sc-if value="{{ bn.boton }}">
+          <span style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#C8102E;color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 20px rgba(200,16,46,.35)">{{ bn.boton }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </sc-if>
           </div>
         </div>
       </div>
-      <div onClick="{{ goBodas }}" style="position:relative;overflow:hidden;border-radius:22px;min-height:clamp(320px,30vw,440px);cursor:pointer;background:#2C2C2A;isolation:isolate" style-hover="box-shadow:0 22px 50px rgba(20,20,20,.22)">
-        <img src="{{ promoBodaImg }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.1);transition:transform .8s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.15)">
-        <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,20,20,0) 30%,rgba(20,20,20,.35) 55%,rgba(20,20,20,.86) 100%)"></div>
-        <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,34px);color:#fff">
-          <div style="border-left:4px solid #C8102E;padding-left:clamp(14px,1.6vw,20px)">
-          <div style="display:inline-flex;align-items:center;gap:7px;background:#C8102E;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
-          <div style="margin-top:12px;font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:16em">Todo para su nuevo hogar.</div>
-          <div style="margin-top:8px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.85);max-width:30em">Buscá la lista de los novios y elegí el regalo perfecto.</div>
-          <span style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#C8102E;color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 20px rgba(200,16,46,.35)">Ver listas<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-          </div>
-        </div>
-      </div>
+      </sc-for>
     </div>
   </div>
   <div style="max-width:1560px;margin:0 auto;padding:56px 28px 0">
@@ -2101,6 +2097,28 @@ class Component extends DCLogic {
   selList(){ const s=this.state, all=this.selPool(), list = s.selCat==='Todos' ? all : all.filter(p=>p.cat===s.selCat); return (list.length ? list : all).slice(0,16); }
   // Un producto fijo del diseño; si el ERP lo oculta, otro parecido con foto (nunca undefined).
   porId(id, parecido){ const D=this.DATA; return D.find(p=>p.id===id) || (parecido && D.find(p=>parecido(p) && !p.noImg)) || D.find(p=>!p.noImg) || D[0]; }
+  // Banners de la portada: los de ERP › Tienda web › Banners; sin ERP o sin banners, los dos de siempre.
+  bannersDef(){
+    const erp = (typeof window!=='undefined' && Array.isArray(window.IG_BANNERS)) ? window.IG_BANNERS : [];
+    const ok = erp.filter(b=>b && typeof b.titulo==='string' && typeof b.img==='string' && /^https:\/\//.test(b.img) && typeof b.destino==='string'
+      && (b.destino.indexOf('producto:')!==0 || this.DATA.some(d=>d.id===+b.destino.slice(9)))).slice(0,6);
+    if(ok.length) return ok.map(b=>({ etiqueta:b.etiqueta||'', titulo:b.titulo, texto:b.texto||'', boton:b.boton||'', img:b.img, destino:b.destino }));
+    const img = (id, alt)=>this.porId(id, alt).img;
+    return [
+      { etiqueta:'Financiación · Fadonet', titulo:'Llevalo hoy y pagalo en cuotas.', texto:'Financiá tus compras con Fadonet. Consultá plazos y requisitos con nuestros asesores.',
+        boton:'Conocé cómo financiar', img: img(9386, p=>p.sub==='Racks'), destino:'financiacion' },
+      { etiqueta:'Lista de bodas', titulo:'Todo para su nuevo hogar.', texto:'Buscá la lista de los novios y elegí el regalo perfecto.',
+        boton:'Ver listas', img: img(7466, p=>p.sub==='Refrigeración'), destino:'bodas' }
+    ];
+  }
+  bannerIr(d){
+    const paginas = { financiacion:'financiacion', bodas:'bodas', ofertas:'ofertas', novedades:'novedades', catalogo:'catalogo' };
+    if(paginas[d]) return d==='catalogo' ? ()=>this.setState({page:'catalogo', cat:'Todas', sub:'Todas', mega:null}) : this.go(paginas[d]);
+    if(d.indexOf('categoria:')===0){ const c = d.slice(10), t = this.TREE.find(x=>x[0].toLowerCase()===c.toLowerCase());
+      return ()=>this.setState({page:'catalogo', cat: t ? t[0] : 'Todas', sub:'Todas', mega:null}); }
+    if(d.indexOf('producto:')===0) return this.openProduct(+d.slice(9));
+    return this.go('catalogo');
+  }
   pick(ids){ return ids.map(id=>this.DATA.find(p=>p.id===id)).filter(Boolean); }
   selPages(){ return Math.max(1, Math.ceil(this.selList().length / this.selN())); }
   selLoop(){ return this.selList().length > this.selN(); }
@@ -2310,8 +2328,8 @@ class Component extends DCLogic {
           onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:'Todas'}),
           subs: t[1].slice(0,10).map(n=>({ name:n, onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:n}) })) }; })(),
       catTileCols: s.w>=1200 ? 'repeat(5,minmax(0,1fr))' : s.w>=760 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
-      promoFadImg: (all.find(p=>p.id===9386) || all.find(p=>p.id===9379) || all.find(p=>!p.noImg)).img,
-      promoBodaImg: (all.find(p=>p.id===7466) || all.find(p=>!p.noImg)).img,
+      promoBanners: this.bannersDef().map(b=>({ ...b, icCard: b.destino==='financiacion', icHeart: b.destino==='bodas',
+        icTag: b.destino!=='financiacion' && b.destino!=='bodas', onClick: this.bannerIr(b.destino) })),
       featCols: s.w>=1200 ? 'repeat(6,minmax(0,1fr))' : s.w>=760 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       featCats: [
         { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:null },
