@@ -65,7 +65,7 @@
       </button>
     </sc-if>
     <div onClick="{{ goHome }}" style="cursor:pointer;flex:0 0 auto">
-      <img src="brand/logo.png" alt="Innovagame" style="height:clamp(40px,4.6vw,62px);width:auto;display:block">
+      <img src="brand/logo.png" alt="Innovagame" style="height:{{ logoH }};width:auto;display:block">
     </div>
 
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
@@ -126,7 +126,8 @@
         <sc-for list="{{ topCats }}" as="c" hint-placeholder-count="8">
           <button onClick="{{ c.onClick }}" onMouseEnter="{{ c.onEnter }}" style="flex:0 0 auto;height:46px;padding:3px 0 0;margin-right:22px;border:0;border-bottom:3px solid {{ c.mark }};background:transparent;font-size:12.5px;font-weight:500;white-space:nowrap;cursor:pointer;transition:color .18s,border-color .18s;color:{{ c.color }}" style-hover="color:#fff">{{ c.name }}</button>
         </sc-for>
-        <span onClick="{{ goOfertas }}" style="margin-left:auto;flex:0 0 auto;padding:8px 14px;border-radius:999px;background:#fff;font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;cursor:pointer;white-space:nowrap;transition:background .18s" style-hover="background:#FFE3E7">Ofertas</span>
+        <span onClick="{{ goBodas }}" style="margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.7);font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;white-space:nowrap;margin-right:8px;transition:background .18s" style-hover="background:rgba(255,255,255,.14)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</span>
+        <span onClick="{{ goOfertas }}" style="flex:0 0 auto;padding:8px 14px;border-radius:999px;background:#fff;font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;cursor:pointer;white-space:nowrap;transition:background .18s" style-hover="background:#FFE3E7">Ofertas</span>
       </div>
       <sc-if value="{{ megaOpen }}">
         <div onMouseLeave="{{ closeMega }}" style="position:absolute;top:46px;left:0;right:0;background:#C8102E;color:#fff;border-top:1px solid rgba(255,255,255,.2);box-shadow:0 28px 50px rgba(0,0,0,.18);z-index:70">
@@ -191,7 +192,7 @@
   <div style="position:fixed;inset:0;z-index:90;background:rgba(10,10,10,.45)" onClick="{{ toggleMenu }}">
     <div onClick="{{ stop }}" style="position:absolute;top:0;left:0;bottom:0;width:86%;max-width:380px;background:#fff;overflow:auto;padding:20px;box-shadow:12px 0 40px rgba(0,0,0,.18);animation:igMenuIn .28s cubic-bezier(.22,1,.36,1) both">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
-        <img src="brand/logo.png" alt="Innovagame" style="height:34px;width:auto">
+        <img src="brand/logo.png" alt="Innovagame" style="height:42px;width:auto">
         <button onClick="{{ toggleMenu }}" style="width:38px;height:38px;border:1px solid #E4E2DD;background:#fff;font-size:17px;cursor:pointer">×</button>
       </div>
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9B978F;margin-bottom:8px">Categorías</div>
@@ -202,7 +203,7 @@
       <sc-for list="{{ nav }}" as="n" hint-placeholder-count="10">
         <button onClick="{{ n.onClick }}" style="display:block;width:100%;text-align:left;padding:11px 0;border:0;background:transparent;font-size:15px;color:#4A4843;cursor:pointer">{{ n.label }}</button>
       </sc-for>
-      <a href="https://wa.me/595974800200?text=Quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" style="display:block;text-align:center;margin-top:22px;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600">WhatsApp</a>
+      <a href="https://wa.me/595974800400?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" style="display:block;text-align:center;margin-top:22px;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600">WhatsApp</a>
     </div>
   </div>
 </sc-if>
@@ -481,6 +482,18 @@
     </div>
   </div>
 
+  <div style="max-width:1560px;margin:0 auto;padding:56px 28px 0">
+    <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,44px);background:linear-gradient(120deg,#141414 0%,#2A1015 55%,#8A0A20 100%);color:#fff;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px" style-hover="box-shadow:0 18px 40px rgba(20,20,20,.18)">
+      <div style="position:absolute;right:-80px;top:-120px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.55),transparent 70%);pointer-events:none"></div>
+      <div style="position:relative;min-width:0;flex:1 1 380px">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Financiación · Fadonet</div>
+        <div style="margin-top:12px;font-size:clamp(21px,2.3vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.15">Llevalo hoy y pagalo en cuotas con Fadonet.</div>
+        <div style="margin-top:8px;font-size:14.5px;color:#E7C9CE;max-width:560px">Financiá tus compras en Innovagame. Consultá plazos, requisitos y beneficios con nuestros asesores.</div>
+      </div>
+      <span style="position:relative;flex:0 0 auto;height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+    </div>
+  </div>
+
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid #E4E2DD;padding-bottom:16px">
       <h2 style="margin:0;font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em">Descubrí por marca.</h2>
@@ -751,6 +764,7 @@
         </div>
         <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:14px">
           <a href="{{ prodWaHref }}" target="_blank" style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:#128C4A" style-hover="color:#0B6B37"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Consultar por WhatsApp</a>
+          <span onClick="{{ goFinanciacion }}" style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:#A50D26;cursor:pointer" style-hover="color:#141414"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19M6.5 15h4"></path></svg>Financiá con Fadonet</span>
           <span onClick="{{ cmpCurrent }}" style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:#4A4843;cursor:pointer" style-hover="color:#C8102E"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"></path><path d="M4 20L21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path></svg>{{ prodCmpText }}</span>
         </div>
       </div>
@@ -896,6 +910,114 @@
         <button onClick="{{ brandMore }}" style="border:1px solid #141414;background:#141414;color:#fff;border-radius:6px;padding:13px 26px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .2s" style-hover="background:#C8102E;border-color:#C8102E">{{ brandMoreLabel }}</button>
       </div>
   </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBodas }}">
+<div style="background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border-bottom:1px solid #F3E3E6">
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(28px,4vw,52px) 28px">
+    <div style="display:inline-flex;align-items:center;gap:8px;color:#C8102E;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase"><svg width="15" height="15" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
+    <h1 style="margin:10px 0 0;font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.03em">Regalá lo que necesitan para su nuevo hogar.</h1>
+    <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:620px">Elegí la lista de los novios, mirá qué regalos faltan y agregalos al carrito. Las listas se actualizan desde Innovagame.</p>
+  </div>
+</div>
+<div style="max-width:1560px;margin:0 auto;padding:28px 28px 0">
+  <sc-if value="{{ bodasLoading }}"><div style="padding:60px 0;text-align:center;color:#8C8880;font-size:14px">Cargando listas…</div></sc-if>
+  <sc-if value="{{ bodasEmpty }}">
+    <div style="border:1px dashed #E4D3D6;border-radius:16px;padding:60px 20px;text-align:center">
+      <div style="font-size:17px;font-weight:600">Todavía no hay listas publicadas</div>
+      <p style="margin:8px 0 0;font-size:14px;color:#6E6B66">Si sos novio o novia y querés armar tu lista, escribinos por WhatsApp.</p>
+    </div>
+  </sc-if>
+  <sc-if value="{{ bodaHas }}">
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+      <div style="flex:0 1 260px;min-width:0;{{ bodasNavBox }}">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Novios</div>
+        <div style="display:flex;flex-direction:{{ bodasNavDir }};gap:8px;overflow-x:auto;padding-bottom:4px">
+          <sc-for list="{{ bodasList }}" as="bl" hint-placeholder-count="3">
+            <button onClick="{{ bl.onClick }}" style="flex:0 0 auto;text-align:left;border:1px solid {{ bl.bd }};background:{{ bl.bg }};color:{{ bl.fg }};border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s">
+              <span style="display:block;font-size:14.5px;font-weight:600">{{ bl.name }}</span>
+              <span style="display:block;font-size:12px;margin-top:3px;opacity:.75">{{ bl.date }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 560px;min-width:0">
+        <div style="border:1px solid #F1E2E5;border-radius:18px;padding:clamp(18px,2.4vw,28px);background:#fff">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div style="min-width:0">
+              <sc-if value="{{ boda.ejemplo }}"><span style="display:inline-block;background:#FFF3DC;color:#9A5B00;font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;margin-bottom:10px">Lista de ejemplo</span></sc-if>
+              <h2 style="margin:0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.02em">{{ boda.novios }}</h2>
+              <div style="margin-top:4px;font-size:14px;color:#8C8880">{{ boda.date }}</div>
+            </div>
+            <a href="{{ boda.wa }}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border:1px solid #1FAF53;border-radius:999px;color:#128C4A;font-size:13.5px;font-weight:500" style-hover="background:#EEFAF2;color:#128C4A"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Consultar por esta lista</a>
+          </div>
+          <sc-if value="{{ boda.hasMsg }}"><p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843;font-style:italic">“{{ boda.mensaje }}”</p></sc-if>
+          <div style="margin-top:18px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:#6E6B66"><span>{{ boda.progressLabel }}</span><span>{{ boda.pctLabel }}</span></div>
+            <div style="margin-top:8px;height:8px;border-radius:999px;background:#F4EDEE;overflow:hidden"><div style="height:100%;width:{{ boda.pct }};background:linear-gradient(90deg,#E0213F,#B00D28);border-radius:999px"></div></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-top:20px">
+          <sc-for list="{{ boda.items }}" as="bi" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;background:#fff;color:#141414;border:1px solid #ECEAE5;border-radius:12px;overflow:hidden">
+              <div onClick="{{ bi.onOpen }}" style="position:relative;aspect-ratio:1/.85;display:flex;align-items:center;justify-content:center;padding:20px;cursor:pointer">
+                <img src="{{ bi.img }}" alt="{{ bi.name }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;opacity:{{ bi.op }}">
+                <span style="position:absolute;left:12px;top:12px;background:{{ bi.tagBg }};color:{{ bi.tagFg }};font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px">{{ bi.need }}</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;padding:14px 16px 16px;border-top:1px solid #F1EFEB">
+                <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C8102E">{{ bi.brand }}</div>
+                <div onClick="{{ bi.onOpen }}" style="font-size:14px;font-weight:500;line-height:1.35;margin-top:6px;cursor:pointer;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em">{{ bi.name }}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px">
+                  <span style="font-size:17px;font-weight:700">{{ bi.priceF }}</span>
+                  <sc-if value="{{ bi.notDone }}"><button onClick="{{ bi.onGift }}" style="height:38px;padding:0 14px;border:0;border-radius:999px;background:#C8102E;color:#fff;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px" style-hover="background:#A50D26"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1.5"></rect><path d="M12 8v13M3 12h18M12 8s-1.5-5-5-5a2.5 2.5 0 0 0 0 5h5zM12 8s1.5-5 5-5a2.5 2.5 0 0 1 0 5h-5z"></path></svg>Regalar</button></sc-if>
+                  <sc-if value="{{ bi.done }}"><span style="font-size:12.5px;font-weight:600;color:#1F7A45">✓ Ya regalado</span></sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isFinanciacion }}">
+<div style="position:relative;overflow:hidden;background:linear-gradient(120deg,#141414 0%,#2A1015 55%,#8A0A20 100%);color:#fff">
+  <div style="position:absolute;right:-120px;top:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.5),transparent 70%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(34px,5vw,70px) 28px">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Financiación · Fadonet</div>
+    <h1 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;max-width:760px">Llevá lo que necesitás y pagalo en cuotas con Fadonet.</h1>
+    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#E7C9CE;max-width:620px">Financiá tus compras en Innovagame a través de Fadonet. Nuestros asesores te informan las opciones disponibles para tu compra.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+      <a href="{{ finWa }}" target="_blank" style="height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px" style-hover="color:#141414;transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Consultar financiación</a>
+      <button onClick="{{ goCatalog }}" style="height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;font-size:14.5px;font-weight:500;cursor:pointer" style-hover="background:rgba(255,255,255,.12)">Ver productos</button>
+    </div>
+  </div>
+</div>
+<div style="max-width:1560px;margin:0 auto;padding:clamp(28px,4vw,52px) 28px 0">
+  <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em">Cómo funciona</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:18px">
+    <sc-for list="{{ finSteps }}" as="fs" hint-placeholder-count="4">
+      <div style="border:1px solid #ECEAE5;border-radius:16px;padding:20px">
+        <div style="width:34px;height:34px;border-radius:50%;background:#FDECEE;color:#C8102E;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">{{ fs.n }}</div>
+        <div style="margin-top:12px;font-size:15px;font-weight:600">{{ fs.t }}</div>
+        <div style="margin-top:6px;font-size:13.5px;line-height:1.55;color:#6E6B66">{{ fs.d }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:16px">
+    <div style="flex:1 1 380px;min-width:0;border-radius:18px;padding:clamp(20px,2.6vw,30px);background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border:1px solid #F6DCE0">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#A50D26">Condiciones y beneficios</div>
+      <div style="margin-top:8px;font-size:18px;font-weight:600">Plazos, requisitos y tasas</div>
+      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">En este espacio vamos a publicar las condiciones vigentes de financiación con Fadonet. Mientras tanto, consultalas con nuestros asesores por WhatsApp o en cualquiera de nuestras sucursales.</p>
+    </div>
+    <div style="flex:1 1 300px;min-width:0;border-radius:18px;padding:clamp(20px,2.6vw,30px);border:1px solid #ECEAE5">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B978F">Tené en cuenta</div>
+      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">Los precios publicados son al contado. El precio final puede variar según el método de pago y la financiación elegida.</p>
+    </div>
+  </div>
 </div>
 </sc-if>
 
@@ -1318,7 +1440,7 @@
   <div style="background:#1B1C1E;color:#fff">
     <div style="max-width:1560px;margin:0 auto;padding:56px 28px 44px;display:flex;flex-wrap:wrap;gap:40px 48px">
       <div style="flex:1.4 1 280px;min-width:0">
-        <div onClick="{{ goHome }}" style="display:inline-block;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer"><img src="brand/logo.png" alt="Innovagame" style="height:44px;width:auto;display:block"></div>
+        <div onClick="{{ goHome }}" style="display:inline-block;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer"><img src="brand/logo.png" alt="Innovagame" style="height:56px;width:auto;display:block"></div>
         <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">Tienda de alta tecnología, electrónica, informática y electrodomésticos. Dos sucursales en Asunción y envíos a todo el país.</p>
         <div style="margin-top:22px;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#B9B6B0;line-height:1.6">
           <svg style="flex:0 0 auto;margin-top:2px" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E04B5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
@@ -1338,6 +1460,7 @@
         <div onClick="{{ goCambios }}" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#B9B6B0;padding:6px 0;cursor:pointer;transition:color .18s,transform .18s" style-hover="color:#ffffff;transform:translateX(3px)">Cambios y devoluciones</div>
         <div onClick="{{ goTerminos }}" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#B9B6B0;padding:6px 0;cursor:pointer;transition:color .18s,transform .18s" style-hover="color:#ffffff;transform:translateX(3px)">Términos y condiciones</div>
         <div onClick="{{ goPrivacidad }}" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#B9B6B0;padding:6px 0;cursor:pointer;transition:color .18s,transform .18s" style-hover="color:#ffffff;transform:translateX(3px)">Política de privacidad</div>
+        <div onClick="{{ goFinanciacion }}" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#B9B6B0;padding:6px 0;cursor:pointer;transition:color .18s,transform .18s" style-hover="color:#ffffff;transform:translateX(3px)">Financiación Fadonet</div>
         <div onClick="{{ goNosotros }}" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#B9B6B0;padding:6px 0;cursor:pointer;transition:color .18s,transform .18s" style-hover="color:#ffffff;transform:translateX(3px)">Sobre nosotros</div>
       </div>
       <div style="flex:1.3 1 250px;min-width:0">
@@ -1481,7 +1604,7 @@
   </div>
 </sc-if>
 
-<a href="https://wa.me/595974800200?text=Quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" aria-label="Escribinos por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s" style-hover="transform:scale(1.08)">
+<a href="https://wa.me/595974800400?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" aria-label="Escribinos por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s" style-hover="transform:scale(1.08)">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
 </a>
 
@@ -1779,6 +1902,9 @@ class Component extends DCLogic {
     this._edT = setInterval(()=>this.edNext(), 9000);
     this.selRestart();
     this.relRestart();
+    fetch((typeof window!=='undefined' && window.IG_BODAS_URL) || 'catalogo/listas-bodas.json', { cache:'no-store' })
+      .then(r=>r.ok ? r.json() : { listas:[] }).then(d=>this.setState({ bodas: Array.isArray(d && d.listas) ? d.listas : [] }))
+      .catch(()=>this.setState({ bodas: [] }));
     this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
     window.addEventListener('keydown', this._esc);
     this.setupFold();
@@ -1860,7 +1986,7 @@ class Component extends DCLogic {
     const megaDef = s.mega!=null ? this.TREE[s.mega] : null;
     const sugg = all.filter(match);
 
-    const navDefs = [['Catálogo','catalogo'],['Marcas','marcas'],['Ofertas','ofertas'],['Novedades','novedades'],
+    const navDefs = [['Catálogo','catalogo'],['Lista de bodas','bodas'],['Financiación Fadonet','financiacion'],['Marcas','marcas'],['Ofertas','ofertas'],['Novedades','novedades'],
       ['Comparar','comparar'],['Favoritos','favoritos'],['Carrito','carrito'],['Sucursales','sucursales'],
       ['Nosotros','nosotros'],['Contacto','contacto'],['Mi cuenta','mi-cuenta']];
 
@@ -1870,21 +1996,21 @@ class Component extends DCLogic {
                 ['02','Agregá al carrito','Podés modificar cantidades y revisar el subtotal antes de continuar.'],
                 ['03','Elegí cómo pagar','Efectivo, transferencia o tarjetas de crédito, según las condiciones vigentes publicadas en la tienda.'],
                 ['04','Recibilo o retiralo','Coordinamos el envío o el retiro en Casa Central o Sucursal.']] },
-      'envios':{ title:'Políticas de envío', intro:'Podés retirar tu pedido en nuestra sucursal o recibirlo en tu domicilio. Coordinás el método de entrega con nuestros asesores al finalizar la compra.',
-        blocks:[['01','Retiro en sucursal','Avda. Choferes del Chaco N°1886 esq. Teodoro S. Mongelós, una vez confirmada la disponibilidad.'],
+      'envios':{ title:'Políticas de envío', intro:'Podés retirar tu pedido en cualquiera de nuestras dos sucursales o recibirlo en tu domicilio. Coordinás el método de entrega con nuestros asesores al finalizar la compra.',
+        blocks:[['01','Retiro en ambas sucursales','Casa Central (Avda. Choferes del Chaco N°1886) o Sucursal (José Asunción Flores esq. Radio Operadores del Chaco), una vez confirmada la disponibilidad.'],
                 ['02','Envío a domicilio','Disponible para todos nuestros productos. El costo varía según la zona.'],
                 ['03','Asunción y Gran Asunción','24 horas hábiles, con pedidos realizados hasta las 11:00.'],
                 ['04','Interior del país','72 horas hábiles, con pedidos realizados hasta las 14:00.']],
         sections:[
-          { h:'Retiro desde nuestra sucursal', ps:['Podés retirar los productos de nuestra sucursal ubicada en la Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós desde el momento de confirmar el pago, o pasar a abonar ahí mismo.'] },
-          { h:'¿Cuándo puedo retirar mi pedido en la sucursal?', ps:['Podés retirar tu pedido una vez confirmada su disponibilidad con nuestros asesores.'] },
+          { h:'Retiro en nuestras sucursales', ps:['Podés retirar tus productos en cualquiera de nuestras dos sucursales desde el momento de confirmar el pago, o pasar a abonar ahí mismo:', 'Casa Central: Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós, Asunción.', 'Sucursal: José Asunción Flores esquina Radio Operadores del Chaco, Asunción.', 'Al finalizar la compra, indicá a nuestros asesores en qué sucursal preferís retirar.'] },
+          { h:'¿Cuándo puedo retirar mi pedido en la sucursal elegida?', ps:['Podés retirar tu pedido una vez confirmada su disponibilidad con nuestros asesores.'] },
           { h:'¿Qué documentación debo presentar para retirar mi pedido?', ps:['Se deberá presentar el comprobante de pago junto con la cédula de identidad.'] },
           { h:'¿Puede un tercero retirar mi pedido?', ps:['Sí, con aviso e identificación previa por parte del comprador.'] },
           { h:'Envíos a domicilio', ps:['Al momento de finalizar la compra, podrás elegir el método de entrega con nuestros asesores, quienes tomarán tus datos para la entrega del pedido.'] },
           { h:'¿Todos los productos pueden ser entregados en mi domicilio?', ps:['El envío a domicilio está disponible para todos nuestros productos.'] },
           { h:'¿Cuál es el costo del envío?', ps:['El costo de envío varía dependiendo de la zona. Podés consultarlo con nuestros asesores al momento de finalizar tu compra.'] },
           { h:'¿Cuánto demora el producto en llegar a mi domicilio?', ps:['Siempre que el pedido sea realizado hasta las 11:00 horas, se podrá entregar en el transcurso de la tarde del mismo día. Después de ese horario, la entrega se agendará para la tarde siguiente. El tiempo de demora puede variar según la zona donde te encuentres.', 'Asunción y Gran Asunción: 24 horas hábiles, siempre que el pedido sea realizado hasta las 11:00 horas.', 'Interior del país: 72 horas hábiles, siempre que el pedido sea realizado hasta las 14:00 horas.'] },
-          { h:'¿Puedo coordinar la entrega de mi pedido?', ps:['Podés coordinar la entrega con nuestros asesores una vez finalizada la compra. Para realizar algún cambio o modificación en la entrega, comunicate con nosotros por WhatsApp de lunes a viernes de 8:00 a 18:30 y sábados de 8:00 a 14:00, o escribinos a innovagame2@gmail.com.'] },
+          { h:'¿Puedo coordinar la entrega de mi pedido?', ps:['Podés coordinar la entrega con nuestros asesores una vez finalizada la compra. Para realizar algún cambio o modificación en la entrega, comunicate con nosotros por WhatsApp de lunes a viernes de 8:00 a 18:30 y sábados de 8:00 a 14:00, o escribinos a info@innovagame.com.py.'] },
           { h:'¿Puede un tercero recibir mi pedido?', ps:['Sí, siempre que sea una persona mayor de 18 años, con documentación en mano, que se encuentre en el punto de entrega.'] },
           { h:'¿Qué incluye el servicio de envío a domicilio?', ps:['El envío incluye solamente el traslado del producto hasta el punto de entrega indicado. En el caso de departamentos, se transportarán los artículos que quepan en el ascensor o que puedan subirse por las escaleras.', 'Nuestro personal no está autorizado a realizar trabajos ajenos a la entrega, ni a montar o desmontar productos, ni a retirar artículos ajenos a la entrega.'] }
         ] },
@@ -1892,12 +2018,12 @@ class Component extends DCLogic {
         blocks:[['01','Revisá al recibir','Los cambios por fallas o averías solo se procesan si el reclamo se hace dentro de las 48 horas.'],
                 ['02','Garantía de fábrica','Reparación, ajuste o cambio sin cargo durante el período de garantía del fabricante.'],
                 ['03','Devoluciones','Dentro de las 48 horas de la compra, con factura y el producto completo en su embalaje original.'],
-                ['04','Contacto','Por WhatsApp o a innovagame2@gmail.com.']],
+                ['04','Contacto','Por WhatsApp o a info@innovagame.com.py.']],
         sections:[
           { h:'Plazo para reclamos', ps:['Al momento de recibir el pedido, verificá completamente su estado y funcionamiento. Los cambios de mercaderías con fallas o averías solo se procesarán si el reclamo se realiza dentro de las 48 horas siguientes a la recepción de los productos, siempre que se trate de desperfectos de fábrica.'] },
           { h:'Qué cubre la garantía', ps:['La garantía incluye en todos los casos la reparación, ajuste o cambio del artículo que presente fallas o averías de origen, sin cargo alguno, durante el período de garantía otorgado por el fabricante. No así las roturas por sobrecarga o los desperfectos ocasionados por mal uso.', 'Podés consultar la garantía y los plazos de cada producto con nuestros asesores.'] },
           { h:'Qué no cubre la garantía', ps:['La garantía no cubre problemas con software, actualizaciones de BIOS o drivers, respaldo de datos, mantenimiento de piezas quebradas, casos fortuitos, fuerza mayor ni la intervención de personal técnico no autorizado.', 'Tampoco se consideran en garantía las roturas originadas por golpes.'] },
-          { h:'Cómo hacer un reclamo', ps:['Si tenés algún reclamo o necesitás realizar un cambio por un desperfecto de fabricación, comunicate con nosotros a los números publicados en nuestras páginas o por e-mail a innovagame2@gmail.com.'] },
+          { h:'Cómo hacer un reclamo', ps:['Si tenés algún reclamo o necesitás realizar un cambio por un desperfecto de fabricación, comunicate con nosotros a los números publicados en nuestras páginas o por e-mail a info@innovagame.com.py.'] },
           { h:'Si recibiste un producto distinto al solicitado', ps:['Si el motivo del cambio es una diferencia entre lo solicitado y lo entregado, debés rechazar la entrega y solicitar el reemplazo del producto de inmediato, comunicándote con nosotros por WhatsApp, e-mail o cualquiera de nuestros canales de atención, indicando el error.'] },
           { h:'Si el producto ya no está disponible', ps:['El comprador deberá elegir entre:', 'a) El cambio por otro producto disponible en el local, de menor o igual valor.', 'b) La reversión de la compra, siempre que sea dentro de las 48 horas posteriores a la compra.'] },
           { h:'Requisitos para la devolución', ps:['El producto devuelto debe ir acompañado de la factura legal donde figuren la fecha de compra y el modelo del producto.', 'Solo se recibirán devoluciones dentro de las 48 horas de efectuada la compra.', 'Las mercaderías deben estar completas, con manuales, discos, caja y embalaje original en buen estado.', 'Las devoluciones se harán por otros productos de igual o mayor valor. En ningún caso se devuelve el efectivo, cheques u otras formas de pago.'] }
@@ -1931,13 +2057,13 @@ class Component extends DCLogic {
       q:s.q, hasQ:s.q.length>0, cat:s.cat, sub:s.sub, brand:s.brand, max:s.max||priceCap, priceCap, maxF: s.max ? this.fmt(s.max) : 'Sin límite',
       tipoVal, filterTipos:['Todas'].concat(tipos), hasTipos: tipos.length>1,
       onTipo:(e)=>this.setState({tipo:{k:s.cat+'|'+s.sub, v:e.target.value}}), sort:s.sort, onlyStock:s.onlyStock,
-      isDesktop:s.w>=1020, isMobile:s.w<1020, hdrGap: s.w<1020 ? '4px' : '26px', hdrPad: s.w<1020 ? '10px 16px' : '16px 28px',
+      isDesktop:s.w>=1020, isMobile:s.w<1020, hdrGap: s.w<1020 ? '4px' : '26px', logoH: s.w<1020 ? '48px' : 'clamp(54px,5.4vw,80px)', hdrPad: s.w<1020 ? '10px 16px' : '16px 28px',
       isHome:s.page==='home', isCatalog:s.page==='catalogo', isProduct:s.page==='producto',
       isMarcas:s.page==='marcas', isOfertas:s.page==='ofertas', isNovedades:s.page==='novedades',
       isComparar:s.page==='comparar', isFavoritos:s.page==='favoritos', isCarrito:s.page==='carrito',
       isCheckout:s.page==='checkout', isCuenta:s.page==='mi-cuenta', isSucursales:s.page==='sucursales',
       isNosotros:s.page==='nosotros', isContacto:s.page==='contacto', isCategorias:s.page==='categorias',
-      isDoc:s.page==='doc',
+      isDoc:s.page==='doc', isBodas:s.page==='bodas', isFinanciacion:s.page==='financiacion',
       menuOpen:s.menuOpen, searchOpen:s.searchOpen, cartOpen:s.cartOpen, toast:s.toast,
       megaOpen: megaDef!=null,
       mega: megaDef ? { name:megaDef[0], onClick:()=>this.setState({page:'catalogo',cat:megaDef[0],sub:'Todas',mega:null}),
@@ -1949,7 +2075,7 @@ class Component extends DCLogic {
         onClick:()=>this.setState({page:'catalogo',cat:t[0],sub:'Todas',mega:null,menuOpen:false}) })),
       closeMega:()=>this.setState({mega:null}),
       nav: navDefs.map(d=>({label:d[0],onClick:this.go(d[1])})),
-      footerNav: [['Catálogo','catalogo'],['Categorías','categorias'],['Marcas','marcas'],['Ofertas','ofertas'],['Novedades','novedades'],['Sucursales','sucursales'],['Contacto','contacto']]
+      footerNav: [['Catálogo','catalogo'],['Lista de bodas','bodas'],['Categorías','categorias'],['Marcas','marcas'],['Ofertas','ofertas'],['Novedades','novedades'],['Sucursales','sucursales'],['Contacto','contacto']]
         .map(d=>({label:d[0],onClick:this.go(d[1])})),
 
       heroA: this.deco(all.find(p=>p.id===this.HERO.a)),
@@ -2104,7 +2230,7 @@ class Component extends DCLogic {
         { k:'WhatsApp Sucursal', v:'+595 974 800200', href:'https://wa.me/595974800200' },
         { k:'WhatsApp adicional', v:'+595 974 800500', href:'https://wa.me/595974800500' },
         { k:'Asesoramiento', v:'+595 21 609676', href:'tel:+59521609676' },
-        { k:'Email', v:'innovagame2@gmail.com', href:'mailto:innovagame2@gmail.com' }
+        { k:'Email', v:'info@innovagame.com.py', href:'mailto:info@innovagame.com.py' }
       ],
       beneficios: [
         { t:'Envío a domicilio', d:'Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.' },
@@ -2118,7 +2244,7 @@ class Component extends DCLogic {
         label:d[1], color: s.doc===d[0] ? '#141414' : '#9B978F', mark: s.doc===d[0] ? '#C8102E' : 'transparent',
         onClick:()=>this.setState({doc:d[0]}) })),
 
-      goHome:this.go('home'), goCatalog:this.go('catalogo'), goOfertas:this.go('ofertas'), goNovedades:this.go('novedades'),
+      goHome:this.go('home'), goBodas:this.go('bodas'), goFinanciacion:this.go('financiacion'), goCatalog:this.go('catalogo'), goOfertas:this.go('ofertas'), goNovedades:this.go('novedades'),
       goComparar:this.go('comparar'), goFavoritos:this.go('favoritos'), goCarrito:()=>this.setState({page:'carrito',cartOpen:false}),
       goCheckout:this.go('checkout'), goSucursales:this.go('sucursales'), goNosotros:this.go('nosotros'),
       goContacto:this.go('contacto'), goMarcas:this.go('marcas'), goCuenta:this.go('mi-cuenta'), goCategorias:this.go('categorias'),
@@ -2169,6 +2295,33 @@ class Component extends DCLogic {
       prodStockFg: prodRaw.stock>0 ? '#1F7A45' : prodRaw.stock===0 ? '#C8102E' : prodRaw.last ? '#9A5B00' : '#6E6B66',
       prodLong: prodRaw.long || prodRaw.desc, prodFeats: (prodRaw.feats||[]).map(t=>({t})), prodHasFeats: !!(prodRaw.feats&&prodRaw.feats.length),
       prodNoImg: !!prodRaw.noImg,
+      finWa: 'https://wa.me/595974800400?text=' + encodeURIComponent('Hola, quiero consultar por la financiación con Fadonet.'),
+      finSteps: [
+        { n:'1', t:'Elegí tus productos', d:'Recorré el catálogo y armá tu pedido.' },
+        { n:'2', t:'Consultá con un asesor', d:'Te contamos las opciones de financiación con Fadonet para tu compra.' },
+        { n:'3', t:'Presentá los requisitos', d:'Nuestros asesores te indican la documentación necesaria.' },
+        { n:'4', t:'Recibí o retirá', d:'Envío a domicilio o retiro en cualquiera de nuestras dos sucursales.' }
+      ],
+      ...(()=>{ const list = s.bodas || [], mob = s.w<1020;
+        const fd = f=>{ if(!f) return ''; const d = new Date(f+'T12:00:00'); return isNaN(d) ? f : d.toLocaleDateString('es-PY',{day:'numeric',month:'long',year:'numeric'}); };
+        const sel = list.find(b=>b.id===s.boda) || list[0];
+        let boda = {};
+        if(sel){ let total=0, got=0;
+          const items = (sel.productos||[]).map(it=>{ const p = all.find(x=>x.id===it.id); if(!p) return null;
+            const c = Math.max(1, it.cantidad||1), r = Math.min(c, Math.max(0, it.regalados||0)), left = c-r, done = left===0; total+=c; got+=r;
+            return { ...this.deco(p), done, notDone:!done, op: done ? .45 : 1,
+              need: done ? 'Regalado' : (c>1 ? 'Faltan ' + left + ' de ' + c : 'Disponible'),
+              tagBg: done ? '#EAF6EE' : '#FDECEE', tagFg: done ? '#1F7A45' : '#A50D26',
+              onGift:(e)=>{ this.add(p)(e); this.flash('Agregado al carrito · Lista de ' + sel.novios); } }; }).filter(Boolean);
+          const pct = total ? Math.round(got*100/total) : 0;
+          boda = { novios: sel.novios, date: fd(sel.fecha), mensaje: sel.mensaje||'', hasMsg: !!sel.mensaje, ejemplo: !!sel.ejemplo, items,
+            progressLabel: got + ' de ' + total + ' regalos', pct: pct + '%', pctLabel: pct + '% completado',
+            wa: 'https://wa.me/595974800400?text=' + encodeURIComponent('Hola, quiero hacer un regalo de la lista de bodas de ' + sel.novios + '.') }; }
+        return { bodasLoading: s.bodas===null || s.bodas===undefined, bodasEmpty: Array.isArray(s.bodas) && !list.length, bodaHas: !!sel, boda,
+          bodasNavDir: mob ? 'row' : 'column', bodasNavBox: mob ? 'flex-basis:100%' : '',
+          bodasList: list.map(b=>{ const on = sel && b.id===sel.id; return { name:b.novios, date:fd(b.fecha),
+            bg: on ? '#C8102E' : '#fff', fg: on ? '#fff' : '#141414', bd: on ? '#C8102E' : '#ECEAE5',
+            onClick:()=>this.setState({boda:b.id}) }; }) }; })(),
       ...(()=>{ const on = (s.ptab||'desc')==='desc', txt = prodRaw.long || prodRaw.desc || '', isLong = txt.length > 420;
         const act = { bg:'#fff', fg:'#141414', sh:'0 1px 3px rgba(20,20,20,.12)' }, ina = { bg:'transparent', fg:'#6E6B66', sh:'none' };
         const d = on ? act : ina, sp = on ? ina : act;
@@ -2191,7 +2344,7 @@ class Component extends DCLogic {
         { k:'WhatsApp ventas', v:'+595 974 800300', href:'https://wa.me/595974800300', isWa:true },
         { k:'WhatsApp Casa Central', v:'+595 983 943254', href:'https://wa.me/595983943254', isWa:true },
         { k:'Asesoramiento', v:'+595 21 609676', href:'tel:+59521609676', isTel:true },
-        { k:'Email', v:'innovagame2@gmail.com', href:'mailto:innovagame2@gmail.com', isMail:true }
+        { k:'Email', v:'info@innovagame.com.py', href:'mailto:info@innovagame.com.py', isMail:true }
       ],
       demoCheckout:()=>this.flash('Prototipo de diseño: no se procesan pagos reales.')
     };

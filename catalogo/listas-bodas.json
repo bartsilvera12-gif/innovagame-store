@@ -1,0 +1,20 @@
+{
+  "_formato": "Archivo que publica el ERP. La tienda lo lee al abrir la página (o desde window.IG_BODAS_URL si se define otra dirección). Cada lista: id único, novios (nombre que se muestra como subcategoría), fecha (AAAA-MM-DD), mensaje opcional, ejemplo (true solo para la lista de muestra) y productos con el id del catálogo, la cantidad pedida y cuántos ya se regalaron.",
+  "listas": [
+    {
+      "id": "ejemplo-ana-y-luis",
+      "novios": "Ana y Luis",
+      "fecha": "2027-03-20",
+      "mensaje": "Gracias por acompañarnos en este nuevo comienzo. Elegimos estos regalos para equipar nuestro hogar.",
+      "ejemplo": true,
+      "productos": [
+        { "id": 7466, "cantidad": 1, "regalados": 0 },
+        { "id": 9454, "cantidad": 1, "regalados": 1 },
+        { "id": 9508, "cantidad": 1, "regalados": 0 },
+        { "id": 8943, "cantidad": 2, "regalados": 1 },
+        { "id": 964, "cantidad": 1, "regalados": 0 },
+        { "id": 9379, "cantidad": 1, "regalados": 0 }
+      ]
+    }
+  ]
+}
