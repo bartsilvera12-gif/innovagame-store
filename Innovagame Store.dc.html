@@ -137,9 +137,20 @@
               <div style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin-top:14px;line-height:1.2">{{ mega.name }}</div>
               <button onClick="{{ mega.onClick }}" style="margin-top:18px;border:1px solid #fff;background:transparent;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="background:#fff;color:#C8102E">Ver todo →</button>
             </div>
-            <div style="flex:1 1 260px;min-width:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:2px 28px;align-content:start">
-              <sc-for list="{{ mega.subs }}" as="sb" hint-placeholder-count="8">
-                <div onClick="{{ sb.onClick }}" style="font-size:13.5px;color:rgba(255,255,255,.82);padding:7px 0;cursor:pointer;transition:color .15s,transform .15s" style-hover="color:#fff;transform:translateX(3px)">{{ sb.name }}</div>
+            <div style="flex:1 1 360px;min-width:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:22px 32px;align-content:start;max-height:min(62vh,520px);overflow-y:auto;scrollbar-width:thin">
+              <sc-for list="{{ mega.subs }}" as="sb" hint-placeholder-count="6">
+                <div style="min-width:0">
+                  <div onClick="{{ sb.onClick }}" style="font-size:14.5px;font-weight:600;color:#fff;padding:2px 0 8px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.22);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px" style-hover="opacity:.85">{{ sb.name }}<span style="font-size:11.5px;font-weight:500;color:#FFC2CA">{{ sb.count }}</span></div>
+                  <sc-if value="{{ sb.hasKids }}">
+                    <div style="font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#FFC2CA;margin:6px 0 2px">{{ sb.kidsLabel }}</div>
+                  </sc-if>
+                  <sc-for list="{{ sb.kids }}" as="kd" hint-placeholder-count="4">
+                    <div onClick="{{ kd.onClick }}" style="font-size:13px;color:rgba(255,255,255,.82);padding:5px 0;cursor:pointer;transition:color .15s,transform .15s" style-hover="color:#fff;transform:translateX(3px)">{{ kd.name }}</div>
+                  </sc-for>
+                  <sc-if value="{{ sb.hasMore }}">
+                    <div onClick="{{ sb.onClick }}" style="font-size:12.5px;font-weight:600;color:#FFC2CA;padding:5px 0;cursor:pointer" style-hover="color:#fff">Ver todo →</div>
+                  </sc-if>
+                </div>
               </sc-for>
             </div>
             <sc-if value="{{ mega.hasProds }}">
@@ -329,6 +340,29 @@
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19M6.5 15h4"></path></svg></span>
         <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Financiación Fadonet</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Pagá en cuotas</span></span>
       </div>
+    </div>
+  </div>
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(32px,4vw,52px) 28px 0">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
+      <div>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Lo más buscado</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Categorías destacadas.</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ featCols }};gap:clamp(12px,1.6vw,20px)">
+      <sc-for list="{{ featCats }}" as="fc" hint-placeholder-count="4">
+        <div onClick="{{ fc.onClick }}" style="display:flex;flex-direction:column;gap:12px;cursor:pointer" style-hover="transform:translateY(-3px)">
+          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,#FFF6F7 0%,#FCE1E6 100%);display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,26px);transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(200,16,46,.16)">
+            <div style="position:absolute;right:-18%;top:-30%;width:62%;height:160%;background:#C8102E;transform:rotate(18deg);opacity:.9;border-radius:24px"></div>
+            <div style="position:absolute;right:-6%;top:-30%;width:10%;height:160%;background:#FF8A97;transform:rotate(18deg);opacity:.55"></div>
+            <img src="{{ fc.img }}" alt="{{ fc.name }}" loading="lazy" style="position:relative;max-width:88%;max-height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(20,20,20,.18))">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px;padding:0 4px">
+            <span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ fc.name }}</span>
+            <span style="font-size:12.5px;color:#C8102E;font-weight:600;white-space:nowrap">{{ fc.count }} →</span>
+          </div>
+        </div>
+      </sc-for>
     </div>
   </div>
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
@@ -685,6 +719,16 @@
         </select>
       </div>
       </sc-if>
+      <sc-if value="{{ hasCaps }}">
+      <div>
+        <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Capacidad</div>
+        <select value="{{ capVal }}" onChange="{{ onCap }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
+          <sc-for list="{{ filterCaps }}" as="cp" hint-placeholder-count="5">
+            <option value="{{ cp.v }}">{{ cp.l }}</option>
+          </sc-for>
+        </select>
+      </div>
+      </sc-if>
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Marca</div>
         <select value="{{ brand }}" onChange="{{ onBrand }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
@@ -706,6 +750,13 @@
     </div>
 
     <div style="flex:4 1 620px;min-width:0">
+      <sc-if value="{{ hasCaps }}">
+        <div data-noscroll style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:16px;padding-bottom:2px">
+          <sc-for list="{{ capChips }}" as="cc" hint-placeholder-count="5">
+            <button onClick="{{ cc.onClick }}" style="flex:0 0 auto;height:36px;padding:0 15px;border-radius:999px;border:1px solid {{ cc.bd }};background:{{ cc.bg }};color:{{ cc.fg }};font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;transition:all .2s" style-hover="border-color:#C8102E">{{ cc.name }} <span style="opacity:.6;font-size:11.5px;margin-left:3px">{{ cc.count }}</span></button>
+          </sc-for>
+        </div>
+      </sc-if>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
         <sc-for list="{{ results }}" as="p" hint-placeholder-count="9">
           <div class="ig-card" onMouseEnter="{{ cardEnter }}" onMouseLeave="{{ cardLeave }}" style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column;transition:background .25s" style-hover="background:#FAF9F7">
@@ -1781,9 +1832,24 @@ class Component extends DCLogic {
       const specs = []; if(c.brand) specs.push(['Marca', c.brand]); specs.push(['Categoría', c.tipo || c.sub]); if(c.ref) specs.push(['Referencia', c.ref]);
       out.push({ ...c, model:'', stock:null, tag:c.tipo||c.sub, specs,
         img: c.images[0] || this.NOIMG, images: c.images.length ? c.images : [this.NOIMG], noImg: !c.images.length }); });
-    out.forEach(p=>{ p._q = this.norm([p.name, p.raw, p.brand, p.model, p.ref, p.cat, p.sub, p.tipo].join(' ')); });
+    out.forEach(p=>{ const c = this.capOf(p); if(c){ p.cap = c[0]; p.capN = c[1]; } });
+    out.forEach(p=>{ p._q = this.norm([p.name, p.raw, p.brand, p.model, p.ref, p.cat, p.sub, p.tipo, p.cap].join(' ')); });
     return out;
   }
+  capOf(p){
+    const n = String(p.raw || p.name || '').toUpperCase(), num = x=>parseFloat(String(x).replace(/\./g,'').replace(',','.'));
+    const fmtK = v=>Math.round(v).toLocaleString('de-DE');
+    if(p.sub==='Aires acondicionados'){ const m = n.match(/(\d{1,3}[.,]?\d{3})\s*\.?\s*BTU/); if(m){ const v = num(m[1]); return [fmtK(v) + ' BTU', v]; } }
+    if(p.tipo==='Televisores'){ const m = n.match(/(\d{2,3})\s*(?:"|”|''|PULG)/); if(m){ const v = +m[1]; return [v + '"', v]; } }
+    if(p.sub==='Refrigeración'){ const m = n.match(/(\d{2,4})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1];
+      return v<200 ? ['Hasta 199 L',1] : v<400 ? ['200 a 399 L',2] : v<600 ? ['400 a 599 L',3] : ['600 L o más',4]; } }
+    if(p.sub==='Lavado' && /^(LAVA|SECA|CENTR)/.test(n)){ const m = n.match(/(\d{1,2}(?:[.,]\d)?)\s*KGS?\b/); if(m){ const v = num(m[1]);
+      return v<8 ? ['Hasta 7 kg',1] : v<11 ? ['8 a 10 kg',2] : v<15 ? ['11 a 14 kg',3] : ['15 kg o más',4]; } }
+    if(p.tipo==='Microondas'){ const m = n.match(/(\d{2})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1]; return [v + ' L', v]; } }
+    return null;
+  }
+  capsIn(list){ const m = {}; list.forEach(p=>{ if(p.cap){ (m[p.cap] = m[p.cap] || { name:p.cap, n:p.capN, count:0 }).count++; } });
+    return Object.values(m).sort((a,b)=>a.n-b.n); }
   buildTree(){
     const has = (c,sb)=>this.DATA.some(p=>p.cat===c && p.sub===sb);
     const out = this.TREE_ORDER.map(t=>[t[0], t[1].filter(sb=>has(t[0],sb))]);
@@ -2024,10 +2090,12 @@ class Component extends DCLogic {
     const tipoVal = (s.tipo && s.tipo.k===s.cat+'|'+s.sub) ? s.tipo.v : 'Todas';
     const tipos = s.sub==='Todas' ? [] : Array.from(new Set(all.filter(p=>p.cat===s.cat && p.sub===s.sub && p.tipo).map(p=>p.tipo))).sort();
 
+    const capKey = s.cat+'|'+s.sub+'|'+tipoVal, capVal = (s.cap && s.cap.k===capKey) ? s.cap.v : 'Todas';
+    const capsHere = (s.cat==='Todas' || s.sub==='Todas') ? [] : this.capsIn(all.filter(p=>p.cat===s.cat && p.sub===s.sub && (tipoVal==='Todas'||p.tipo===tipoVal)));
     let results = all.filter(p => (s.cat==='Todas'||p.cat===s.cat) && (s.sub==='Todas'||p.sub===s.sub) &&
-      (tipoVal==='Todas'||p.tipo===tipoVal) &&
+      (tipoVal==='Todas'||p.tipo===tipoVal) && (capVal==='Todas'||p.cap===capVal) &&
       (s.brand==='Todas'||p.brand===s.brand) && (!s.max||p.price<=s.max) && (!s.onlyStock||p.stock>0||!!p.last) && match(p));
-    const resLim = this.lim('res', [s.page,s.cat,s.sub,tipoVal,s.brand,s.q,s.sort,s.max,s.onlyStock].join('|'));
+    const resLim = this.lim('res', [s.page,s.cat,s.sub,tipoVal,capVal,s.brand,s.q,s.sort,s.max,s.onlyStock].join('|'));
     if(s.sort==='menor') results=results.slice().sort((a,b)=>a.price-b.price);
     if(s.sort==='mayor') results=results.slice().sort((a,b)=>b.price-a.price);
     if(s.sort==='nombre') results=results.slice().sort((a,b)=>a.name.localeCompare(b.name));
@@ -2110,7 +2178,11 @@ class Component extends DCLogic {
     return {
       q:s.q, hasQ:s.q.length>0, cat:s.cat, sub:s.sub, brand:s.brand, max:s.max||priceCap, priceCap, maxF: s.max ? this.fmt(s.max) : 'Sin límite',
       tipoVal, filterTipos:['Todas'].concat(tipos), hasTipos: tipos.length>1,
-      onTipo:(e)=>this.setState({tipo:{k:s.cat+'|'+s.sub, v:e.target.value}}), sort:s.sort, onlyStock:s.onlyStock,
+      onTipo:(e)=>this.setState({tipo:{k:s.cat+'|'+s.sub, v:e.target.value}}),
+      capVal, hasCaps: capsHere.length>1, filterCaps: [{ v:'Todas', l:'Todas' }].concat(capsHere.map(c=>({ v:c.name, l:c.name + ' (' + c.count + ')' }))),
+      onCap:(e)=>this.setState({cap:{k:capKey, v:e.target.value}}),
+      capChips: capsHere.length>1 ? [{ name:'Todas', count:'' }].concat(capsHere.map(c=>({ name:c.name, count:c.count }))).map(c=>{ const on = c.name===capVal; return { name:c.name, count:c.count,
+        bg: on ? '#C8102E' : '#fff', fg: on ? '#fff' : '#141414', bd: on ? '#C8102E' : '#E4E2DD', onClick:()=>this.setState({cap:{k:capKey, v:c.name}}) }; }) : [], sort:s.sort, onlyStock:s.onlyStock,
       isDesktop:s.w>=1020, isMobile:s.w<1020, hdrGap: s.w<1020 ? '4px' : '26px', logoH: s.w<1020 ? '48px' : 'clamp(54px,5.4vw,80px)', hdrPad: s.w<1020 ? '10px 16px' : '16px 28px',
       isHome:s.page==='home', isCatalog:s.page==='catalogo', isProduct:s.page==='producto',
       isMarcas:s.page==='marcas', isOfertas:s.page==='ofertas', isNovedades:s.page==='novedades',
@@ -2121,8 +2193,15 @@ class Component extends DCLogic {
       menuOpen:s.menuOpen, searchOpen:s.searchOpen, cartOpen:s.cartOpen, toast:s.toast,
       megaOpen: megaDef!=null,
       mega: megaDef ? { name:megaDef[0], onClick:()=>this.setState({page:'catalogo',cat:megaDef[0],sub:'Todas',mega:null}),
-        subs: megaDef[1].map(n=>({name:n,onClick:()=>this.setState({page:'catalogo',cat:megaDef[0],sub:n,mega:null})})),
-        prods: all.filter(p=>p.cat===megaDef[0]).slice(0, s.w>=1200 ? 3 : 2).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
+        subs: megaDef[1].map(n=>{ const c = megaDef[0], ps = all.filter(p=>p.cat===c && p.sub===n), caps = this.capsIn(ps);
+          const useCaps = caps.length>1 && ps.filter(p=>p.cap).length >= ps.length*0.6;
+          const tipos = Array.from(new Set(ps.filter(p=>p.tipo).map(p=>p.tipo))).sort();
+          const kidsAll = useCaps ? caps.map(k=>({ name:k.name, onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:null,cap:{k:c+'|'+n+'|Todas', v:k.name},mega:null}) }))
+            : tipos.map(t=>({ name:t, onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:{k:c+'|'+n, v:t},cap:null,mega:null}) }));
+          const lim = useCaps ? 12 : 7;
+          return { name:n, count: ps.length, kids: kidsAll.slice(0,lim), hasKids: kidsAll.length>0, kidsLabel: useCaps ? 'Por capacidad' : 'Por tipo', hasMore: kidsAll.length>lim,
+            onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:null,cap:null,mega:null}) }; }),
+        prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1400 ? 2 : 1).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
         hasProds: all.some(p=>p.cat===megaDef[0]) } : {name:'',subs:[],prods:[],hasProds:false},
       topCats: this.TREE.map((t,i)=>({ name:t[0], color: (s.cat===t[0] || s.mega===i) ? '#fff' : 'rgba(255,255,255,.86)', mark: (s.cat===t[0] || s.mega===i) ? '#fff' : 'transparent',
         onEnter:()=>this.setState({mega:i}),
@@ -2164,6 +2243,16 @@ class Component extends DCLogic {
         return { name:t[0], img: ap ? ap.img : '', hasImg: !!ap, cnt: cn===1 ? '1 producto' : cn + ' productos',
           onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:'Todas'}),
           subs: t[1].slice(0,10).map(n=>({ name:n, onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:n}) })) }; })(),
+      featCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      featCats: [
+        { name:'Heladeras', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Heladeras', pid:7466 },
+        { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:9508 },
+        { name:'Aires acondicionados', cat:'Climatización', sub:'Aires acondicionados', tipo:null, pid:8943 },
+        { name:'Microondas', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Microondas', pid:null }
+      ].map(f=>{ const ps = all.filter(p=>p.cat===f.cat && p.sub===f.sub && (!f.tipo || p.tipo===f.tipo));
+        const pick = (f.pid && ps.find(p=>p.id===f.pid && !p.noImg)) || ps.find(p=>!p.noImg) || ps[0];
+        return { name:f.name, img: pick ? pick.img : this.NOIMG, count: ps.length + ' productos',
+          onClick:()=>this.setState({page:'catalogo', cat:f.cat, sub:f.sub, tipo: f.tipo ? {k:f.cat+'|'+f.sub, v:f.tipo} : null, cap:null, mega:null}) }; }),
       gridCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       curated: this.deco(all.find(p=>p.id===this.CURATED[s.cur]) || all[0]),
       curatedThumbs: this.CURATED.map((id,i)=>{ const cp = all.find(p=>p.id===id);
@@ -2339,8 +2428,8 @@ class Component extends DCLogic {
       onMax:(e)=>{ const v=Number(e.target.value); this.setState({max: v>=priceCap ? 0 : v}); },
       onSort:(e)=>this.setState({sort:e.target.value}),
       onStock:(e)=>this.setState({onlyStock:e.target.checked}),
-      clearFilters:()=>this.setState({q:'',cat:'Todas',sub:'Todas',brand:'Todas',max:0,tipo:null,onlyStock:false}),
-      ...(()=>{ const n = (s.q.trim()?1:0) + (s.cat!=='Todas'?1:0) + (s.sub!=='Todas'?1:0) + (tipoVal!=='Todas'?1:0) + (s.brand!=='Todas'?1:0) + (s.max?1:0) + (s.onlyStock?1:0);
+      clearFilters:()=>this.setState({q:'',cat:'Todas',sub:'Todas',brand:'Todas',max:0,tipo:null,cap:null,onlyStock:false}),
+      ...(()=>{ const n = (s.q.trim()?1:0) + (s.cat!=='Todas'?1:0) + (s.sub!=='Todas'?1:0) + (tipoVal!=='Todas'?1:0) + (capVal!=='Todas'?1:0) + (s.brand!=='Todas'?1:0) + (s.max?1:0) + (s.onlyStock?1:0);
         const mob = s.w<1020, open = !!s.filtOpen;
         return { toggleFilt:()=>this.setState(st=>({filtOpen:!st.filtOpen})), filtOpen: open ? 'true' : 'false', filtActive: n>0,
           filtLabel: (open ? 'Ocultar filtros' : 'Filtros') + (n ? ' (' + n + ')' : ''),
