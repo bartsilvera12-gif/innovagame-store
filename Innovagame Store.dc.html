@@ -1833,7 +1833,7 @@ class Component extends DCLogic {
     const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
       if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
-        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured,
+        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, nuevo:!!c.nuevo,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
@@ -1926,8 +1926,18 @@ class Component extends DCLogic {
     }, 620);
   }
 
-  // Si el ERP oculta alguno de estos productos, se saltea (antes rompía la página).
-  SHOW = (l=>l.length ? l : [{ id:this.DATA[0].id, tint:'#E4E1DC', base:'#F7F6F4', word:'rgba(110,100,90,.18)' }])([
+  // Vitrina: la de ERP › Tienda web › Vitrina; sin ERP o vacía, la de siempre. Si el ERP oculta
+  // alguno de estos productos, se saltea (antes rompía la página).
+  SHOW_TINTS = [
+    { tint:'#F3D9B0', base:'#FAF4EA', word:'rgba(196,140,70,.22)' },
+    { tint:'#D5DEE6', base:'#F3F5F7', word:'rgba(90,110,130,.18)' },
+    { tint:'#BFE3DC', base:'#EEF7F5', word:'rgba(40,130,120,.18)' },
+    { tint:'#DDE6F2', base:'#F4F7FB', word:'rgba(70,100,150,.16)' },
+    { tint:'#E4E1DC', base:'#F7F6F4', word:'rgba(110,100,90,.18)' }
+  ];
+  SHOW_ERP = ((typeof window!=='undefined' && Array.isArray(window.IG_VITRINA)) ? window.IG_VITRINA : [])
+    .filter(id=>this.DATA.some(d=>d.id===id)).slice(0,8).map((id,i)=>({ id, ...this.SHOW_TINTS[i % this.SHOW_TINTS.length] }));
+  SHOW = this.SHOW_ERP.length ? this.SHOW_ERP : (l=>l.length ? l : [{ id:this.DATA[0].id, tint:'#E4E1DC', base:'#F7F6F4', word:'rgba(110,100,90,.18)' }])([
     { id:9379, tint:'#F3D9B0', base:'#FAF4EA', word:'rgba(196,140,70,.22)' },
     { id:7466, tint:'#D5DEE6', base:'#F3F5F7', word:'rgba(90,110,130,.18)' },
     { id:9508, tint:'#BFE3DC', base:'#EEF7F5', word:'rgba(40,130,120,.18)' },
