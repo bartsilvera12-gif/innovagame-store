@@ -1894,7 +1894,17 @@ class Component extends DCLogic {
     def:  { h:'96%',  w:'100%', s:1.02 }
   };
 
-  HERO_SETS = [ { a:7466, b:9508, c:9454 }, { a:9379, b:8943, c:8950 }, { a:9386, b:8936, c:8728 } ];
+  HERO_DEF = [ { a:7466, b:9508, c:9454 }, { a:9379, b:8943, c:8950 }, { a:9386, b:8936, c:8728 } ];
+  HERO_SETS = this.heroSets();
+  heroSets(){
+    const hay = id=>this.DATA.some(d=>d.id===id), sirve = t=>t && hay(t.a) && hay(t.b) && hay(t.c);
+    const erp = (typeof window!=='undefined' && Array.isArray(window.IG_PORTADA)) ? window.IG_PORTADA.filter(sirve) : [];
+    if(erp.length) return erp.map(t=>({ a:t.a, b:t.b, c:t.c, img: typeof t.img==='string' && /^https:\/\//.test(t.img) ? t.img : null }));
+    const def = this.HERO_DEF.filter(sirve);
+    if(def.length) return def;
+    const conFoto = this.DATA.filter(d=>!d.noImg);
+    return conFoto.length>=3 ? [{ a:conFoto[0].id, b:conFoto[1].id, c:conFoto[2].id }] : this.HERO_DEF;
+  }
   get HERO(){ return this.HERO_SETS[(this.state && this.state.hi) || 0]; }
   heroTick(){
     if(this.state.page!=='home' || document.hidden) return;
@@ -1969,7 +1979,8 @@ class Component extends DCLogic {
     ['a','b','c'].forEach(k=>{
       const p = this.DATA.find(d=>d.id===this.HERO[k]);
       const el = document.querySelector('[data-hero-'+k+']');
-      const u = k==='a' ? p.img.replace('-home_default/','-large_default/') : p.img; if(el && p && el.getAttribute('src')!==u) el.src = u;
+      if(!p) return;
+      const u = k==='a' ? (this.HERO.img || p.img.replace('-home_default/','-large_default/')) : p.img; if(el && el.getAttribute('src')!==u) el.src = u;
     });
     const m = document.querySelector('[data-gal-main]');
     if(m){
@@ -2049,7 +2060,7 @@ class Component extends DCLogic {
     this.setState({w: window.innerWidth});
     this.syncLater();
     this.reveal();
-    this.HERO_SETS.forEach(st=>['a','b','c'].forEach(k=>{ const p=this.DATA.find(d=>d.id===st[k]); if(p){ const im=new Image(); im.src=p.img; } }));
+    this.HERO_SETS.forEach(st=>['a','b','c'].forEach(k=>{ const p=this.DATA.find(d=>d.id===st[k]); if(p){ const im=new Image(); im.src=(k==='a' && st.img) || p.img; } }));
     this._hint = setInterval(()=>this.heroTick(), 10000);
     this._edT = setInterval(()=>this.edNext(), 9000);
     this.selRestart();
