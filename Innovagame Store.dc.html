@@ -133,7 +133,7 @@
     <div style="background:#C8102E;position:relative">
       <div data-noscroll style="max-width:1560px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow-x:auto;scrollbar-width:none">
         <sc-for list="{{ topCats }}" as="c" hint-placeholder-count="8">
-          <button onClick="{{ c.onClick }}" onMouseEnter="{{ c.onEnter }}" style="flex:0 0 auto;height:46px;padding:3px 0 0;border:0;border-bottom:3px solid {{ c.mark }};background:transparent;font-size:{{ catFs }};font-weight:500;white-space:nowrap;cursor:pointer;transition:color .18s,border-color .18s;color:{{ c.color }}" style-hover="color:#fff" title="{{ c.name }}">{{ c.label }}</button>
+          <button onClick="{{ c.onClick }}" onMouseEnter="{{ c.onEnter }}" style="flex:0 0 auto;height:46px;padding:3px 0 0;border:0;border-bottom:3px solid {{ c.mark }};background:transparent;font-size:{{ catFs }};font-weight:500;white-space:nowrap;cursor:pointer;transition:color .18s,border-color .18s;color:{{ c.color }}" style-hover="color:#fff" title="{{ c.tip }}">{{ c.label }}</button>
         </sc-for>
       </div>
       <sc-if value="{{ megaOpen }}">
@@ -144,7 +144,7 @@
               <div style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin-top:14px;line-height:1.2">{{ mega.name }}</div>
               <button onClick="{{ mega.onClick }}" style="margin-top:18px;border:1px solid #fff;background:transparent;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="background:#fff;color:#C8102E">Ver todo →</button>
             </div>
-            <div style="flex:1 1 auto;min-width:0;column-width:210px;column-gap:36px;column-fill:balance">
+            <div style="flex:1 1 0;min-width:0;column-width:200px;column-gap:32px;column-fill:balance">
               <sc-for list="{{ mega.subs }}" as="sb" hint-placeholder-count="6">
                 <div style="break-inside:avoid;-webkit-column-break-inside:avoid;display:inline-block;width:100%;margin:0 0 22px">
                   <div onClick="{{ sb.onClick }}" style="font-size:14.5px;font-weight:600;color:#fff;padding:0 0 8px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.22);cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:8px" style-hover="opacity:.85">{{ sb.name }}<span style="font-size:11.5px;font-weight:500;color:#FFC2CA">{{ sb.count }}</span></div>
@@ -167,7 +167,7 @@
               </sc-for>
             </div>
             <sc-if value="{{ mega.hasProds }}">
-              <div style="flex:0 1 auto;min-width:0;display:flex;gap:16px">
+              <div style="flex:0 0 auto;display:flex;gap:14px">
                 <sc-for list="{{ mega.prods }}" as="mp" hint-placeholder-count="3">
                   <div onClick="{{ mp.onOpen }}" style="width:170px;flex:0 0 auto;cursor:pointer;background:#fff;color:#141414;border-radius:12px;overflow:hidden;padding-bottom:14px;animation:igRise .45s cubic-bezier(.22,1,.36,1) both;transition:transform .25s" style-hover="transform:translateY(-3px)">
                     <div style="aspect-ratio:1;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:14px">
@@ -442,23 +442,25 @@
   </div>
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
     <div style="display:grid;grid-template-columns:{{ promoCols }};gap:16px">
-      <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,2.6vw,34px);background:linear-gradient(135deg,#FFF5F6 0%,#FDE6EA 100%);border:1px solid #F6DCE0;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:210px" style-hover="box-shadow:0 18px 40px rgba(200,16,46,.12)">
-        <div style="position:absolute;right:-60px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.18),transparent 70%);pointer-events:none"></div>
-        <div style="position:relative">
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #F2C4CB;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C8102E">Financiación · Fadonet</div>
-          <div style="margin-top:12px;font-size:clamp(20px,2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#141414">Llevalo hoy y pagalo <span style="color:#C8102E">en cuotas</span>.</div>
-          <div style="margin-top:8px;font-size:14px;color:#6E6B66;max-width:440px">Consultá plazos, requisitos y beneficios con nuestros asesores.</div>
+      <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;border-radius:22px;min-height:clamp(320px,30vw,440px);cursor:pointer;background:#2C2C2A;isolation:isolate" style-hover="box-shadow:0 22px 50px rgba(20,20,20,.22)">
+        <img src="{{ promoFadImg }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.1);transition:transform .8s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.15)">
+        <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,20,20,0) 30%,rgba(20,20,20,.35) 55%,rgba(20,20,20,.86) 100%)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,34px);color:#fff">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#C8102E;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19"></path></svg>Financiación · Fadonet</div>
+          <div style="margin-top:12px;font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:16em">Llevalo hoy y pagalo en cuotas.</div>
+          <div style="margin-top:8px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.85);max-width:30em">Financiá tus compras con Fadonet. Consultá plazos y requisitos con nuestros asesores.</div>
+          <span style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
         </div>
-        <span style="position:relative;align-self:flex-start;height:44px;padding:0 20px;border-radius:999px;background:#C8102E;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
       </div>
-      <div onClick="{{ goBodas }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,2.6vw,34px);background:linear-gradient(135deg,#FBF3EA 0%,#F6E9DC 100%);border:1px solid #EEDFCF;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:210px" style-hover="box-shadow:0 18px 40px rgba(120,80,40,.12)">
-        <svg style="position:absolute;right:22px;top:18px;opacity:.12" width="120" height="120" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>
-        <div style="position:relative">
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #EEDFCF;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C8102E"><svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
-          <div style="margin-top:12px;font-size:clamp(20px,2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#141414">Regalá lo que necesitan para su <span style="color:#C8102E">nuevo hogar</span>.</div>
-          <div style="margin-top:8px;font-size:14px;color:#6E6B66;max-width:440px">Buscá la lista de los novios y elegí un regalo.</div>
+      <div onClick="{{ goBodas }}" style="position:relative;overflow:hidden;border-radius:22px;min-height:clamp(320px,30vw,440px);cursor:pointer;background:#2C2C2A;isolation:isolate" style-hover="box-shadow:0 22px 50px rgba(20,20,20,.22)">
+        <img src="{{ promoBodaImg }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.1);transition:transform .8s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.15)">
+        <div style="position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,20,20,0) 30%,rgba(20,20,20,.35) 55%,rgba(20,20,20,.86) 100%)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,34px);color:#fff">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#C8102E;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
+          <div style="margin-top:12px;font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:16em">Todo para su nuevo hogar.</div>
+          <div style="margin-top:8px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.85);max-width:30em">Buscá la lista de los novios y elegí el regalo perfecto.</div>
+          <span style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600">Ver listas<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
         </div>
-        <span style="position:relative;align-self:flex-start;height:44px;padding:0 20px;border-radius:999px;background:#141414;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Ver listas<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
       </div>
     </div>
   </div>
@@ -2163,9 +2165,9 @@ class Component extends DCLogic {
           const lim = useCaps ? 12 : 6;
           return { name:n, count: ps.length, kids: kidsAll.slice(0,lim), hasKids: kidsAll.length>0, isCaps: useCaps && kidsAll.length>0, isTipos: !useCaps && kidsAll.length>0, hasMore: kidsAll.length>lim,
             onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:null,cap:null,mega:null}) }; }),
-        prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1300 ? 1 : 0).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
+        prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1400 ? 2 : 1).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
         hasProds: all.some(p=>p.cat===megaDef[0]) } : {name:'',subs:[],prods:[],hasProds:false},
-      topCats: this.TREE.map((t,i)=>({ name:t[0], label: s.w>=1400 ? t[0] : ({'Grandes electrodomésticos':'Grandes electro.','Pequeños electrodomésticos':'Pequeños electro.','Herramientas y Jardinería':'Herramientas','Belleza y cuidado':'Belleza','Muebles y Hogar':'Muebles'}[t[0]] || t[0]), color: (s.cat===t[0] || s.mega===i) ? '#fff' : 'rgba(255,255,255,.86)', mark: (s.cat===t[0] || s.mega===i) ? '#fff' : 'transparent',
+      topCats: this.TREE.map((t,i)=>({ name:t[0], tip: (s.w<1400 && /electrodom|Jardin|Belleza|Muebles/.test(t[0])) ? t[0] : '', label: s.w>=1400 ? t[0] : ({'Grandes electrodomésticos':'Grandes electro.','Pequeños electrodomésticos':'Pequeños electro.','Herramientas y Jardinería':'Herramientas','Belleza y cuidado':'Belleza','Muebles y Hogar':'Muebles'}[t[0]] || t[0]), color: (s.cat===t[0] || s.mega===i) ? '#fff' : 'rgba(255,255,255,.86)', mark: (s.cat===t[0] || s.mega===i) ? '#fff' : 'transparent',
         onEnter:()=>this.setState({mega:i}),
         onClick:()=>this.setState({page:'catalogo',cat:t[0],sub:'Todas',mega:null,menuOpen:false}) })),
       closeMega:()=>this.setState({mega:null}),
@@ -2206,6 +2208,8 @@ class Component extends DCLogic {
           onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:'Todas'}),
           subs: t[1].slice(0,10).map(n=>({ name:n, onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:n}) })) }; })(),
       catTileCols: s.w>=1200 ? 'repeat(5,minmax(0,1fr))' : s.w>=760 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      promoFadImg: (all.find(p=>p.id===9386) || all.find(p=>p.id===9379) || all.find(p=>!p.noImg)).img,
+      promoBodaImg: (all.find(p=>p.id===7466) || all.find(p=>!p.noImg)).img,
       featCols: s.w>=1200 ? 'repeat(6,minmax(0,1fr))' : s.w>=760 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       featCats: [
         { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:null },
