@@ -1,0 +1,13 @@
+# Material de trabajo que la tienda no usa
+uploads/
+.claude/
+.thumbnail
+Innovagame.dc.html
+
+# Reporte interno de revisión del catálogo (duplicados, categorías asignadas)
+catalogo/revision.json
+
+# Sistema
+Thumbs.db
+.DS_Store
+.vercel
