@@ -8,9 +8,17 @@ Prototipo de la tienda online de Innovagame (Asunción, Paraguay).
 - `catalogo/fotos/`: fotos de cada producto.
 - `brand/`: logos e imágenes de marca.
 
-## Lista de bodas (integración con el ERP)
+## Integración con el ERP (innovagames.neura.com.py)
 
-La página **Lista de bodas** lee `catalogo/listas-bodas.json` cada vez que se abre la tienda. El ERP solo tiene que publicar ese archivo (o un endpoint con el mismo formato) y la web se actualiza sola. Para leerlo desde otra dirección, definí `window.IG_BODAS_URL` antes de cargar la tienda.
+La tienda toma todo del ERP de Innovagames (`window.IG_ERP` en el `<head>`):
+
+- **Catálogo:** `<script src="https://innovagames.neura.com.py/api/publico/tienda/catalogo?js=1">` define `window.IG_CATALOG` con los productos marcados *En la tienda web* en Inventario (precio, stock, fotos). Si el ERP no responde, se carga el catálogo guardado `catalogo/catalogo.js`.
+- **Listas de bodas:** `window.IG_BODAS_URL` = `/api/publico/tienda/bodas` (se arman en el ERP › Tienda web).
+- **Pedidos:** el checkout hace `POST /api/publico/tienda/pedido` y el pedido entra al ERP como presupuesto (origen web). Sin ERP, el checkout manda el pedido por WhatsApp.
+
+### Formato de las listas de bodas
+
+El formato es el mismo de `catalogo/listas-bodas.json` (respaldo):
 
 ```json
 {

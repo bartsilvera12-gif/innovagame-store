@@ -9,7 +9,20 @@
 <link rel="icon" href="./brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="shortcut icon" href="./favicon.ico">
 <link rel="apple-touch-icon" href="./brand/apple-touch-icon.png">
-<script src="./catalogo/catalogo.js"></script>
+<script>
+  // ERP de Innovagames: de ahí salen el catálogo (precios, stock, fotos), las listas de bodas
+  // y adonde van los pedidos. Si el ERP no responde, la tienda usa el catálogo guardado.
+  window.IG_ERP = 'https://innovagames.neura.com.py';
+  window.IG_BODAS_URL = window.IG_ERP + '/api/publico/tienda/bodas';
+</script>
+<script src="https://innovagames.neura.com.py/api/publico/tienda/catalogo?js=1"></script>
+<script>
+  if (!window.IG_CATALOG_ERP || !Array.isArray(window.IG_CATALOG) || !window.IG_CATALOG.length) {
+    window.IG_CATALOG_ERP = false;
+    window.IG_BODAS_URL = undefined;
+    document.write('<script src="./catalogo/catalogo.js"><\/script>');
+  }
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -1249,23 +1262,42 @@
 
 <sc-if value="{{ isCheckout }}">
 <div style="max-width:1100px;margin:0 auto;padding:26px 28px 0">
+  <sc-if value="{{ ckDone }}">
+    <div style="max-width:620px;margin:20px auto 0;border:1px solid #E4E2DD;padding:40px 32px;text-align:center">
+      <div style="width:54px;height:54px;border-radius:50%;background:#E8F5EC;color:#1F7A45;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px">✓</div>
+      <h1 style="margin:20px 0 8px;font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.03em">¡Recibimos tu pedido!</h1>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#6E6B66">Pedido <strong style="color:#141414">{{ ckNumero }}</strong> · Total <strong style="color:#141414">{{ ckTotal }}</strong></p>
+      <p style="margin:12px 0 0;font-size:14.5px;line-height:1.6;color:#6E6B66">Un asesor de Innovagame te va a contactar para confirmar el stock, el pago y la entrega.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+        <sc-if value="{{ hasCkLink }}"><a href="{{ ckLink }}" target="_blank" style="border:1px solid #141414;background:#141414;color:#fff;padding:13px 22px;font-size:14px;font-weight:600">Ver mi pedido</a></sc-if>
+        <button onClick="{{ ckNew }}" style="border:1px solid #E4E2DD;background:#fff;padding:13px 22px;font-size:14px;cursor:pointer">Seguir comprando</button>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ ckForm }}">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Checkout</h1>
-  <p style="margin:0 0 26px;font-size:14.5px;color:#6E6B66">Prototipo de diseño: no se procesan pagos reales. El flujo definitivo se conecta con el sistema vigente de la tienda.</p>
+  <p style="margin:0 0 26px;font-size:14.5px;color:#6E6B66">Dejanos tus datos y confirmá el pedido. Un asesor te contacta para coordinar el pago y la entrega: no se cobra nada en línea.</p>
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
     <div style="flex:2 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px">
-      <input placeholder="Nombre y apellido" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+      <input value="{{ ckNombre }}" onChange="{{ onCkNombre }}" autocomplete="name" placeholder="Nombre y apellido" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
       <div style="display:flex;gap:14px;flex-wrap:wrap">
-        <input placeholder="Email" style="flex:1 1 180px;min-width:0;height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
-        <input placeholder="Teléfono" style="flex:1 1 180px;min-width:0;height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+        <input value="{{ ckTel }}" onChange="{{ onCkTel }}" type="tel" autocomplete="tel" placeholder="Teléfono / WhatsApp" style="flex:1 1 180px;min-width:0;height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+        <input value="{{ ckEmail }}" onChange="{{ onCkEmail }}" type="email" autocomplete="email" placeholder="Email (opcional)" style="flex:1 1 180px;min-width:0;height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
       </div>
-      <input placeholder="Dirección de entrega o sucursal de retiro" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+      <input value="{{ ckDoc }}" onChange="{{ onCkDoc }}" placeholder="Cédula o RUC (opcional, para la factura)" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+      <input value="{{ ckDir }}" onChange="{{ onCkDir }}" autocomplete="street-address" placeholder="Dirección de entrega o sucursal de retiro" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-top:10px">Medio de pago</div>
-      <select style="height:50px;border:1px solid #E4E2DD;padding:0 13px;font-size:15px;background:#FAF9F7;outline:none">
+      <select value="{{ ckPago }}" onChange="{{ onCkPago }}" style="height:50px;border:1px solid #E4E2DD;padding:0 13px;font-size:15px;background:#FAF9F7;outline:none">
         <option>Efectivo</option>
         <option>Transferencia</option>
         <option>Tarjeta de crédito</option>
+        <option>Tarjeta de débito</option>
+        <option>Financiación</option>
       </select>
-      <button onClick="{{ demoCheckout }}" style="margin-top:10px;border:1px solid #141414;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600;cursor:pointer">Confirmar pedido</button>
+      <textarea value="{{ ckNota }}" onChange="{{ onCkNota }}" placeholder="Comentarios (opcional)" rows="3" style="border:1px solid #E4E2DD;padding:12px 15px;font-size:15px;background:#FAF9F7;outline:none;font-family:inherit;resize:vertical"></textarea>
+      <sc-if value="{{ hasCkRegalo }}"><div style="font-size:13.5px;color:#A50D26;background:#FDECEE;padding:10px 13px">{{ ckRegalo }}</div></sc-if>
+      <sc-if value="{{ hasCkErr }}"><div style="font-size:13.5px;color:#C8102E;background:#FDECEE;padding:10px 13px">{{ ckErr }}</div></sc-if>
+      <button onClick="{{ sendOrder }}" disabled="{{ ckBusy }}" style="margin-top:10px;border:1px solid #141414;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600;cursor:pointer">{{ ckBtn }}</button>
     </div>
     <div style="flex:1 1 260px;min-width:0;border:1px solid #E4E2DD;padding:24px">
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:16px">Tu pedido</div>
@@ -1280,6 +1312,7 @@
       </div>
     </div>
   </div>
+  </sc-if>
 </div>
 </sc-if>
 
@@ -1685,7 +1718,8 @@ class Component extends DCLogic {
   state = {
     page:'home', selCat:'Todos', selPos:0, selAnim:true, qv:null, qvImg:0, pq:1, hi:0, ed:0, pid:7466, scene:0, acc:0, cur:0, menuOpen:false, searchOpen:false, cartOpen:false, suggestOpen:false,
     mega:null, w:1440, q:'', cat:'Todas', sub:'Todas', brand:'Todas', max:0, tipo:null, limTick:0,
-    sort:'relevancia', onlyStock:false, gal:0, items:[], favs:[], compare:[], toast:'', doc:'como-comprar'
+    sort:'relevancia', onlyStock:false, gal:0, items:[], favs:[], compare:[], toast:'', doc:'como-comprar',
+    ck:{ nombre:'', doc:'', email:'', tel:'', dir:'', pago:'Efectivo', nota:'' }, ckBusy:false, ckErr:'', ckDone:null
   };
 
   IMG = 'https://www.innovagame.com.py/';
@@ -1788,14 +1822,18 @@ class Component extends DCLogic {
   mergeCatalog(base, cat){
     const byId = {}; cat.forEach(c=>{ byId[c.id]=c; });
     const fixSub = { 'ROPERO':'Roperos' };
-    const out = base.map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
+    const erp = typeof window!=='undefined' && window.IG_CATALOG_ERP===true;
+    const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
+      if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
+        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc,
+        images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
     const seen = new Set(base.map(b=>b.id));
     cat.forEach(c=>{ if(seen.has(c.id)) return;
       const specs = []; if(c.brand) specs.push(['Marca', c.brand]); specs.push(['Categoría', c.tipo || c.sub]); if(c.ref) specs.push(['Referencia', c.ref]);
-      out.push({ ...c, model:'', stock:null, tag:c.tipo||c.sub, specs,
+      out.push({ ...c, model:'', stock:(erp && c.stock!=null) ? c.stock : null, offer:!!c.oldPrice, tag:c.tipo||c.sub, specs,
         img: c.images[0] || this.NOIMG, images: c.images.length ? c.images : [this.NOIMG], noImg: !c.images.length }); });
     out.forEach(p=>{ const c = this.capOf(p); if(c){ p.cap = c[0]; p.capN = c[1]; } });
     out.forEach(p=>{ p._q = this.norm([p.name, p.raw, p.brand, p.model, p.ref, p.cat, p.sub, p.tipo, p.cap].join(' ')); });
@@ -1948,10 +1986,37 @@ class Component extends DCLogic {
   go(page){ return () => this.setState({ page, menuOpen:false, searchOpen:false, mega:null, suggestOpen:false }); }
   openProduct(id){ return (e) => { if(e&&e.stopPropagation)e.stopPropagation();
     this._relHover=false; this.setState({ page:'producto', pid:id, gal:0, pq:1, relPage:0, ptab:'desc', descOpen:false, qv:null, zoom:false, lbZ:false, menuOpen:false, searchOpen:false, suggestOpen:false, mega:null }); }; }
+  sendOrder(){ const s=this.state, ck=s.ck, erp=typeof window!=='undefined' ? window.IG_ERP : '';
+    if(s.ckBusy) return;
+    if(!s.items.length) return this.setState({ckErr:'Tu carrito está vacío.'});
+    if(ck.nombre.trim().length<3) return this.setState({ckErr:'Escribí tu nombre y apellido.'});
+    if(ck.tel.replace(/\D/g,'').length<6) return this.setState({ckErr:'Escribí un teléfono de contacto.'});
+    if(ck.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ck.email.trim())) return this.setState({ckErr:'Revisá el email.'});
+    if(ck.dir.trim().length<3) return this.setState({ckErr:'Escribí la dirección de entrega o la sucursal donde retirás.'});
+    if(!erp || window.IG_CATALOG_ERP!==true){
+      const txt = 'Hola, quiero hacer este pedido:\n' + s.items.map(i=>i.qty + ' × ' + i.name).join('\n') + '\nNombre: ' + ck.nombre + '\nEntrega: ' + ck.dir + '\nPago: ' + ck.pago;
+      window.open('https://wa.me/595974800300?text=' + encodeURIComponent(txt), '_blank'); return;
+    }
+    if(!this._ckKey) this._ckKey = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c=>{ const r=Math.random()*16|0; return (c==='x' ? r : (r&3|8)).toString(16); });
+    const lista = (s.items.find(i=>i.lista)||{}).lista || null;
+    this.setState({ckBusy:true, ckErr:''});
+    fetch(erp + '/api/publico/tienda/pedido', { method:'POST', headers:{'content-type':'application/json'},
+      body: JSON.stringify({ idempotency_key:this._ckKey, lista,
+        cliente:{ nombre:ck.nombre.trim(), documento:ck.doc.trim()||null, telefono:ck.tel.trim(), email:ck.email.trim()||null, direccion:ck.dir.trim() },
+        entrega:ck.dir.trim(), pago:ck.pago, nota:ck.nota.trim()||null,
+        items: s.items.map(i=>({ id:i.id, cantidad:i.qty })) }) })
+      .then(r=>r.json().catch(()=>({ok:false})))
+      .then(d=>{ if(!d || !d.ok) throw new Error((d && d.error) || 'No se pudo enviar el pedido. Probá de nuevo o escribinos por WhatsApp.');
+        this._ckKey=null;
+        this.setState({ ckBusy:false, ckErr:'', items:[], ckDone:{ numero:d.data.numero, total:this.fmt(d.data.total||0), link:d.data.link||'' } });
+        try{ window.scrollTo(0,0); }catch(e){} })
+      .catch(e=>this.setState({ ckBusy:false, ckErr:e.message || 'No se pudo enviar el pedido.' }));
+  }
   flash(m){ clearTimeout(this._tt); this.setState({toast:m}); this._tt=setTimeout(()=>this.setState({toast:''}),2200); }
-  add(p, n){ return (e)=>{ if(e&&e.stopPropagation)e.stopPropagation(); const q = Math.max(1, n || 1);
+  add(p, n, lista){ return (e)=>{ if(e&&e.stopPropagation)e.stopPropagation(); const q = Math.max(1, n || 1);
     this.setState(s=>{ const items=s.items.slice(); const i=items.findIndex(x=>x.id===p.id);
-      if(i>=0) items[i]={...items[i],qty:items[i].qty+q}; else items.push({id:p.id,name:p.name,brand:p.brand,price:p.price,img:p.img,qty:q});
+      if(i>=0) items[i]={...items[i],qty:items[i].qty+q,lista:lista||items[i].lista}; else items.push({id:p.id,name:p.name,brand:p.brand,price:p.price,img:p.img,qty:q,lista:lista||null});
       return {items}; });
     this.flash('Agregado al carrito'); }; }
   toggleFav(p){ return (e)=>{ if(e&&e.stopPropagation)e.stopPropagation();
@@ -2441,7 +2506,7 @@ class Component extends DCLogic {
             return { ...this.deco(p), done, notDone:!done, op: done ? .45 : 1,
               need: done ? 'Regalado' : (c>1 ? 'Faltan ' + left + ' de ' + c : 'Disponible'),
               tagBg: done ? '#EAF6EE' : '#FDECEE', tagFg: done ? '#1F7A45' : '#A50D26',
-              onGift:(e)=>{ this.add(p)(e); this.flash('Agregado al carrito · Lista de ' + sel.novios); } }; }).filter(Boolean);
+              onGift:(e)=>{ this.add(p, 1, sel.id)(e); this.flash('Agregado al carrito · Lista de ' + sel.novios); } }; }).filter(Boolean);
           const pct = total ? Math.round(got*100/total) : 0;
           boda = { novios: sel.novios, date: fd(sel.fecha), mensaje: sel.mensaje||'', hasMsg: !!sel.mensaje, ejemplo: !!sel.ejemplo, items,
             progressLabel: got + ' de ' + total + ' regalos', pct: pct + '%', pctLabel: pct + '% completado',
@@ -2474,7 +2539,17 @@ class Component extends DCLogic {
         { k:'WhatsApp Casa Central', v:'+595 983 943254', href:'https://wa.me/595983943254', isWa:true },
         { k:'Email', v:'info@innovagame.com.py', href:'mailto:info@innovagame.com.py', isMail:true }
       ],
-      demoCheckout:()=>this.flash('Prototipo de diseño: no se procesan pagos reales.')
+      demoCheckout:()=>this.flash('Prototipo de diseño: no se procesan pagos reales.'),
+      ...(()=>{ const ck=s.ck, set=(k)=>(e)=>this.setState(st=>({ ck:{ ...st.ck, [k]:e.target.value }, ckErr:'' }));
+        const regalo = (s.items.find(i=>i.lista)||{}).lista, lb = regalo && (s.bodas||[]).find(b=>b.id===regalo);
+        return { ckNombre:ck.nombre, ckDoc:ck.doc, ckEmail:ck.email, ckTel:ck.tel, ckDir:ck.dir, ckPago:ck.pago, ckNota:ck.nota,
+          onCkNombre:set('nombre'), onCkDoc:set('doc'), onCkEmail:set('email'), onCkTel:set('tel'), onCkDir:set('dir'), onCkPago:set('pago'), onCkNota:set('nota'),
+          ckErr:s.ckErr, hasCkErr:!!s.ckErr, ckBusy:s.ckBusy, ckBtn: s.ckBusy ? 'Enviando pedido…' : 'Confirmar pedido',
+          ckDone:!!s.ckDone, ckForm:!s.ckDone, ckNumero:s.ckDone ? s.ckDone.numero : '', ckTotal:s.ckDone ? s.ckDone.total : '',
+          ckLink:s.ckDone ? s.ckDone.link : '', hasCkLink:!!(s.ckDone && s.ckDone.link),
+          ckRegalo: lb ? 'Regalo para la lista de bodas de ' + lb.novios + '.' : '', hasCkRegalo:!!lb,
+          sendOrder:()=>this.sendOrder(),
+          ckNew:()=>this.setState({ ckDone:null, page:'catalogo' }) }; })()
     };
   }
 }
