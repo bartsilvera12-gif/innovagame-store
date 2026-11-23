@@ -215,17 +215,18 @@
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
       <div style="display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.3fr) minmax(0,.7fr);gap:1px;background:#E4E2DD;height:clamp(460px,70vh,680px);margin-right:28px">
 
-        <div style="position:relative;background:#141414;color:#fff;padding:clamp(28px,2.6vw,44px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
-          <div style="position:absolute;right:-30px;top:-10px;width:150px;height:150px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.14;pointer-events:none"></div>
-          <div style="position:absolute;left:-46px;bottom:-26px;width:120px;height:120px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.1;pointer-events:none"></div>
-          <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#F79AA4;animation:igRise .7s cubic-bezier(.22,1,.36,1) .15s both">Innovagame</div>
+        <div style="position:relative;background:#fff;color:#141414;padding:clamp(28px,2.6vw,44px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
+          <div style="position:absolute;right:-30px;top:-10px;width:150px;height:150px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.07;pointer-events:none"></div>
+          <div style="position:absolute;left:-46px;bottom:-26px;width:120px;height:120px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.06;pointer-events:none"></div>
+          <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .15s both">Innovagame</div>
           <div>
             <h1 style="margin:0;font-size:clamp(30px,3.4vw,52px);font-weight:600;letter-spacing:-.01em;line-height:1.14">
               <span style="display:block;animation:igRise .8s cubic-bezier(.22,1,.36,1) .3s both">Tu casa. Tus planes.</span>
-              <span style="display:block;color:#FF5A6B;animation:igRise .8s cubic-bezier(.22,1,.36,1) .42s both">Todo en Innovagame.</span>
+              <span style="display:block;color:#C8102E;animation:igRise .8s cubic-bezier(.22,1,.36,1) .42s both">Todo en Innovagame.</span>
             </h1>
             <div style="width:54px;height:2px;background:#C8102E;margin:26px 0 0;animation:igRise .6s cubic-bezier(.22,1,.36,1) .55s both"></div>
-            <button onClick="{{ goCatalog }}" style="margin-top:26px;border:1px solid #fff;background:#fff;color:#141414;padding:16px 30px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .22s;animation:igRise .6s cubic-bezier(.22,1,.36,1) .66s both" style-hover="background:transparent;color:#fff">Explorar productos</button>
+            <p style="margin:18px 0 0;font-size:15px;line-height:1.6;color:#5A5853;max-width:30ch;animation:igRise .6s cubic-bezier(.22,1,.36,1) .6s both">Tecnología, electrodomésticos y muebles con <span style="color:#C8102E;font-weight:600">envío a domicilio</span> y <span style="color:#C8102E;font-weight:600">garantía de fábrica</span>.</p>
+            <button onClick="{{ goCatalog }}" style="margin-top:24px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:16px 30px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .22s;box-shadow:0 10px 24px rgba(200,16,46,.25);animation:igRise .6s cubic-bezier(.22,1,.36,1) .66s both" style-hover="background:#A50D26">Explorar productos</button>
           </div>
         </div>
 
@@ -268,14 +269,14 @@
 
     <sc-if value="{{ isMobile }}">
       <div style="display:flex;flex-direction:column;gap:1px;background:#E4E2DD">
-        <div style="position:relative;background:#141414;color:#fff;padding:24px 20px 26px;overflow:hidden">
-          <div style="position:absolute;right:-24px;top:-14px;width:110px;height:110px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.14;pointer-events:none"></div>
-          <div style="font:500 10px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#F79AA4">Innovagame</div>
+        <div style="position:relative;background:#fff;color:#141414;padding:24px 20px 26px;overflow:hidden">
+          <div style="position:absolute;right:-24px;top:-14px;width:110px;height:110px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.08;pointer-events:none"></div>
+          <div style="font:600 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E">Innovagame</div>
           <h1 style="margin:14px 0 0;font-size:clamp(26px,7vw,34px);font-weight:600;letter-spacing:-.01em;line-height:1.14">
             <span style="display:block;animation:igRise .7s cubic-bezier(.22,1,.36,1) .2s both">Tu casa. Tus planes.</span>
-            <span style="display:block;color:#FF5A6B;animation:igRise .7s cubic-bezier(.22,1,.36,1) .32s both">Todo en Innovagame.</span>
+            <span style="display:block;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .32s both">Todo en Innovagame.</span>
           </h1>
-          <button onClick="{{ goCatalog }}" style="width:100%;margin-top:22px;border:1px solid #fff;background:#fff;color:#141414;border-radius:999px;padding:14px;font-size:15px;font-weight:600;cursor:pointer">Explorar productos</button>
+          <button onClick="{{ goCatalog }}" style="width:100%;margin-top:22px;border:0;background:#C8102E;color:#fff;border-radius:999px;padding:14px;font-size:15px;font-weight:600;cursor:pointer">Explorar productos</button>
         </div>
         <div onClick="{{ heroA.onOpen }}" style="position:relative;background:#fff;display:flex;flex-direction:column;overflow:hidden;animation:igMask .9s cubic-bezier(.76,0,.24,1) both">
           <div data-hero-anim style="position:relative;aspect-ratio:4/3;overflow:hidden">
@@ -310,16 +311,94 @@
 
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <div>
-  <div style="background:#2E3033;color:#fff;margin-top:56px">
-    <div style="max-width:1560px;margin:0 auto;padding:clamp(40px,5vw,72px) 28px clamp(40px,5vw,68px)">
+  <div style="max-width:1560px;margin:0 auto;padding:24px 28px 0">
+    <div style="display:grid;grid-template-columns:{{ benCols }};gap:1px;background:#EFEDE9;border:1px solid #EFEDE9;border-radius:16px;overflow:hidden">
+      <div onClick="{{ goEnvios }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
+        <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v11H1z"></path><path d="M14 8h4l3 3v4h-7"></path><circle cx="5.5" cy="17.5" r="1.8"></circle><circle cx="17.5" cy="17.5" r="1.8"></circle></svg></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Envío a domicilio</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Asunción en 24 h hábiles</span></span>
+      </div>
+      <div onClick="{{ goSucursales }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
+        <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path><path d="M3 9h18"></path></svg></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Retiro en 2 sucursales</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Casa Central y Sucursal</span></span>
+      </div>
+      <div onClick="{{ goCambios }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
+        <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Garantía de fábrica</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">En todos los productos</span></span>
+      </div>
+      <div onClick="{{ goFinanciacion }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
+        <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19M6.5 15h4"></path></svg></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Financiación Fadonet</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Pagá en cuotas</span></span>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
+      <div>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Categorías</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Comprá por categoría.</h2>
+      </div>
+      <button onClick="{{ goCategorias }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Ver todas →</button>
+    </div>
+    <sc-if value="{{ accWide }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:minmax(240px,320px) minmax(0,1fr);border:1px solid #EFEDE9;border-radius:18px;overflow:hidden;background:#fff;min-height:clamp(420px,36vw,520px)">
+      <div style="display:flex;flex-direction:column;border-right:1px solid #EFEDE9;padding:8px">
+        <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="9">
+          <button onMouseEnter="{{ a.onEnter }}" onClick="{{ a.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;border:0;border-radius:12px;padding:13px 16px;background:{{ a.rowBg }};color:{{ a.rowFg }};cursor:pointer;transition:background .2s,color .2s">
+            <span style="min-width:0">
+              <span style="display:block;font-size:15px;font-weight:600;line-height:1.25">{{ a.name }}</span>
+              <span style="display:block;font-size:12px;margin-top:2px;color:{{ a.rowSub }}">{{ a.cnt }}</span>
+            </span>
+            <svg style="flex:0 0 auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:center;padding:clamp(24px,3vw,44px)">
+        <div onClick="{{ accCur.onClick }}" style="height:100%;min-height:300px;border-radius:16px;background:radial-gradient(70% 70% at 50% 50%,#FFFFFF 0%,#F7F2EC 100%);display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.4vw,34px);cursor:pointer;overflow:hidden">
+          <sc-if value="{{ accCur.hasImg }}"><img src="{{ accCur.img }}" alt="{{ accCur.name }}" style="max-width:100%;max-height:340px;object-fit:contain;display:block;animation:igFadeIn .35s ease both"></sc-if>
+        </div>
+        <div style="min-width:0">
+          <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ accCur.cnt }}</div>
+          <div style="margin-top:10px;font-size:clamp(24px,2.4vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.1">{{ accCur.name }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
+            <sc-for list="{{ accCur.subs }}" as="sc" hint-placeholder-count="5">
+              <button onClick="{{ sc.onClick }}" style="border:1px solid #E4E2DD;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;color:#3C3B38;cursor:pointer;transition:all .2s" style-hover="border-color:#C8102E;color:#C8102E">{{ sc.name }}</button>
+            </sc-for>
+          </div>
+          <button onClick="{{ accCur.onClick }}" style="margin-top:22px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:13px 24px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px" style-hover="background:#A50D26">Ver {{ accCur.name }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+    <sc-if value="{{ accNarrow }}">
+    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:clamp(18px,2.4vw,44px) clamp(14px,1.8vw,32px)">
+      <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="8">
+        <div onClick="{{ a.onClick }}" data-reveal style="display:flex;flex-direction:column;cursor:pointer">
+          <div style="position:relative;background:#F7F6F3;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,30px);overflow:hidden">
+            <sc-if value="{{ a.hasImg }}">
+              <img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .55s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.04)">
+            </sc-if>
+            <sc-if value="{{ a.noImg }}">
+              <span style="font:500 9.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B5B1A9;text-align:center">Foto de categoría</span>
+            </sc-if>
+          </div>
+          <div style="font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:16px">{{ a.name }}</div>
+          <div style="font:400 11.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66;margin-top:8px">{{ a.subs }}</div>
+          <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;margin-top:12px">Ver categoría →</div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+  </div>
+  <div style="background:#fff;color:#141414;margin-top:8px">
+    <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
-        <h2 style="margin:0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;color:#fff">Una selección para empezar.</h2>
-        <button onClick="{{ selViewAll }}" style="border:0;background:transparent;color:#fff;font-size:14.5px;font-weight:500;cursor:pointer;padding:4px 0;border-bottom:1px solid #fff;transition:all .2s" style-hover="color:#FF8A97;border-color:#FF8A97">{{ selViewAllLabel }} →</button>
+        <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Destacados</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;color:#141414">Una selección para empezar.</h2></div>
+        <button onClick="{{ selViewAll }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E;transition:all .2s" style-hover="color:#141414;border-color:#141414">{{ selViewAllLabel }} →</button>
       </div>
 
       <div data-noscroll style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -28px clamp(22px,2.6vw,32px);padding:0 28px 2px">
         <sc-for list="{{ selCats }}" as="c" hint-placeholder-count="6">
-          <button onClick="{{ c.onClick }}" style="flex:0 0 auto;height:38px;padding:0 16px;border-radius:6px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-size:13.5px;font-weight:500;white-space:nowrap;cursor:pointer;transition:all .2s" style-hover="border-color:#fff">{{ c.name }} <span style="opacity:.55;font-size:12px;margin-left:4px">{{ c.count }}</span></button>
+          <button onClick="{{ c.onClick }}" style="flex:0 0 auto;height:38px;padding:0 16px;border-radius:6px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-size:13.5px;font-weight:500;white-space:nowrap;cursor:pointer;border-radius:999px;transition:all .2s" style-hover="border-color:#C8102E">{{ c.name }} <span style="opacity:.55;font-size:12px;margin-left:4px">{{ c.count }}</span></button>
         </sc-for>
       </div>
 
@@ -359,10 +438,10 @@
             </sc-for>
           </div>
           <div style="display:flex;gap:10px">
-            <button onClick="{{ selPrev }}" aria-label="Productos anteriores" style="width:46px;height:46px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s" style-hover="background:#fff;border-color:#fff;color:#141414">
+            <button onClick="{{ selPrev }}" aria-label="Productos anteriores" style="width:46px;height:46px;border-radius:50%;border:1px solid #E4E2DD;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s" style-hover="background:#C8102E;border-color:#C8102E;color:#fff">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
             </button>
-            <button onClick="{{ selNext }}" aria-label="Más productos" style="width:46px;height:46px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s" style-hover="background:#fff;border-color:#fff;color:#141414">
+            <button onClick="{{ selNext }}" aria-label="Más productos" style="width:46px;height:46px;border-radius:50%;border:1px solid #E4E2DD;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s" style-hover="background:#C8102E;border-color:#C8102E;color:#fff">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
             </button>
           </div>
@@ -371,63 +450,28 @@
       </div>
     </div>
   </div>
-
-  <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px">
-      <div>
-        <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Categorías</div>
-        <h2 style="margin:12px 0 0;font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.03em">Todos los mundos, un catálogo.</h2>
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
+    <div style="display:grid;grid-template-columns:{{ promoCols }};gap:16px">
+      <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,2.6vw,34px);background:linear-gradient(135deg,#FFF5F6 0%,#FDE6EA 100%);border:1px solid #F6DCE0;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:210px" style-hover="box-shadow:0 18px 40px rgba(200,16,46,.12)">
+        <div style="position:absolute;right:-60px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.18),transparent 70%);pointer-events:none"></div>
+        <div style="position:relative">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #F2C4CB;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C8102E">Financiación · Fadonet</div>
+          <div style="margin-top:12px;font-size:clamp(20px,2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#141414">Llevalo hoy y pagalo <span style="color:#C8102E">en cuotas</span>.</div>
+          <div style="margin-top:8px;font-size:14px;color:#6E6B66;max-width:440px">Consultá plazos, requisitos y beneficios con nuestros asesores.</div>
+        </div>
+        <span style="position:relative;align-self:flex-start;height:44px;padding:0 20px;border-radius:999px;background:#C8102E;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </div>
+      <div onClick="{{ goBodas }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,2.6vw,34px);background:linear-gradient(135deg,#FBF3EA 0%,#F6E9DC 100%);border:1px solid #EEDFCF;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:210px" style-hover="box-shadow:0 18px 40px rgba(120,80,40,.12)">
+        <svg style="position:absolute;right:22px;top:18px;opacity:.12" width="120" height="120" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>
+        <div style="position:relative">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #EEDFCF;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C8102E"><svg width="12" height="12" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
+          <div style="margin-top:12px;font-size:clamp(20px,2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#141414">Regalá lo que necesitan para su <span style="color:#C8102E">nuevo hogar</span>.</div>
+          <div style="margin-top:8px;font-size:14px;color:#6E6B66;max-width:440px">Buscá la lista de los novios y elegí un regalo.</div>
+        </div>
+        <span style="position:relative;align-self:flex-start;height:44px;padding:0 20px;border-radius:999px;background:#141414;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Ver listas<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
       </div>
     </div>
-    <sc-if value="{{ accWide }}" hint-placeholder-val="{{ true }}">
-    <div data-reveal style="display:flex;gap:6px;height:clamp(440px,42vw,600px)">
-      <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="8">
-        <div onMouseEnter="{{ a.onEnter }}" onClick="{{ a.onClick }}" style="flex:{{ a.grow }} 1 0;min-width:0;position:relative;overflow:hidden;cursor:pointer;background:{{ a.bg }};transition:flex-grow .6s cubic-bezier(.22,1,.36,1),background .3s;display:flex;flex-direction:column">
-          <sc-if value="{{ a.on }}">
-            <div style="flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:clamp(20px,2.4vw,36px) clamp(20px,2.4vw,36px) 0">
-              <sc-if value="{{ a.hasImg }}">
-                <img src="{{ a.img }}" alt="{{ a.alt }}" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
-              </sc-if>
-              <sc-if value="{{ a.noImg }}">
-                <span style="font:500 9.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B5B1A9">Foto de categoría</span>
-              </sc-if>
-            </div>
-            <div style="padding:18px clamp(20px,2.4vw,36px) 28px;min-width:0">
-              <div style="font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</div>
-              <div style="font:400 12px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66;margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.subsAll }}</div>
-              <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;margin-top:16px">Ver categoría →</div>
-            </div>
-          </sc-if>
-          <sc-if value="{{ a.off }}">
-            <div style="flex:1 1 auto;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:20px 0 28px">
-              <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:18px;font-weight:600;letter-spacing:-.01em;color:#141414;white-space:nowrap">{{ a.name }}</div>
-            </div>
-          </sc-if>
-        </div>
-      </sc-for>
-    </div>
-    </sc-if>
-    <sc-if value="{{ accNarrow }}">
-    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:clamp(18px,2.4vw,44px) clamp(14px,1.8vw,32px)">
-      <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="8">
-        <div onClick="{{ a.onClick }}" data-reveal style="display:flex;flex-direction:column;cursor:pointer">
-          <div style="position:relative;background:#F7F6F3;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,30px);overflow:hidden">
-            <sc-if value="{{ a.hasImg }}">
-              <img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .55s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.04)">
-            </sc-if>
-            <sc-if value="{{ a.noImg }}">
-              <span style="font:500 9.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B5B1A9;text-align:center">Foto de categoría</span>
-            </sc-if>
-          </div>
-          <div style="font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:16px">{{ a.name }}</div>
-          <div style="font:400 11.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66;margin-top:8px">{{ a.subs }}</div>
-          <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;margin-top:12px">Ver categoría →</div>
-        </div>
-      </sc-for>
-    </div>
-    </sc-if>
   </div>
-
   <div style="max-width:1560px;margin:0 auto;padding:56px 28px 0">
     <div data-reveal style="display:flex;flex-wrap:wrap;align-items:stretch;background:#F2F1EE;border-radius:18px;overflow:hidden">
       <div style="flex:2 1 460px;min-width:0;display:flex;flex-direction:column;background:#F2F1EE">
@@ -481,23 +525,46 @@
       </div>
     </div>
   </div>
-
-  <div style="max-width:1560px;margin:0 auto;padding:56px 28px 0">
-    <div onClick="{{ goFinanciacion }}" style="position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,44px);background:linear-gradient(120deg,#141414 0%,#2A1015 55%,#8A0A20 100%);color:#fff;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px" style-hover="box-shadow:0 18px 40px rgba(20,20,20,.18)">
-      <div style="position:absolute;right:-80px;top:-120px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.55),transparent 70%);pointer-events:none"></div>
-      <div style="position:relative;min-width:0;flex:1 1 380px">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Financiación · Fadonet</div>
-        <div style="margin-top:12px;font-size:clamp(21px,2.3vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.15">Llevalo hoy y pagalo en cuotas con Fadonet.</div>
-        <div style="margin-top:8px;font-size:14.5px;color:#E7C9CE;max-width:560px">Financiá tus compras en Innovagame. Consultá plazos, requisitos y beneficios con nuestros asesores.</div>
+  <sc-if value="{{ isDesktop }}">
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
+      <div>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Recién llegados</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Novedades.</h2>
       </div>
-      <span style="position:relative;flex:0 0 auto;height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px">Conocé cómo financiar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <button onClick="{{ goNovedades }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Ver todas →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+      <sc-for list="{{ novHome }}" as="p" hint-placeholder-count="4">
+        <div style="display:flex;min-width:0">
+            <div class="ig-card" onClick="{{ p.onOpen }}" style="flex:1;display:flex;flex-direction:column;background:#fff;color:#141414;border:1px solid #ECEAE5;border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s" style-hover="transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,20,20,.10);border-color:#E0DDD7">
+              <div data-imgbox style="position:relative;aspect-ratio:1/.92;display:flex;align-items:center;justify-content:center;padding:clamp(22px,2.4vw,36px);overflow:hidden">
+                <img src="{{ p.img }}" alt="{{ p.name }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .55s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.05)">
+                <button class="ig-qv" onClick="{{ p.onQuick }}" aria-label="Vista previa" title="Vista previa" style="position:absolute;right:12px;top:12px;z-index:3;display:flex;align-items:center;gap:6px;height:32px;padding:0 11px;border:0;border-radius:6px;background:#141414;color:#fff;font-size:12px;font-weight:500;cursor:pointer" style-hover="background:#C8102E"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="ig-qv-t">Vista previa</span></button>
+              </div>
+              <div data-body style="flex:1;display:flex;flex-direction:column;padding:16px 18px 18px;border-top:1px solid #F1EFEB">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 10px">
+                  <span style="font:600 10px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">{{ p.brand }}</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#6E6B66;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:{{ p.stockDot }}"></span>{{ p.stockShort }}</span>
+                </div>
+                <div data-name style="font-size:15px;font-weight:500;line-height:1.38;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.76em">{{ p.name }}</div>
+                <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:16px">
+                  <div data-price style="font-size:clamp(18px,1.5vw,21px);font-weight:700;letter-spacing:-.025em;padding-bottom:6px">{{ p.priceF }}</div>
+                  <button onClick="{{ p.onAdd }}" aria-label="Agregar al carrito" title="Agregar al carrito" style="flex:0 0 44px;width:44px;height:44px;border:0;border-radius:6px;background:#141414;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s" style-hover="background:#C8102E;transform:scale(1.06)">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h3l2.2 10.2a1.6 1.6 0 0 0 1.6 1.3h7.9a1.6 1.6 0 0 0 1.6-1.2L21 8H6.3"></path><circle cx="10" cy="20" r="1.2" fill="#fff" stroke="none"></circle><circle cx="18" cy="20" r="1.2" fill="#fff" stroke="none"></circle></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </sc-for>
     </div>
   </div>
-
+  </sc-if>
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid #E4E2DD;padding-bottom:16px">
-      <h2 style="margin:0;font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em">Descubrí por marca.</h2>
-      <button onClick="{{ goMarcas }}" style="border:0;background:transparent;font:500 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6E6B66;cursor:pointer" style-hover="color:#C8102E">Todas las marcas →</button>
+      <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Marcas</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Descubrí por marca.</h2></div>
+      <button onClick="{{ goMarcas }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Todas las marcas →</button>
     </div>
     <div data-brand-track style="overflow:hidden;border-bottom:1px solid #E4E2DD;padding:clamp(26px,3vw,44px) 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)" onMouseEnter="{{ brandPause }}" onMouseLeave="{{ brandPlay }}">
       <div data-brand-run style="display:flex;width:max-content;animation:igBrands 110s linear infinite">
@@ -524,38 +591,25 @@
       </div>
     </div>
   </div>
-
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
-    <div data-reveal style="background:#141414;color:#fff;padding:clamp(30px,4vw,54px);display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between">
+    <div data-reveal style="background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border:1px solid #F6DCE0;border-radius:20px;color:#141414;padding:clamp(30px,4vw,54px);display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between">
       <div style="flex:1 1 380px;min-width:0">
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Comparador</div>
         <h2 style="margin:14px 0 0;font-size:clamp(24px,2.8vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.08">Elegí con información,<br>no con dudas.</h2>
-        <p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:#A8A49C;max-width:440px">Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.</p>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:440px">Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button onClick="{{ goComparar }}" style="border:1px solid #fff;background:#fff;color:#141414;padding:14px 26px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s" style-hover="background:transparent;color:#fff">Abrir comparador ({{ compareCount }})</button>
+        <button onClick="{{ goComparar }}" style="border:0;border-radius:999px;background:#C8102E;color:#fff;padding:14px 26px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s" style-hover="background:#A50D26">Abrir comparador ({{ compareCount }})</button>
       </div>
     </div>
   </div>
-
-  <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border-top:1px solid #E4E2DD;border-left:1px solid #EFEDE9">
-      <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="4">
-        <div style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:26px 22px">
-          <div style="font-size:15.5px;font-weight:600;letter-spacing:-.015em">{{ b.t }}</div>
-          <p style="margin:8px 0 0;font-size:13.5px;line-height:1.5;color:#6E6B66">{{ b.d }}</p>
-        </div>
-      </sc-for>
-    </div>
-  </div>
-
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px">
       <div>
-        <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Innovagame en persona</div>
-        <h2 style="margin:12px 0 0;font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.03em">También cerca tuyo.</h2>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Innovagame en persona</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">También cerca tuyo.</h2>
       </div>
-      <button onClick="{{ goSucursales }}" style="border:1px solid #141414;background:transparent;padding:12px 22px;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="background:#141414;color:#fff">Conocé nuestras tiendas</button>
+      <button onClick="{{ goSucursales }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Conocé nuestras tiendas →</button>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
       <sc-for list="{{ sucursales }}" as="su" hint-placeholder-count="2">
@@ -2097,13 +2151,19 @@ class Component extends DCLogic {
       accordion: this.TREE.map((t,i)=>{
         const ap = all.find(x=>x.cat===t[0]);
         const on = i===s.acc;
-        return { name:t[0], img: ap ? ap.img : '', alt: ap ? ap.name : t[0],
+        const cn = all.filter(x=>x.cat===t[0]).length;
+        return { name:t[0], cnt: cn===1 ? '1 producto' : cn + ' productos', img: ap ? ap.img : '', alt: ap ? ap.name : t[0],
           hasImg: !!ap, noImg: !ap, subs:t[1].slice(0,3).join(' · '), subsAll:t[1].join(' · '),
           num: String(i+1).padStart(2,'0'), on, off:!on, grow: on ? 7 : 1, bg: on ? '#FFFFFF' : '#F5F4F1',
+          rowBg: on ? '#C8102E' : 'transparent', rowFg: on ? '#fff' : '#141414', rowSub: on ? 'rgba(255,255,255,.8)' : '#8C8880',
           onEnter:()=>{ if(s.acc!==i) this.setState({acc:i}); },
           onClick:()=>this.setState({page:'catalogo',cat:t[0],sub:'Todas'}) };
       }),
 
+      accCur: (()=>{ const t = this.TREE[s.acc] || this.TREE[0], ap = all.find(x=>x.cat===t[0] && !x.noImg), cn = all.filter(x=>x.cat===t[0]).length;
+        return { name:t[0], img: ap ? ap.img : '', hasImg: !!ap, cnt: cn===1 ? '1 producto' : cn + ' productos',
+          onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:'Todas'}),
+          subs: t[1].slice(0,10).map(n=>({ name:n, onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:n}) })) }; })(),
       gridCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       curated: this.deco(all.find(p=>p.id===this.CURATED[s.cur]) || all[0]),
       curatedThumbs: this.CURATED.map((id,i)=>{ const cp = all.find(p=>p.id===id);
@@ -2119,13 +2179,13 @@ class Component extends DCLogic {
       selHasNav: this.selLoop(),
       selDots: (()=>{ const L=this.selList().length, n=this.selN(), pages=this.selPages(), cur=Math.floor(((((s.selPos % L)+L)%L))/n) % pages;
         return Array.from({length:pages}, (_,i)=>{ const on = i===cur; return {
-        label:'Ver grupo ' + (i+1), w: on?'28px':'8px', bg: on?'#fff':'rgba(255,255,255,.3)', onClick:()=>{ if(this._selBusy) return; this.setState({selAnim:true, selPos:i*n}); this.selRestart(); } }; }); })(),
+        label:'Ver grupo ' + (i+1), w: on?'28px':'8px', bg: on?'#C8102E':'rgba(20,20,20,.16)', onClick:()=>{ if(this._selBusy) return; this.setState({selAnim:true, selPos:i*n}); this.selRestart(); } }; }); })(),
       selPrev: ()=>{ this.selStep(-1); this.selRestart(); },
       selNext: ()=>{ this.selStep(1); this.selRestart(); },
       selHoverOn: ()=>{ this._selHover = true; },
       selHoverOff: ()=>{ this._selHover = false; },
       selCats: [['Todos', all.length]].concat(this.TREE.map(t=>[t[0], all.filter(p=>p.cat===t[0]).length]).filter(x=>x[1]>0)).map(x=>{ const on = s.selCat===x[0]; return {
-        name:x[0], count:x[1], bg: on?'#fff':'transparent', fg: on?'#141414':'#fff', bd: on?'#fff':'rgba(255,255,255,.28)',
+        name:x[0], count:x[1], bg: on?'#C8102E':'#fff', fg: on?'#fff':'#141414', bd: on?'#C8102E':'#E4E2DD',
         onClick:()=>{ clearTimeout(this._selSnap); this._selBusy=false; this.setState({selCat:x[0], selPos:0, selAnim:false}, ()=>setTimeout(()=>this.setState({selAnim:true}), 40)); this.selRestart(); } }; }),
       selViewAllLabel: s.selCat==='Todos' ? 'Ver catálogo' : 'Ver todo en ' + s.selCat,
       selViewAll: ()=>this.setState({page:'catalogo', cat: s.selCat==='Todos' ? 'Todas' : s.selCat, sub:'Todas', mega:null}),
@@ -2134,6 +2194,8 @@ class Component extends DCLogic {
       resMoreLabel: 'Mostrar ' + Math.min(24, results.length-resLim) + ' más',
       offers: all.filter(p=>p.offer).map(p=>this.deco(p)), hasOffers: all.some(p=>p.offer),
       novedades: all.filter(p=>p.nuevo).map(p=>this.deco(p)),
+      novHome: all.filter(p=>p.nuevo && !p.noImg).slice(0,4).map(p=>this.deco(p)),
+      benCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))', benDir: s.w<760 ? 'column' : 'row', benAlign: s.w<760 ? 'flex-start' : 'center', benPad: s.w<760 ? '14px' : '16px 18px', promoCols: s.w>=760 ? 'repeat(2,minmax(0,1fr))' : '1fr',
       editorial: this.deco(all.find(p=>p.id===this.SHOW[s.ed||0].id)),
       editorialSpecs: all.find(p=>p.id===this.SHOW[s.ed||0].id).specs.map(x=>({k:x[0],v:x[1]})),
       edBg: 'radial-gradient(50% 60% at 50% 52%, '+this.SHOW[s.ed||0].tint+' 0%, transparent 75%), '+this.SHOW[s.ed||0].base,
