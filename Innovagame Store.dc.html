@@ -47,6 +47,13 @@
   @keyframes igQvIn { from { opacity:0; transform:translateY(18px) scale(.98); } to { opacity:1; transform:none; } }
   @keyframes igFadeIn { from { opacity:0; } to { opacity:1; } }
   @keyframes igMenuIn { from { transform:translateX(-100%); } to { transform:none; } }
+  html { scrollbar-width:thin; scrollbar-color:rgba(200,16,46,.55) transparent; }
+  * { scrollbar-width:thin; scrollbar-color:rgba(200,16,46,.45) transparent; }
+  ::-webkit-scrollbar { width:8px; height:8px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(200,16,46,.45); border-radius:999px; border:2px solid transparent; background-clip:padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background:#C8102E; border:2px solid transparent; background-clip:padding-box; }
+  ::-webkit-scrollbar-corner { background:transparent; }
   @keyframes igRelIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   .ig-qv { opacity:0; transform:translateY(-6px); transition:opacity .2s, transform .2s, background .2s; }
   .ig-card:hover .ig-qv { opacity:1; transform:none; }
