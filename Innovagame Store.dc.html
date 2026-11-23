@@ -131,24 +131,30 @@
       </div>
       <sc-if value="{{ megaOpen }}">
         <div onMouseLeave="{{ closeMega }}" style="position:absolute;top:46px;left:0;right:0;background:#C8102E;color:#fff;border-top:1px solid rgba(255,255,255,.2);box-shadow:0 28px 50px rgba(0,0,0,.18);z-index:70">
-          <div style="max-width:1560px;margin:0 auto;padding:30px 28px 34px;display:flex;gap:44px;flex-wrap:wrap">
-            <div style="flex:0 0 220px">
+          <div style="max-width:1560px;margin:0 auto;padding:26px 28px 30px;display:flex;gap:36px;align-items:flex-start">
+            <div style="flex:0 0 190px">
               <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFC2CA">Categoría</div>
               <div style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin-top:14px;line-height:1.2">{{ mega.name }}</div>
               <button onClick="{{ mega.onClick }}" style="margin-top:18px;border:1px solid #fff;background:transparent;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="background:#fff;color:#C8102E">Ver todo →</button>
             </div>
-            <div style="flex:1 1 360px;min-width:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:22px 32px;align-content:start;max-height:min(62vh,520px);overflow-y:auto;scrollbar-width:thin">
+            <div style="flex:1 1 auto;min-width:0;column-width:210px;column-gap:36px;column-fill:balance">
               <sc-for list="{{ mega.subs }}" as="sb" hint-placeholder-count="6">
-                <div style="min-width:0">
-                  <div onClick="{{ sb.onClick }}" style="font-size:14.5px;font-weight:600;color:#fff;padding:2px 0 8px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.22);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px" style-hover="opacity:.85">{{ sb.name }}<span style="font-size:11.5px;font-weight:500;color:#FFC2CA">{{ sb.count }}</span></div>
-                  <sc-if value="{{ sb.hasKids }}">
-                    <div style="font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#FFC2CA;margin:6px 0 2px">{{ sb.kidsLabel }}</div>
+                <div style="break-inside:avoid;-webkit-column-break-inside:avoid;display:inline-block;width:100%;margin:0 0 22px">
+                  <div onClick="{{ sb.onClick }}" style="font-size:14.5px;font-weight:600;color:#fff;padding:0 0 8px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.22);cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:8px" style-hover="opacity:.85">{{ sb.name }}<span style="font-size:11.5px;font-weight:500;color:#FFC2CA">{{ sb.count }}</span></div>
+                  <sc-if value="{{ sb.isCaps }}">
+                    <div style="display:flex;flex-wrap:wrap;gap:6px">
+                      <sc-for list="{{ sb.kids }}" as="kd" hint-placeholder-count="6">
+                        <span onClick="{{ kd.onClick }}" style="font-size:12.5px;color:#fff;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s" style-hover="background:#fff;color:#C8102E">{{ kd.name }}</span>
+                      </sc-for>
+                    </div>
                   </sc-if>
-                  <sc-for list="{{ sb.kids }}" as="kd" hint-placeholder-count="4">
-                    <div onClick="{{ kd.onClick }}" style="font-size:13px;color:rgba(255,255,255,.82);padding:5px 0;cursor:pointer;transition:color .15s,transform .15s" style-hover="color:#fff;transform:translateX(3px)">{{ kd.name }}</div>
-                  </sc-for>
+                  <sc-if value="{{ sb.isTipos }}">
+                    <sc-for list="{{ sb.kids }}" as="kd" hint-placeholder-count="4">
+                      <div onClick="{{ kd.onClick }}" style="font-size:13px;color:rgba(255,255,255,.82);padding:4px 0;cursor:pointer;transition:color .15s,transform .15s" style-hover="color:#fff;transform:translateX(3px)">{{ kd.name }}</div>
+                    </sc-for>
+                  </sc-if>
                   <sc-if value="{{ sb.hasMore }}">
-                    <div onClick="{{ sb.onClick }}" style="font-size:12.5px;font-weight:600;color:#FFC2CA;padding:5px 0;cursor:pointer" style-hover="color:#fff">Ver todo →</div>
+                    <div onClick="{{ sb.onClick }}" style="font-size:12.5px;font-weight:600;color:#FFC2CA;padding:6px 0 0;cursor:pointer" style-hover="color:#fff">Ver todo →</div>
                   </sc-if>
                 </div>
               </sc-for>
@@ -156,9 +162,9 @@
             <sc-if value="{{ mega.hasProds }}">
               <div style="flex:0 1 auto;min-width:0;display:flex;gap:16px">
                 <sc-for list="{{ mega.prods }}" as="mp" hint-placeholder-count="3">
-                  <div onClick="{{ mp.onOpen }}" style="width:180px;flex:0 0 auto;cursor:pointer;background:#fff;color:#141414;border-radius:12px;overflow:hidden;padding-bottom:14px;animation:igRise .45s cubic-bezier(.22,1,.36,1) both;transition:transform .25s" style-hover="transform:translateY(-3px)">
-                    <div style="aspect-ratio:1;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center">
-                      <img src="{{ mp.img }}" alt="{{ mp.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.05)">
+                  <div onClick="{{ mp.onOpen }}" style="width:170px;flex:0 0 auto;cursor:pointer;background:#fff;color:#141414;border-radius:12px;overflow:hidden;padding-bottom:14px;animation:igRise .45s cubic-bezier(.22,1,.36,1) both;transition:transform .25s" style-hover="transform:translateY(-3px)">
+                    <div style="aspect-ratio:1;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:14px">
+                      <img src="{{ mp.img }}" alt="{{ mp.name }}" style="width:100%;height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.05)">
                     </div>
                     <div style="font:500 9.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C8102E;margin:12px 14px 0">{{ mp.brand }}</div>
                     <div style="font-size:13px;font-weight:500;line-height:1.35;margin:6px 14px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ mp.name }}</div>
@@ -342,29 +348,6 @@
       </div>
     </div>
   </div>
-  <div style="max-width:1560px;margin:0 auto;padding:clamp(32px,4vw,52px) 28px 0">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
-      <div>
-        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Lo más buscado</div>
-        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Categorías destacadas.</h2>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:{{ featCols }};gap:clamp(12px,1.6vw,20px)">
-      <sc-for list="{{ featCats }}" as="fc" hint-placeholder-count="4">
-        <div onClick="{{ fc.onClick }}" style="display:flex;flex-direction:column;gap:12px;cursor:pointer" style-hover="transform:translateY(-3px)">
-          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,#FFF6F7 0%,#FCE1E6 100%);display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,26px);transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(200,16,46,.16)">
-            <div style="position:absolute;right:-18%;top:-30%;width:62%;height:160%;background:#C8102E;transform:rotate(18deg);opacity:.9;border-radius:24px"></div>
-            <div style="position:absolute;right:-6%;top:-30%;width:10%;height:160%;background:#FF8A97;transform:rotate(18deg);opacity:.55"></div>
-            <img src="{{ fc.img }}" alt="{{ fc.name }}" loading="lazy" style="position:relative;max-width:88%;max-height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(20,20,20,.18))">
-          </div>
-          <div style="display:flex;flex-direction:column;gap:3px;padding:0 4px">
-            <span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ fc.name }}</span>
-            <span style="font-size:12.5px;color:#C8102E;font-weight:600;white-space:nowrap">{{ fc.count }} →</span>
-          </div>
-        </div>
-      </sc-for>
-    </div>
-  </div>
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
       <div>
@@ -373,55 +356,21 @@
       </div>
       <button onClick="{{ goCategorias }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Ver todas →</button>
     </div>
-    <sc-if value="{{ accWide }}" hint-placeholder-val="{{ true }}">
-    <div style="display:grid;grid-template-columns:minmax(240px,320px) minmax(0,1fr);border:1px solid #EFEDE9;border-radius:18px;overflow:hidden;background:#fff;min-height:clamp(420px,36vw,520px)">
-      <div style="display:flex;flex-direction:column;border-right:1px solid #EFEDE9;padding:8px">
-        <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="9">
-          <button onMouseEnter="{{ a.onEnter }}" onClick="{{ a.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;border:0;border-radius:12px;padding:13px 16px;background:{{ a.rowBg }};color:{{ a.rowFg }};cursor:pointer;transition:background .2s,color .2s">
-            <span style="min-width:0">
-              <span style="display:block;font-size:15px;font-weight:600;line-height:1.25">{{ a.name }}</span>
-              <span style="display:block;font-size:12px;margin-top:2px;color:{{ a.rowSub }}">{{ a.cnt }}</span>
-            </span>
-            <svg style="flex:0 0 auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
-          </button>
-        </sc-for>
-      </div>
-      <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:center;padding:clamp(24px,3vw,44px)">
-        <div onClick="{{ accCur.onClick }}" style="height:100%;min-height:300px;border-radius:16px;background:radial-gradient(70% 70% at 50% 50%,#FFFFFF 0%,#F7F2EC 100%);display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.4vw,34px);cursor:pointer;overflow:hidden">
-          <sc-if value="{{ accCur.hasImg }}"><img src="{{ accCur.img }}" alt="{{ accCur.name }}" style="max-width:100%;max-height:340px;object-fit:contain;display:block;animation:igFadeIn .35s ease both"></sc-if>
-        </div>
-        <div style="min-width:0">
-          <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ accCur.cnt }}</div>
-          <div style="margin-top:10px;font-size:clamp(24px,2.4vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.1">{{ accCur.name }}</div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
-            <sc-for list="{{ accCur.subs }}" as="sc" hint-placeholder-count="5">
-              <button onClick="{{ sc.onClick }}" style="border:1px solid #E4E2DD;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;color:#3C3B38;cursor:pointer;transition:all .2s" style-hover="border-color:#C8102E;color:#C8102E">{{ sc.name }}</button>
-            </sc-for>
+    <div style="display:grid;grid-template-columns:{{ catTileCols }};gap:clamp(12px,1.6vw,20px)">
+      <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="9">
+        <div onClick="{{ a.onClick }}" style="display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0" style-hover="transform:translateY(-3px)">
+          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,#FFF6F7 0%,#FCE1E6 100%);display:flex;align-items:center;justify-content:center;padding:clamp(14px,1.8vw,24px);transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(200,16,46,.16)">
+            <div style="position:absolute;right:-18%;top:-30%;width:62%;height:160%;background:#C8102E;transform:rotate(18deg);opacity:.9;border-radius:24px"></div>
+            <div style="position:absolute;right:-6%;top:-30%;width:10%;height:160%;background:#FF8A97;transform:rotate(18deg);opacity:.55"></div>
+            <sc-if value="{{ a.hasImg }}"><img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="position:relative;max-width:88%;max-height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(20,20,20,.18))"></sc-if>
           </div>
-          <button onClick="{{ accCur.onClick }}" style="margin-top:22px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:13px 24px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px" style-hover="background:#A50D26">Ver {{ accCur.name }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
-        </div>
-      </div>
-    </div>
-    </sc-if>
-    <sc-if value="{{ accNarrow }}">
-    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:clamp(18px,2.4vw,44px) clamp(14px,1.8vw,32px)">
-      <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="8">
-        <div onClick="{{ a.onClick }}" data-reveal style="display:flex;flex-direction:column;cursor:pointer">
-          <div style="position:relative;background:#F7F6F3;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,30px);overflow:hidden">
-            <sc-if value="{{ a.hasImg }}">
-              <img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .55s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.04)">
-            </sc-if>
-            <sc-if value="{{ a.noImg }}">
-              <span style="font:500 9.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B5B1A9;text-align:center">Foto de categoría</span>
-            </sc-if>
+          <div style="display:flex;flex-direction:column;gap:3px;padding:0 4px">
+            <span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ a.name }}</span>
+            <span style="font-size:12.5px;color:#C8102E;font-weight:600;white-space:nowrap">{{ a.cnt }} →</span>
           </div>
-          <div style="font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:16px">{{ a.name }}</div>
-          <div style="font:400 11.5px/1.6 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66;margin-top:8px">{{ a.subs }}</div>
-          <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;margin-top:12px">Ver categoría →</div>
         </div>
       </sc-for>
     </div>
-    </sc-if>
   </div>
   <div style="background:#fff;color:#141414;margin-top:8px">
     <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
@@ -652,6 +601,7 @@
           <div style="padding:24px 26px 28px">
           <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9B978F">{{ su.name }}</div>
           <div style="font-size:17px;font-weight:500;line-height:1.45;margin-top:14px">{{ su.addr }}</div>
+          <sc-if value="{{ su.hasHrs }}"><div style="display:flex;align-items:center;gap:7px;margin-top:10px;font-size:13.5px;color:#5A5853"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ su.hrs }}</div></sc-if>
           <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;font:400 12.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif">
             <a href="{{ su.wa }}" target="_blank" style="color:#C8102E">{{ su.tel }}</a>
             <a href="{{ su.map }}" target="_blank" style="color:#6E6B66">Cómo llegar →</a>
@@ -1354,6 +1304,7 @@
         <div style="padding:28px 26px">
           <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9B978F">{{ su.name }}</div>
           <div style="font-size:18px;font-weight:500;line-height:1.45;margin-top:14px">{{ su.addr }}</div>
+          <sc-if value="{{ su.hasHrs }}"><div style="display:flex;align-items:center;gap:7px;margin-top:10px;font-size:13.5px;color:#5A5853"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ su.hrs }}</div></sc-if>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
             <a href="{{ su.wa }}" target="_blank" style="border:1px solid #141414;background:#141414;color:#fff;padding:13px 22px;font-size:13.5px;font-weight:500">WhatsApp {{ su.tel }}</a>
             <a href="{{ su.map }}" target="_blank" style="border:1px solid #E4E2DD;padding:13px 20px;font-size:13.5px">Cómo llegar</a>
@@ -1438,6 +1389,7 @@
       <div style="background:#F7F6F3;padding:28px 26px">
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8C8880">{{ su.name }}</div>
         <div style="font-size:17px;font-weight:500;line-height:1.45;margin-top:14px">{{ su.addr }}</div>
+          <sc-if value="{{ su.hasHrs }}"><div style="display:flex;align-items:center;gap:7px;margin-top:10px;font-size:13.5px;color:#5A5853"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ su.hrs }}</div></sc-if>
         <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font:400 12.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif">
           <a href="{{ su.wa }}" target="_blank" style="color:#C8102E">{{ su.tel }}</a>
           <a href="{{ su.map }}" target="_blank" style="color:#6E6B66">Cómo llegar →</a>
@@ -1848,6 +1800,8 @@ class Component extends DCLogic {
     if(p.tipo==='Microondas'){ const m = n.match(/(\d{2})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1]; return [v + ' L', v]; } }
     return null;
   }
+  TIPO_GROUPS = { 'Lavarropas': ['Lavarropas carga frontal','Lavarropas carga superior'] };
+  tipoMatch(p, t){ return p.tipo===t || (this.TIPO_GROUPS[t]||[]).indexOf(p.tipo)>=0; }
   capsIn(list){ const m = {}; list.forEach(p=>{ if(p.cap){ (m[p.cap] = m[p.cap] || { name:p.cap, n:p.capN, count:0 }).count++; } });
     return Object.values(m).sort((a,b)=>a.n-b.n); }
   buildTree(){
@@ -2088,12 +2042,13 @@ class Component extends DCLogic {
     const match = p => !qw.length || qw.every(w=>p._q.indexOf(w)>=0);
     const priceCap = this._cap || (this._cap = Math.ceil(Math.max.apply(null, all.map(p=>p.price))/1000000)*1000000);
     const tipoVal = (s.tipo && s.tipo.k===s.cat+'|'+s.sub) ? s.tipo.v : 'Todas';
-    const tipos = s.sub==='Todas' ? [] : Array.from(new Set(all.filter(p=>p.cat===s.cat && p.sub===s.sub && p.tipo).map(p=>p.tipo))).sort();
+    const tipos = s.sub==='Todas' ? [] : (()=>{ const t = Array.from(new Set(all.filter(p=>p.cat===s.cat && p.sub===s.sub && p.tipo).map(p=>p.tipo))).sort();
+      Object.keys(this.TIPO_GROUPS).forEach(g=>{ if(this.TIPO_GROUPS[g].some(x=>t.indexOf(x)>=0) && t.indexOf(g)<0) t.unshift(g); }); return t; })();
 
     const capKey = s.cat+'|'+s.sub+'|'+tipoVal, capVal = (s.cap && s.cap.k===capKey) ? s.cap.v : 'Todas';
-    const capsHere = (s.cat==='Todas' || s.sub==='Todas') ? [] : this.capsIn(all.filter(p=>p.cat===s.cat && p.sub===s.sub && (tipoVal==='Todas'||p.tipo===tipoVal)));
+    const capsHere = (s.cat==='Todas' || s.sub==='Todas') ? [] : this.capsIn(all.filter(p=>p.cat===s.cat && p.sub===s.sub && (tipoVal==='Todas'||this.tipoMatch(p, tipoVal))));
     let results = all.filter(p => (s.cat==='Todas'||p.cat===s.cat) && (s.sub==='Todas'||p.sub===s.sub) &&
-      (tipoVal==='Todas'||p.tipo===tipoVal) && (capVal==='Todas'||p.cap===capVal) &&
+      (tipoVal==='Todas'||this.tipoMatch(p, tipoVal)) && (capVal==='Todas'||p.cap===capVal) &&
       (s.brand==='Todas'||p.brand===s.brand) && (!s.max||p.price<=s.max) && (!s.onlyStock||p.stock>0||!!p.last) && match(p));
     const resLim = this.lim('res', [s.page,s.cat,s.sub,tipoVal,capVal,s.brand,s.q,s.sort,s.max,s.onlyStock].join('|'));
     if(s.sort==='menor') results=results.slice().sort((a,b)=>a.price-b.price);
@@ -2119,12 +2074,12 @@ class Component extends DCLogic {
                 ['03','Elegí cómo pagar','Efectivo, transferencia o tarjetas de crédito, según las condiciones vigentes publicadas en la tienda.'],
                 ['04','Recibilo o retiralo','Coordinamos el envío o el retiro en Casa Central o Sucursal.']] },
       'envios':{ title:'Políticas de envío', intro:'Podés retirar tu pedido en cualquiera de nuestras dos sucursales o recibirlo en tu domicilio. Coordinás el método de entrega con nuestros asesores al finalizar la compra.',
-        blocks:[['01','Retiro en ambas sucursales','Casa Central (Avda. Choferes del Chaco N°1886) o Sucursal (José Asunción Flores esq. Radio Operadores del Chaco), una vez confirmada la disponibilidad.'],
+        blocks:[['01','Retiro en ambas sucursales','Casa Central (Avda. Choferes del Chaco N°1886) o Sucursal 2 (José Asunción Flores 3909 esq. Radio Operadores del Chaco), una vez confirmada la disponibilidad.'],
                 ['02','Envío a domicilio','Disponible para todos nuestros productos. El costo varía según la zona.'],
                 ['03','Asunción y Gran Asunción','24 horas hábiles, con pedidos realizados hasta las 11:00.'],
                 ['04','Interior del país','72 horas hábiles, con pedidos realizados hasta las 14:00.']],
         sections:[
-          { h:'Retiro en nuestras sucursales', ps:['Podés retirar tus productos en cualquiera de nuestras dos sucursales desde el momento de confirmar el pago, o pasar a abonar ahí mismo:', 'Casa Central: Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós, Asunción.', 'Sucursal: José Asunción Flores esquina Radio Operadores del Chaco, Asunción.', 'Al finalizar la compra, indicá a nuestros asesores en qué sucursal preferís retirar.'] },
+          { h:'Retiro en nuestras sucursales', ps:['Podés retirar tus productos en cualquiera de nuestras dos sucursales desde el momento de confirmar el pago, o pasar a abonar ahí mismo:', 'Casa Central: Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós, Asunción.', 'Sucursal 2: José Asunción Flores 3909 esquina Radio Operadores del Chaco, Asunción. Horario: lunes a viernes de 7:00 a 18:30 y sábados de 7:00 a 14:00.', 'Al finalizar la compra, indicá a nuestros asesores en qué sucursal preferís retirar.'] },
           { h:'¿Cuándo puedo retirar mi pedido en la sucursal elegida?', ps:['Podés retirar tu pedido una vez confirmada su disponibilidad con nuestros asesores.'] },
           { h:'¿Qué documentación debo presentar para retirar mi pedido?', ps:['Se deberá presentar el comprobante de pago junto con la cédula de identidad.'] },
           { h:'¿Puede un tercero retirar mi pedido?', ps:['Sí, con aviso e identificación previa por parte del comprador.'] },
@@ -2198,10 +2153,10 @@ class Component extends DCLogic {
           const tipos = Array.from(new Set(ps.filter(p=>p.tipo).map(p=>p.tipo))).sort();
           const kidsAll = useCaps ? caps.map(k=>({ name:k.name, onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:null,cap:{k:c+'|'+n+'|Todas', v:k.name},mega:null}) }))
             : tipos.map(t=>({ name:t, onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:{k:c+'|'+n, v:t},cap:null,mega:null}) }));
-          const lim = useCaps ? 12 : 7;
-          return { name:n, count: ps.length, kids: kidsAll.slice(0,lim), hasKids: kidsAll.length>0, kidsLabel: useCaps ? 'Por capacidad' : 'Por tipo', hasMore: kidsAll.length>lim,
+          const lim = useCaps ? 12 : 6;
+          return { name:n, count: ps.length, kids: kidsAll.slice(0,lim), hasKids: kidsAll.length>0, isCaps: useCaps && kidsAll.length>0, isTipos: !useCaps && kidsAll.length>0, hasMore: kidsAll.length>lim,
             onClick:()=>this.setState({page:'catalogo',cat:c,sub:n,tipo:null,cap:null,mega:null}) }; }),
-        prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1400 ? 2 : 1).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
+        prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1300 ? 1 : 0).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
         hasProds: all.some(p=>p.cat===megaDef[0]) } : {name:'',subs:[],prods:[],hasProds:false},
       topCats: this.TREE.map((t,i)=>({ name:t[0], color: (s.cat===t[0] || s.mega===i) ? '#fff' : 'rgba(255,255,255,.86)', mark: (s.cat===t[0] || s.mega===i) ? '#fff' : 'transparent',
         onEnter:()=>this.setState({mega:i}),
@@ -2228,7 +2183,7 @@ class Component extends DCLogic {
       cardLeave:(e)=>{ const qk=e.currentTarget.querySelector('[data-quick]'); if(qk && !this.isTouch()){ qk.style.transform='translateY(101%)'; qk.style.opacity='0'; } },
       accWide: s.w>=760, accNarrow: s.w<760,
       accordion: this.TREE.map((t,i)=>{
-        const ap = all.find(x=>x.cat===t[0]);
+        const ap = all.find(x=>x.cat===t[0] && !x.noImg) || all.find(x=>x.cat===t[0]);
         const on = i===s.acc;
         const cn = all.filter(x=>x.cat===t[0]).length;
         return { name:t[0], cnt: cn===1 ? '1 producto' : cn + ' productos', img: ap ? ap.img : '', alt: ap ? ap.name : t[0],
@@ -2243,13 +2198,22 @@ class Component extends DCLogic {
         return { name:t[0], img: ap ? ap.img : '', hasImg: !!ap, cnt: cn===1 ? '1 producto' : cn + ' productos',
           onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:'Todas'}),
           subs: t[1].slice(0,10).map(n=>({ name:n, onClick:()=>this.setState({page:'catalogo', cat:t[0], sub:n}) })) }; })(),
-      featCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      catTileCols: s.w>=1200 ? 'repeat(5,minmax(0,1fr))' : s.w>=760 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      featCols: s.w>=1200 ? 'repeat(6,minmax(0,1fr))' : s.w>=760 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       featCats: [
-        { name:'Heladeras', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Heladeras', pid:7466 },
-        { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:9508 },
-        { name:'Aires acondicionados', cat:'Climatización', sub:'Aires acondicionados', tipo:null, pid:8943 },
-        { name:'Microondas', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Microondas', pid:null }
-      ].map(f=>{ const ps = all.filter(p=>p.cat===f.cat && p.sub===f.sub && (!f.tipo || p.tipo===f.tipo));
+        { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:null },
+        { name:'Heladeras', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Heladeras', pid:null },
+        { name:'Congeladores', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Congeladores', pid:null },
+        { name:'Exhibidores', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Exhibidores', pid:null },
+        { name:'Microondas', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Microondas', pid:null },
+        { name:'Lavarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Lavarropas', pid:null },
+        { name:'Secarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Secarropas', pid:null },
+        { name:'Lavasecarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Lavasecarropas', pid:null },
+        { name:'Airfry', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Freidoras', pid:null },
+        { name:'Cafeteras', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Cafeteras', pid:null },
+        { name:'Hornos de empotrar', cat:'Grandes electrodomésticos', sub:'Cocinas', tipo:'Hornos de empotrar', pid:null },
+        { name:'Bebederos', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Bebederos', pid:null }
+      ].map(f=>{ const ps = all.filter(p=>p.cat===f.cat && p.sub===f.sub && (!f.tipo || this.tipoMatch(p, f.tipo)));
         const pick = (f.pid && ps.find(p=>p.id===f.pid && !p.noImg)) || ps.find(p=>!p.noImg) || ps[0];
         return { name:f.name, img: pick ? pick.img : this.NOIMG, count: ps.length + ' productos',
           onClick:()=>this.setState({page:'catalogo', cat:f.cat, sub:f.sub, tipo: f.tipo ? {k:f.cat+'|'+f.sub, v:f.tipo} : null, cap:null, mega:null}) }; }),
@@ -2373,8 +2337,8 @@ class Component extends DCLogic {
 
       sucursales: [
         { name:'Casa Central', addr:'Av. Choferes del Chaco 1886 esq. Teodoro S. Mongelós, Asunción', tel:'+595 983 943254', wa:'https://wa.me/595983943254', map:'https://www.google.com/maps/search/?api=1&query=Choferes+del+Chaco+1886+Asuncion' },
-        { name:'Sucursal', addr:'José Asunción Flores esq. Radio Operadores del Chaco, Asunción', tel:'+595 974 800200', wa:'https://wa.me/595974800200', map:'https://www.google.com/maps/search/?api=1&query=Jose+Asuncion+Flores+esq+Radio+Operadores+del+Chaco+Asuncion' }
-      ].map(x=>({ ...x, embed:'https://www.google.com/maps?q='+encodeURIComponent(x.addr+', Paraguay')+'&z=16&output=embed' })),
+        { name:'Sucursal 2', addr:'José Asunción Flores 3909 esq. Radio Operadores del Chaco, Asunción', hrs:'Lun a Vie 7:00 – 18:30 · Sáb 7:00 – 14:00', tel:'+595 974 800200', wa:'https://wa.me/595974800200', map:'https://maps.app.goo.gl/KeHMjVUBGkR8SSU48' }
+      ].map(x=>({ ...x, hasHrs: !!x.hrs, embed:'https://www.google.com/maps?q='+encodeURIComponent(x.addr+', Paraguay')+'&z=16&output=embed' })),
       contactos: [
         { k:'WhatsApp ventas', v:'+595 974 800300', href:'https://wa.me/595974800300' },
         { k:'WhatsApp Casa Central', v:'+595 983 943254', href:'https://wa.me/595983943254' },
