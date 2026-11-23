@@ -1120,6 +1120,13 @@
       </div>
     </sc-for>
   </div>
+  <sc-if value="{{ noOffers }}">
+    <div style="border:1px dashed #E4E2DD;border-radius:6px;padding:clamp(36px,5vw,64px) 24px;text-align:center">
+      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;color:#141414">Por ahora no hay ofertas.</div>
+      <p style="margin:8px auto 0;max-width:420px;font-size:14.5px;line-height:1.5;color:#6E6B66">Estamos preparando las próximas. Mientras tanto, mirá el catálogo completo con precios y stock actualizados.</p>
+      <button onClick="{{ goCatalog }}" style="margin-top:20px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:14px 26px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s" style-hover="background:#141414">Ver el catálogo →</button>
+    </div>
+  </sc-if>
 </div>
 </sc-if>
 
@@ -2341,7 +2348,7 @@ class Component extends DCLogic {
       results: results.slice(0,resLim).map(p=>this.deco(p)), resultCount:results.length, noResults:results.length===0,
       resHasMore: results.length>resLim, resShown: Math.min(resLim, results.length), resMore:this.more('res'),
       resMoreLabel: 'Mostrar ' + Math.min(24, results.length-resLim) + ' más',
-      offers: all.filter(p=>p.offer).map(p=>this.deco(p)), hasOffers: all.some(p=>p.offer),
+      offers: all.filter(p=>p.offer).map(p=>this.deco(p)), hasOffers: all.some(p=>p.offer), noOffers: !all.some(p=>p.offer),
       novedades: all.filter(p=>p.nuevo).map(p=>this.deco(p)),
       novHome: all.filter(p=>p.nuevo && !p.noImg).slice(0,4).map(p=>this.deco(p)),
       benCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))', benDir: s.w<760 ? 'column' : 'row', benAlign: s.w<760 ? 'flex-start' : 'center', benPad: s.w<760 ? '14px' : '16px 18px', promoCols: s.w>=760 ? 'repeat(2,minmax(0,1fr))' : '1fr',
