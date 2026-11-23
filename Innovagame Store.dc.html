@@ -1826,7 +1826,7 @@ class Component extends DCLogic {
     const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
       if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
-        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc,
+        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
@@ -1919,13 +1919,14 @@ class Component extends DCLogic {
     }, 620);
   }
 
-  SHOW = [
+  // Si el ERP oculta alguno de estos productos, se saltea (antes rompía la página).
+  SHOW = (l=>l.length ? l : [{ id:this.DATA[0].id, tint:'#E4E1DC', base:'#F7F6F4', word:'rgba(110,100,90,.18)' }])([
     { id:9379, tint:'#F3D9B0', base:'#FAF4EA', word:'rgba(196,140,70,.22)' },
     { id:7466, tint:'#D5DEE6', base:'#F3F5F7', word:'rgba(90,110,130,.18)' },
     { id:9508, tint:'#BFE3DC', base:'#EEF7F5', word:'rgba(40,130,120,.18)' },
     { id:8943, tint:'#DDE6F2', base:'#F4F7FB', word:'rgba(70,100,150,.16)' },
     { id:9454, tint:'#E4E1DC', base:'#F7F6F4', word:'rgba(110,100,90,.18)' }
-  ];
+  ].filter(x=>this.DATA.some(d=>d.id===x.id)));
   edPick(i){
     if(i===(this.state.ed||0) || this._edBusy) return;
     this._edBusy=true; clearInterval(this._edT); if(this._foldIO) this._foldIO.disconnect(); this._edT=setInterval(()=>this.edNext(), 9000);
@@ -2079,7 +2080,11 @@ class Component extends DCLogic {
   }
   componentWillUnmount(){ window.removeEventListener('resize',this._r); window.removeEventListener('keydown',this._esc); clearInterval(this._hint); clearInterval(this._edT); clearInterval(this._selT); clearInterval(this._relT); clearTimeout(this._selSnap); clearTimeout(this._hs); clearTimeout(this._tt); clearTimeout(this._rt); clearTimeout(this._imgT); }
   selN(){ return (this.state.w||1440)>=1020 ? 4 : 2; }
-  selList(){ const s=this.state, all=this.DATA; return (s.selCat==='Todos' ? all : all.filter(p=>p.cat===s.selCat)).slice(0,16); }
+  selPool(){ const f = this.DATA.filter(p=>p.featured); return f.length ? f : this.DATA; }
+  selList(){ const s=this.state, all=this.selPool(), list = s.selCat==='Todos' ? all : all.filter(p=>p.cat===s.selCat); return (list.length ? list : all).slice(0,16); }
+  // Un producto fijo del diseño; si el ERP lo oculta, otro parecido con foto (nunca undefined).
+  porId(id, parecido){ const D=this.DATA; return D.find(p=>p.id===id) || (parecido && D.find(p=>parecido(p) && !p.noImg)) || D.find(p=>!p.noImg) || D[0]; }
+  pick(ids){ return ids.map(id=>this.DATA.find(p=>p.id===id)).filter(Boolean); }
   selPages(){ return Math.max(1, Math.ceil(this.selList().length / this.selN())); }
   selLoop(){ return this.selList().length > this.selN(); }
   selStep(d){
@@ -2145,7 +2150,7 @@ class Component extends DCLogic {
     if(s.sort==='nombre') results=results.slice().sort((a,b)=>a.name.localeCompare(b.name));
 
     const sceneDef = this.SCENES[s.scene] || this.SCENES[0];
-    const sceneP = all.find(p=>p.id===sceneDef.pid);
+    const sceneP = all.find(p=>p.id===sceneDef.pid) || all.find(p=>p.sub===sceneDef.tag && !p.noImg) || all.find(p=>!p.noImg) || all[0];
     const prodRaw = all.find(p=>p.id===s.pid) || all[0];
     const prod = this.deco(prodRaw);
     const cartTotal = s.items.reduce((t,i)=>t+i.price*i.qty,0);
@@ -2310,11 +2315,11 @@ class Component extends DCLogic {
           onClick:()=>this.setState({page:'catalogo', cat:f.cat, sub:f.sub, tipo: f.tipo ? {k:f.cat+'|'+f.sub, v:f.tipo} : null, cap:null, mega:null}) }; }),
       gridCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       curated: this.deco(all.find(p=>p.id===this.CURATED[s.cur]) || all[0]),
-      curatedThumbs: this.CURATED.map((id,i)=>{ const cp = all.find(p=>p.id===id);
+      curatedThumbs: this.CURATED.map((id,i)=>{ const cp = all.find(p=>p.id===id) || all[0];
         return { img:cp.img, ring: i===s.cur ? '#141414' : '#E4E2DD', op: i===s.cur ? 1 : 0.62,
           onClick:()=>this.setState({cur:i}) }; }),
-      curatedGrid: this.CURATED_GRID.map(id=>this.deco(all.find(p=>p.id===id))),
-      aboutPicks: [7466, 8943, 9508, 9379].map(id=>this.deco(all.find(p=>p.id===id))),
+      curatedGrid: this.pick(this.CURATED_GRID).map(p=>this.deco(p)),
+      aboutPicks: (l=>l.length ? l : all.slice(0,4))(this.pick([7466, 8943, 9508, 9379])).map(p=>this.deco(p)),
       selection: (()=>{ const base=this.selList(), w='calc((100% - ' + (this.selN()-1)*20 + 'px) / ' + this.selN() + ')';
         const list = this.selLoop() ? base.concat(base, base) : base;
         return list.map(p=>({ ...this.deco(p), w })); })(),
@@ -2328,7 +2333,7 @@ class Component extends DCLogic {
       selNext: ()=>{ this.selStep(1); this.selRestart(); },
       selHoverOn: ()=>{ this._selHover = true; },
       selHoverOff: ()=>{ this._selHover = false; },
-      selCats: [['Todos', all.length]].concat(this.TREE.map(t=>[t[0], all.filter(p=>p.cat===t[0]).length]).filter(x=>x[1]>0)).map(x=>{ const on = s.selCat===x[0]; return {
+      selCats: (sp=>[['Todos', sp.length]].concat(this.TREE.map(t=>[t[0], sp.filter(p=>p.cat===t[0]).length]).filter(x=>x[1]>0)))(this.selPool()).map(x=>{ const on = s.selCat===x[0]; return {
         name:x[0], count:x[1], bg: on?'#C8102E':'#fff', fg: on?'#fff':'#141414', bd: on?'#C8102E':'#E4E2DD',
         onClick:()=>{ clearTimeout(this._selSnap); this._selBusy=false; this.setState({selCat:x[0], selPos:0, selAnim:false}, ()=>setTimeout(()=>this.setState({selAnim:true}), 40)); this.selRestart(); } }; }),
       selViewAllLabel: s.selCat==='Todos' ? 'Ver catálogo' : 'Ver todo en ' + s.selCat,
@@ -2353,10 +2358,10 @@ class Component extends DCLogic {
       edMove:(e)=>{ const el=e.currentTarget.querySelector('[data-ed-tilt]'); if(!el) return; const r=e.currentTarget.getBoundingClientRect(); const nx=((e.clientX-r.left)/r.width)*2-1, ny=((e.clientY-r.top)/r.height)*2-1; el.style.transform='scale(1.06) translate('+(-nx*10).toFixed(1)+'px,'+(-ny*8).toFixed(1)+'px)'; },
       edLeave:(e)=>{ const el=e.currentTarget.querySelector('[data-ed-tilt]'); if(el) el.style.transform=''; },
       spaces: [
-        { label:'La cocina', note:'Refrigeración, cocinas y todo lo que se usa todos los días.', p:this.deco(all.find(x=>x.id===7466)), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Refrigeración'}) },
-        { label:'El living', note:'Televisores, audio y muebles pensados para la pantalla.', p:this.deco(all.find(x=>x.id===9379)), onClick:()=>this.setState({page:'catalogo',cat:'Muebles y Hogar',sub:'Racks'}) },
-        { label:'El lavadero', note:'Lavado de carga superior y frontal, con stock real.', p:this.deco(all.find(x=>x.id===9454)), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Lavado'}) },
-        { label:'Tu comodidad', note:'Climatización y ventilación para el verano paraguayo.', p:this.deco(all.find(x=>x.id===9508)), onClick:()=>this.setState({page:'catalogo',cat:'Climatización',sub:'Todas'}) }
+        { label:'La cocina', note:'Refrigeración, cocinas y todo lo que se usa todos los días.', p:this.deco(this.porId(7466, x=>x.sub==='Refrigeración')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Refrigeración'}) },
+        { label:'El living', note:'Televisores, audio y muebles pensados para la pantalla.', p:this.deco(this.porId(9379, x=>x.sub==='Racks')), onClick:()=>this.setState({page:'catalogo',cat:'Muebles y Hogar',sub:'Racks'}) },
+        { label:'El lavadero', note:'Lavado de carga superior y frontal, con stock real.', p:this.deco(this.porId(9454, x=>x.sub==='Lavado')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Lavado'}) },
+        { label:'Tu comodidad', note:'Climatización y ventilación para el verano paraguayo.', p:this.deco(this.porId(9508, x=>x.cat==='Climatización')), onClick:()=>this.setState({page:'catalogo',cat:'Climatización',sub:'Todas'}) }
       ],
       favItems: all.filter(p=>s.favs.indexOf(p.id)>=0).map(p=>this.deco(p)), favCount:s.favs.length, favEmpty:s.favs.length===0,
       compareItems: all.filter(p=>s.compare.indexOf(p.id)>=0).map(p=>this.deco(p)), compareCount:s.compare.length, compareEmpty:s.compare.length===0,
