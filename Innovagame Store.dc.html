@@ -1870,7 +1870,7 @@ class Component extends DCLogic {
     const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
       if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
-        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, nuevo:!!c.nuevo,
+        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, nuevo:!!c.nuevo, alias:c.alias,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
@@ -2167,7 +2167,9 @@ class Component extends DCLogic {
     if(dl){ this.setState({ page:'producto', pid:dl, gal:0, pq:1, relPage:0, ptab:'desc' }); }
     else { this._trkKey = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); this.trackPage(); }
   }
-  productoDeUrl(){ try { const n = +new URLSearchParams(location.search).get('producto'); return n && this.DATA.some(d=>d.id===n) ? n : null; } catch(e){ return null; } }
+  // Un producto importado que se unió a uno propio (ERP, receta 207) ya no está: su link lleva al propio ('alias').
+  productoDeUrl(){ try { const n = +new URLSearchParams(location.search).get('producto'); if(!n) return null;
+    if(this.DATA.some(d=>d.id===n)) return n; const a = this.DATA.find(d=>Array.isArray(d.alias) && d.alias.indexOf(n)>=0); return a ? a.id : null; } catch(e){ return null; } }
   // La dirección sigue al producto abierto (para compartirlo); fuera de un producto, vuelve a la de la tienda.
   syncUrl(){ try { const q = new URLSearchParams(location.search), en = this.state.page==='producto' ? String(this.state.pid) : null;
     if((q.get('producto')||null)===en) return;
