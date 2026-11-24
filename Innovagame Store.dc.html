@@ -2168,6 +2168,9 @@ class Component extends DCLogic {
     else { this._trkKey = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); this.trackPage(); }
   }
   // Un producto importado que se unió a uno propio (ERP, receta 207) ya no está: su link lleva al propio ('alias').
+  // Entrar al catálogo desde el menú, una categoría o la portada arranca sin la búsqueda ni la marca de
+  // antes (si no, una búsqueda vieja deja el catálogo con pocos productos). Lo que pide q o brand lo manda.
+  setState(u, cb){ if(u && typeof u==='object' && u.page==='catalogo') u = Object.assign({ q:'', brand:'Todas' }, u); return super.setState(u, cb); }
   productoDeUrl(){ try { const n = +new URLSearchParams(location.search).get('producto'); if(!n) return null;
     if(this.DATA.some(d=>d.id===n)) return n; const a = this.DATA.find(d=>Array.isArray(d.alias) && d.alias.indexOf(n)>=0); return a ? a.id : null; } catch(e){ return null; } }
   // La dirección sigue al producto abierto (para compartirlo); fuera de un producto, vuelve a la de la tienda.
@@ -2659,7 +2662,7 @@ class Component extends DCLogic {
       closeQuick:()=>{ this.setState({qv:null}); this._selHover=false; },
       onSearch:(e)=>this.setState({q:e.target.value, suggestOpen:true}),
       onSearchFocus:()=>this.setState({suggestOpen:true}),
-      onSearchKey:(e)=>{ if(e.key==='Enter'){ this.trackSearch(true); this.setState({page:'catalogo',suggestOpen:false,searchOpen:false,cat:'Todas',sub:'Todas'}); } },
+      onSearchKey:(e)=>{ if(e.key==='Enter'){ this.trackSearch(true); this.setState({page:'catalogo',q:this.state.q,suggestOpen:false,searchOpen:false,cat:'Todas',sub:'Todas'}); } },
       clearQ:()=>this.setState({q:'',suggestOpen:false}),
       showSuggest: s.suggestOpen && s.q.trim().length>0,
       suggestions: sugg.slice(0,5).map(p=>this.deco(p)),
