@@ -759,8 +759,8 @@
       </sc-if>
       <sc-if value="{{ noResults }}">
         <div style="border:1px dashed #D8D4CD;padding:70px 20px;text-align:center">
-          <div style="font-size:16px;font-weight:600">No encontramos productos con esos filtros</div>
-          <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">Probá ampliar el rango de precio o quitar la marca.</p>
+          <div style="font-size:16px;font-weight:600">{{ tx.busq_vacio_t }}</div>
+          <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">{{ tx.busq_vacio_d }}</p>
           <button onClick="{{ clearFilters }}" style="border:1px solid #141414;background:#141414;color:#fff;padding:12px 22px;font-size:13.5px;cursor:pointer">Limpiar filtros</button>
         </div>
       </sc-if>
@@ -874,7 +874,7 @@
         </div></sc-if>
         <sc-if value="{{ prodHasFeats }}">
           <div style="flex:1 1 300px;min-width:0;background:#FAF8F5;border-radius:14px;padding:16px 18px">
-            <div style="font-size:12px;font-weight:600;color:#A50D26;margin-bottom:10px">Lo más destacado</div>
+            <div style="font-size:12px;font-weight:600;color:#A50D26;margin-bottom:10px">{{ tx.prod_destacado }}</div>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 16px">
               <sc-for list="{{ prodFeats }}" as="ft" hint-placeholder-count="4">
                 <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;color:#3C3B38"><svg style="flex:0 0 auto;margin-top:2px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ ft.t }}</div>
@@ -902,8 +902,8 @@
     <div style="position:absolute;left:-60px;bottom:-140px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,.18),transparent 70%);pointer-events:none"></div>
     <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap">
       <div>
-        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFD3DA">Productos relacionados</div>
-        <h2 style="margin:8px 0 0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em;color:#fff">Tal vez también te sirva</h2>
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFD3DA">{{ tx.prod_rel_eyebrow }}</div>
+        <h2 style="margin:8px 0 0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em;color:#fff">{{ tx.prod_rel_titulo }}</h2>
       </div>
       <button onClick="{{ prodGoSub }}" style="height:42px;padding:0 18px;border:0;border-radius:999px;background:#fff;color:#141414;font-size:13.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s" style-hover="transform:translateX(3px)">Ver más en {{ prod.sub }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </div>
@@ -945,7 +945,7 @@
 
 <sc-if value="{{ isCategorias }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Categorías</h1>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.catpag_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.catpag_texto }}</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;border-top:1px solid #E4E2DD;border-left:1px solid #EFEDE9">
     <sc-for list="{{ categoryCards }}" as="c" hint-placeholder-count="8">
@@ -961,7 +961,7 @@
 
 <sc-if value="{{ isMarcas }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Marcas</h1>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.marcaspag_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.marcaspag_texto }}</p>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px">
     <sc-for list="{{ brandsList }}" as="b" hint-placeholder-count="7">
@@ -993,7 +993,7 @@
 <sc-if value="{{ isBodas }}">
 <div style="background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border-bottom:1px solid #F3E3E6">
   <div style="max-width:1560px;margin:0 auto;padding:clamp(28px,4vw,52px) 28px">
-    <div style="display:inline-flex;align-items:center;gap:8px;color:#C8102E;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase"><svg width="15" height="15" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
+    <div style="display:inline-flex;align-items:center;gap:8px;color:#C8102E;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase"><svg width="15" height="15" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>{{ tx.bodas_eyebrow }}</div>
     <h1 style="margin:10px 0 0;font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.03em">{{ tx.bodas_titulo }}</h1>
     <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:620px">{{ tx.bodas_texto }}</p>
   </div>
@@ -1100,7 +1100,7 @@
 
 <sc-if value="{{ isOfertas }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Ofertas</h1>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.ofertas_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:15px;color:#6E6B66;max-width:540px">{{ tx.ofertas_texto }}</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
     <sc-for list="{{ offers }}" as="p" hint-placeholder-count="2">
@@ -1128,7 +1128,7 @@
 
 <sc-if value="{{ isNovedades }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Novedades</h1>
+  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.novpag_titulo }}</h1>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
     <sc-for list="{{ novedades }}" as="p" hint-placeholder-count="2">
       <div style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column">
@@ -1147,12 +1147,12 @@
 
 <sc-if value="{{ isComparar }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Comparar</h1>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.comparar_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.comparar_texto }}</p>
   <sc-if value="{{ compareEmpty }}">
     <div style="border:1px dashed #D8D4CD;padding:70px 20px;text-align:center">
-      <div style="font-size:16px;font-weight:600">Todavía no agregaste productos</div>
-      <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">Usá el botón “Comparar” en cualquier producto del catálogo.</p>
+      <div style="font-size:16px;font-weight:600">{{ tx.comparar_vacio_t }}</div>
+      <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">{{ tx.comparar_vacio_d }}</p>
       <button onClick="{{ goCatalog }}" style="border:1px solid #141414;background:#141414;color:#fff;padding:12px 22px;font-size:13.5px;cursor:pointer">Ir al catálogo</button>
     </div>
   </sc-if>
@@ -1190,11 +1190,11 @@
 
 <sc-if value="{{ isFavoritos }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Favoritos</h1>
+  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.fav_titulo }}</h1>
   <sc-if value="{{ favEmpty }}">
     <div style="border:1px dashed #D8D4CD;padding:70px 20px;text-align:center">
-      <div style="font-size:16px;font-weight:600">Todavía no guardaste nada</div>
-      <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">Guardá productos desde su ficha para encontrarlos después.</p>
+      <div style="font-size:16px;font-weight:600">{{ tx.fav_vacio_t }}</div>
+      <p style="margin:10px 0 18px;font-size:14px;color:#6E6B66">{{ tx.fav_vacio_d }}</p>
       <button onClick="{{ goCatalog }}" style="border:1px solid #141414;background:#141414;color:#fff;padding:12px 22px;font-size:13.5px;cursor:pointer">Ir al catálogo</button>
     </div>
   </sc-if>
@@ -1218,7 +1218,7 @@
 
 <sc-if value="{{ isCarrito }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Carrito</h1>
+  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.carrito_titulo }}</h1>
   <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start">
     <div style="flex:2 1 460px;min-width:0;border-top:1px solid #E4E2DD">
       <sc-for list="{{ cartItems }}" as="c" hint-placeholder-count="2">
@@ -1240,7 +1240,7 @@
       </sc-for>
       <sc-if value="{{ cartEmpty }}">
         <div style="padding:70px 20px;text-align:center">
-          <div style="font-size:16px;font-weight:600">Tu carrito está vacío</div>
+          <div style="font-size:16px;font-weight:600">{{ tx.carrito_vacio }}</div>
           <button onClick="{{ goCatalog }}" style="margin-top:18px;border:1px solid #141414;background:#141414;color:#fff;padding:12px 22px;font-size:13.5px;cursor:pointer">Ir al catálogo</button>
         </div>
       </sc-if>
@@ -1268,7 +1268,7 @@
   <sc-if value="{{ ckDone }}">
     <div style="max-width:620px;margin:20px auto 0;border:1px solid #E4E2DD;padding:40px 32px;text-align:center">
       <div style="width:54px;height:54px;border-radius:50%;background:#E8F5EC;color:#1F7A45;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px">✓</div>
-      <h1 style="margin:20px 0 8px;font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.03em">¡Recibimos tu pedido!</h1>
+      <h1 style="margin:20px 0 8px;font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.03em">{{ tx.pedido_ok_titulo }}</h1>
       <p style="margin:0;font-size:15px;line-height:1.6;color:#6E6B66">Pedido <strong style="color:#141414">{{ ckNumero }}</strong> · Total <strong style="color:#141414">{{ ckTotal }}</strong></p>
       <p style="margin:12px 0 0;font-size:14.5px;line-height:1.6;color:#6E6B66">{{ tx.pedido_ok_texto }}</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px">
@@ -1278,7 +1278,7 @@
     </div>
   </sc-if>
   <sc-if value="{{ ckForm }}">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Checkout</h1>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.checkout_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:14.5px;color:#6E6B66">{{ tx.checkout_texto }}</p>
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
     <div style="flex:2 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px">
@@ -1321,8 +1321,8 @@
 
 <sc-if value="{{ isCuenta }}">
 <div style="max-width:900px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Mi cuenta</h1>
-  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">Accedé para ver tus pedidos, direcciones y favoritos.</p>
+  <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.cuenta_titulo }}</h1>
+  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.cuenta_texto }}</p>
   <div style="display:flex;flex-wrap:wrap;gap:20px">
     <div style="flex:1 1 300px;min-width:0;border:1px solid #E4E2DD;padding:28px">
       <div style="font-size:17px;font-weight:600;margin-bottom:18px">Iniciar sesión</div>
@@ -1333,8 +1333,8 @@
       </div>
     </div>
     <div style="flex:1 1 260px;min-width:0;border:1px solid #E4E2DD;padding:28px">
-      <div style="font-size:17px;font-weight:600;margin-bottom:14px">Mis pedidos</div>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:#6E6B66">Cuando ingreses vas a ver el estado de cada pedido, el detalle de los productos y los datos de entrega.</p>
+      <div style="font-size:17px;font-weight:600;margin-bottom:14px">{{ tx.cuenta_pedidos_t }}</div>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:#6E6B66">{{ tx.cuenta_pedidos_d }}</p>
     </div>
   </div>
 </div>
@@ -1342,7 +1342,7 @@
 
 <sc-if value="{{ isSucursales }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
-  <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Sucursales</div>
+  <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.sucpag_eyebrow }}</div>
   <h1 style="margin:14px 0 26px;font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.035em">{{ tx.sucpag_titulo }}</h1>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
     <sc-for list="{{ sucursales }}" as="su" hint-placeholder-count="2">
@@ -1372,7 +1372,7 @@
   <div style="max-width:1560px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:stretch">
     <div style="position:relative;flex:1 1 440px;min-width:0;padding:clamp(40px,6vw,96px) 28px clamp(40px,5vw,80px);display:flex;flex-direction:column;justify-content:center">
       <img src="brand/logo-white.png" alt="Innovagame" style="align-self:flex-start;height:clamp(64px,6vw,96px);width:auto;display:block;animation:igRise .9s cubic-bezier(.22,1,.36,1) .1s both">
-      <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#FBD3D8;margin-top:clamp(28px,3vw,44px);animation:igRise .7s cubic-bezier(.22,1,.36,1) .25s both">Sobre nosotros</div>
+      <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#FBD3D8;margin-top:clamp(28px,3vw,44px);animation:igRise .7s cubic-bezier(.22,1,.36,1) .25s both">{{ tx.nos_eyebrow }}</div>
       <h1 aria-label="{{ tx.nos_titulo }}" style="margin:14px 0 0;font-size:clamp(40px,5.6vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.98;display:flex;flex-wrap:wrap;column-gap:.24em">
         <sc-for list="{{ aboutFold }}" as="fw" hint-placeholder-count="2">
           <span style="display:inline-flex;white-space:nowrap">
@@ -1412,7 +1412,7 @@
 
 <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4.5vw,64px) 28px 0">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(20px,2.4vw,32px)">
-    <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.03em">Lo que vendemos</h2>
+    <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.03em">{{ tx.nos_vendemos }}</h2>
     <button onClick="{{ goCategorias }}" style="border:0;background:transparent;font-size:14.5px;font-weight:500;cursor:pointer;padding:4px 0;border-bottom:1px solid #141414;transition:all .2s" style-hover="color:#C8102E;border-color:#C8102E">Ver categorías →</button>
   </div>
   <div style="display:grid;grid-template-columns:{{ gridCols }};gap:clamp(18px,2.4vw,44px) clamp(14px,1.8vw,32px)">
@@ -1430,7 +1430,7 @@
 
 <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4.5vw,64px) 28px 0">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(20px,2.4vw,32px)">
-    <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.03em">Dónde estamos</h2>
+    <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.03em">{{ tx.nos_donde }}</h2>
     <button onClick="{{ goSucursales }}" style="border:0;background:transparent;font-size:14.5px;font-weight:500;cursor:pointer;padding:4px 0;border-bottom:1px solid #141414;transition:all .2s" style-hover="color:#C8102E;border-color:#C8102E">Ver sucursales →</button>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px">
@@ -1498,10 +1498,10 @@
 
 <sc-if value="{{ isContacto }}">
 <div style="max-width:1200px;margin:0 auto;padding:26px 28px 0">
-  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Contacto</h1>
+  <h1 style="margin:0 0 26px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.contacto_titulo }}</h1>
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
     <div style="flex:1.2 1 380px;min-width:0;border:1px solid #E4E2DD;padding:30px">
-      <div style="font-size:17px;font-weight:600;margin-bottom:18px">Escribinos</div>
+      <div style="font-size:17px;font-weight:600;margin-bottom:18px">{{ tx.contacto_form_t }}</div>
       <div style="display:flex;flex-direction:column;gap:13px">
         <input placeholder="Nombre y apellido" style="height:48px;border:1px solid #E4E2DD;padding:0 14px;font-size:14.5px;background:#FAF9F7;outline:none">
         <div style="display:flex;gap:13px;flex-wrap:wrap">
@@ -1513,7 +1513,7 @@
       </div>
     </div>
     <div style="flex:1 1 280px;min-width:0;border:1px solid #E4E2DD;padding:30px">
-      <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:14px">Canales</div>
+      <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:14px">{{ tx.contacto_canales }}</div>
       <sc-for list="{{ contactos }}" as="c" hint-placeholder-count="6">
         <a href="{{ c.href }}" target="_blank" style="display:block;padding:12px 0;border-bottom:1px solid #F0EEEA">
           <div style="font:400 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#9B978F">{{ c.k }}</div>
@@ -1550,7 +1550,7 @@
         <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">{{ pieTexto }}</p>
         <div style="margin-top:22px;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#B9B6B0;line-height:1.6">
           <svg style="flex:0 0 auto;margin-top:2px" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E04B5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-          <div><span style="color:#fff;font-weight:500">Atención</span><br><span style="white-space:pre-line">{{ tx.pie_atencion }}</span></div>
+          <div><span style="color:#fff;font-weight:500">{{ tx.pie_atencion_t }}</span><br><span style="white-space:pre-line">{{ tx.pie_atencion }}</span></div>
         </div>
       </div>
       <div style="flex:1 1 160px;min-width:0">
@@ -2181,7 +2181,7 @@ class Component extends DCLogic {
           { h:'Modificaciones', ps:['La empresa se reserva el derecho de cambiar o modificar los términos de la presente Política de Privacidad en cualquier momento, y comunicará cualquier cambio a través de nuestras páginas.'] }
         ] }
     }/*FIN*/;
-  TX_DEF = Object.assign(/*TXS*/{"hero_marca": "Innovagame", "hero_titulo1": "Tu casa. Tus planes.", "hero_titulo2": "Todo en Innovagame.", "hero_boton": "Explorar productos", "tira1_t": "Envío a domicilio", "tira1_d": "Asunción en 24 h hábiles", "tira2_t": "Garantía de fábrica", "tira2_d": "En todos los productos", "tira3_t": "Financiación Fadonet", "tira3_d": "Pagá en cuotas", "cat_eyebrow": "Categorías", "cat_titulo": "Comprá por categoría.", "dest_eyebrow": "Destacados", "dest_titulo": "Una selección para empezar.", "nov_eyebrow": "Recién llegados", "nov_titulo": "Novedades.", "marcas_eyebrow": "Marcas", "marcas_titulo": "Descubrí por marca.", "comp_eyebrow": "Comparador", "comp_texto": "Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.", "suc_eyebrow": "Innovagame en persona", "suc_titulo": "También cerca tuyo.", "prod_nota": "Impuestos incluidos · el precio puede variar según el método de pago", "prod_b1": "Envío en 24 h hábiles", "prod_b2": "Retiro en sucursal", "prod_b3": "Garantía de fábrica", "catpag_texto": "Todas las categorías de la tienda, con sus subcategorías.", "marcaspag_texto": "Elegí una marca para ver sus productos disponibles.", "ofertas_texto": "Productos marcados como oferta en la tienda. Los precios mostrados son los publicados; no publicamos descuentos ni plazos que no estén confirmados.", "ofertas_vacio_t": "Por ahora no hay ofertas.", "ofertas_vacio_d": "Estamos preparando las próximas. Mientras tanto, mirá el catálogo completo con precios y stock actualizados.", "comparar_texto": "Hasta tres productos de la misma subcategoría, ficha contra ficha.", "bodas_titulo": "Regalá lo que necesitan para su nuevo hogar.", "bodas_texto": "Elegí la lista de los novios, mirá qué regalos faltan y agregalos al carrito. Las listas se actualizan desde Innovagame.", "bodas_vacio_t": "Todavía no hay listas publicadas", "bodas_vacio_d": "Si sos novio o novia y querés armar tu lista, escribinos por WhatsApp.", "fin_eyebrow": "Financiación · Fadonet", "fin_titulo": "Llevá lo que necesitás y pagalo en cuotas con Fadonet.", "fin_texto": "Financiá tus compras en Innovagame a través de Fadonet. Nuestros asesores te informan las opciones disponibles para tu compra.", "fin_pasos_t": "Cómo funciona", "fin_cond_eyebrow": "Condiciones y beneficios", "fin_cond_titulo": "Plazos, requisitos y tasas", "fin_cond_texto": "En este espacio vamos a publicar las condiciones vigentes de financiación con Fadonet. Mientras tanto, consultalas con nuestros asesores por WhatsApp o en cualquiera de nuestras sucursales.", "fin_nota_t": "Tené en cuenta", "fin_nota_d": "Los precios publicados son al contado. El precio final puede variar según el método de pago y la financiación elegida.", "checkout_texto": "Dejanos tus datos y confirmá el pedido. Un asesor te contacta para coordinar el pago y la entrega: no se cobra nada en línea.", "pedido_ok_texto": "Un asesor de Innovagame te va a contactar para confirmar el stock, el pago y la entrega.", "sucpag_titulo": "Innovagame, también cerca tuyo.", "nos_texto": "Innovagame es una tienda de electrónica, informática y electrodomésticos con dos locales en Asunción y venta online a todo el país. Trabajamos con marcas como Beko, Hisense, Tokyo, Notavel, Patrimar y Qmovi, en categorías que van desde grandes electrodomésticos y climatización hasta muebles, herramientas y deportes.", "nos_como_eyebrow": "Cómo trabajamos", "nos_como_titulo": "Precio publicado, stock real y alguien que atiende.", "nos_ayuda_t": "¿Te ayudamos a elegir?", "nos_ayuda_d": "Escribinos y te pasamos opciones con precio y disponibilidad real.", "pie_ayuda_t": "¿Necesitás ayuda para elegir?", "pie_ayuda_d": "Nuestros asesores te responden por WhatsApp, de lunes a sábado.", "pie_copy": "© 2026 Innovagame · Asunción, Paraguay · Precios en guaraníes", "hero_texto": "Tecnología, electrodomésticos y muebles con *envío a domicilio* y *garantía de fábrica*.", "comp_titulo": "Elegí con información,\nno con dudas.", "pie_atencion": "Lunes a viernes 8:00 – 18:30\nSábados 8:00 – 14:00", "pie_texto": "Tienda de alta tecnología, electrónica, informática y electrodomésticos. {sucursales} y envíos a todo el país.", "nos_titulo": "Somos Innovagame.", "ben1_t": "Envío a domicilio", "ben1_d": "Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.", "ben2_t": "Compras garantizadas", "ben2_d": "En todos nuestros productos.", "ben3_t": "Pago rápido y seguro", "ben3_d": "Efectivo, transferencia y tarjetas de crédito.", "ben4_t": "Soporte en línea", "ben4_d": "Estamos acá para ayudarte.", "fin1_t": "Elegí tus productos", "fin1_d": "Recorré el catálogo y armá tu pedido.", "fin2_t": "Consultá con un asesor", "fin2_d": "Te contamos las opciones de financiación con Fadonet para tu compra.", "fin3_t": "Presentá los requisitos", "fin3_d": "Nuestros asesores te indican la documentación necesaria.", "fin4_t": "Recibí o retirá", "fin4_d": "Envío a domicilio o retiro en cualquiera de nuestras dos sucursales."}/*FIN*/, this.docsDef());
+  TX_DEF = Object.assign(/*TXS*/{"hero_marca": "Innovagame", "hero_titulo1": "Tu casa. Tus planes.", "hero_titulo2": "Todo en Innovagame.", "hero_boton": "Explorar productos", "tira1_t": "Envío a domicilio", "tira1_d": "Asunción en 24 h hábiles", "tira2_t": "Garantía de fábrica", "tira2_d": "En todos los productos", "tira3_t": "Financiación Fadonet", "tira3_d": "Pagá en cuotas", "cat_eyebrow": "Categorías", "cat_titulo": "Comprá por categoría.", "dest_eyebrow": "Destacados", "dest_titulo": "Una selección para empezar.", "nov_eyebrow": "Recién llegados", "nov_titulo": "Novedades.", "marcas_eyebrow": "Marcas", "marcas_titulo": "Descubrí por marca.", "comp_eyebrow": "Comparador", "comp_texto": "Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.", "suc_eyebrow": "Innovagame en persona", "suc_titulo": "También cerca tuyo.", "prod_nota": "Impuestos incluidos · el precio puede variar según el método de pago", "prod_b1": "Envío en 24 h hábiles", "prod_b2": "Retiro en sucursal", "prod_b3": "Garantía de fábrica", "catpag_texto": "Todas las categorías de la tienda, con sus subcategorías.", "marcaspag_texto": "Elegí una marca para ver sus productos disponibles.", "ofertas_texto": "Productos marcados como oferta en la tienda. Los precios mostrados son los publicados; no publicamos descuentos ni plazos que no estén confirmados.", "ofertas_vacio_t": "Por ahora no hay ofertas.", "ofertas_vacio_d": "Estamos preparando las próximas. Mientras tanto, mirá el catálogo completo con precios y stock actualizados.", "comparar_texto": "Hasta tres productos de la misma subcategoría, ficha contra ficha.", "bodas_titulo": "Regalá lo que necesitan para su nuevo hogar.", "bodas_texto": "Elegí la lista de los novios, mirá qué regalos faltan y agregalos al carrito. Las listas se actualizan desde Innovagame.", "bodas_vacio_t": "Todavía no hay listas publicadas", "bodas_vacio_d": "Si sos novio o novia y querés armar tu lista, escribinos por WhatsApp.", "fin_eyebrow": "Financiación · Fadonet", "fin_titulo": "Llevá lo que necesitás y pagalo en cuotas con Fadonet.", "fin_texto": "Financiá tus compras en Innovagame a través de Fadonet. Nuestros asesores te informan las opciones disponibles para tu compra.", "fin_pasos_t": "Cómo funciona", "fin_cond_eyebrow": "Condiciones y beneficios", "fin_cond_titulo": "Plazos, requisitos y tasas", "fin_cond_texto": "En este espacio vamos a publicar las condiciones vigentes de financiación con Fadonet. Mientras tanto, consultalas con nuestros asesores por WhatsApp o en cualquiera de nuestras sucursales.", "fin_nota_t": "Tené en cuenta", "fin_nota_d": "Los precios publicados son al contado. El precio final puede variar según el método de pago y la financiación elegida.", "checkout_texto": "Dejanos tus datos y confirmá el pedido. Un asesor te contacta para coordinar el pago y la entrega: no se cobra nada en línea.", "pedido_ok_texto": "Un asesor de Innovagame te va a contactar para confirmar el stock, el pago y la entrega.", "sucpag_titulo": "Innovagame, también cerca tuyo.", "nos_texto": "Innovagame es una tienda de electrónica, informática y electrodomésticos con dos locales en Asunción y venta online a todo el país. Trabajamos con marcas como Beko, Hisense, Tokyo, Notavel, Patrimar y Qmovi, en categorías que van desde grandes electrodomésticos y climatización hasta muebles, herramientas y deportes.", "nos_como_eyebrow": "Cómo trabajamos", "nos_como_titulo": "Precio publicado, stock real y alguien que atiende.", "nos_ayuda_t": "¿Te ayudamos a elegir?", "nos_ayuda_d": "Escribinos y te pasamos opciones con precio y disponibilidad real.", "pie_ayuda_t": "¿Necesitás ayuda para elegir?", "pie_ayuda_d": "Nuestros asesores te responden por WhatsApp, de lunes a sábado.", "pie_copy": "© 2026 Innovagame · Asunción, Paraguay · Precios en guaraníes", "hero_texto": "Tecnología, electrodomésticos y muebles con *envío a domicilio* y *garantía de fábrica*.", "comp_titulo": "Elegí con información,\nno con dudas.", "pie_atencion": "Lunes a viernes 8:00 – 18:30\nSábados 8:00 – 14:00", "pie_texto": "Tienda de alta tecnología, electrónica, informática y electrodomésticos. {sucursales} y envíos a todo el país.", "nos_titulo": "Somos Innovagame.", "ben1_t": "Envío a domicilio", "ben1_d": "Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.", "ben2_t": "Compras garantizadas", "ben2_d": "En todos nuestros productos.", "ben3_t": "Pago rápido y seguro", "ben3_d": "Efectivo, transferencia y tarjetas de crédito.", "ben4_t": "Soporte en línea", "ben4_d": "Estamos acá para ayudarte.", "fin1_t": "Elegí tus productos", "fin1_d": "Recorré el catálogo y armá tu pedido.", "fin2_t": "Consultá con un asesor", "fin2_d": "Te contamos las opciones de financiación con Fadonet para tu compra.", "fin3_t": "Presentá los requisitos", "fin3_d": "Nuestros asesores te indican la documentación necesaria.", "fin4_t": "Recibí o retirá", "fin4_d": "Envío a domicilio o retiro en cualquiera de nuestras dos sucursales.", "nos_eyebrow": "Sobre nosotros", "nos_vendemos": "Lo que vendemos", "nos_donde": "Dónde estamos", "sucpag_eyebrow": "Sucursales", "contacto_titulo": "Contacto", "contacto_form_t": "Escribinos", "contacto_canales": "Canales", "cuenta_titulo": "Mi cuenta", "cuenta_texto": "Accedé para ver tus pedidos, direcciones y favoritos.", "cuenta_pedidos_t": "Mis pedidos", "cuenta_pedidos_d": "Cuando ingreses vas a ver el estado de cada pedido, el detalle de los productos y los datos de entrega.", "catpag_titulo": "Categorías", "marcaspag_titulo": "Marcas", "ofertas_titulo": "Ofertas", "novpag_titulo": "Novedades", "comparar_titulo": "Comparar", "comparar_vacio_t": "Todavía no agregaste productos", "comparar_vacio_d": "Usá el botón “Comparar” en cualquier producto del catálogo.", "fav_titulo": "Favoritos", "fav_vacio_t": "Todavía no guardaste nada", "fav_vacio_d": "Guardá productos desde su ficha para encontrarlos después.", "busq_vacio_t": "No encontramos productos con esos filtros", "busq_vacio_d": "Probá ampliar el rango de precio o quitar la marca.", "prod_destacado": "Lo más destacado", "prod_rel_eyebrow": "Productos relacionados", "prod_rel_titulo": "Tal vez también te sirva", "bodas_eyebrow": "Lista de bodas", "carrito_titulo": "Carrito", "carrito_vacio": "Tu carrito está vacío", "pedido_ok_titulo": "¡Recibimos tu pedido!", "checkout_titulo": "Checkout", "pie_atencion_t": "Atención"}/*FIN*/, this.docsDef());
   TX = (d=>{ const e = (typeof window!=='undefined' && window.IG_TEXTOS && typeof window.IG_TEXTOS==='object') ? window.IG_TEXTOS : {}, t = {};
     Object.keys(d).forEach(k=>{ t[k] = (typeof e[k]==='string' && e[k].trim()) ? e[k] : d[k]; }); return t; })(this.TX_DEF);
   docsDef(){ const t = {};
@@ -2401,7 +2401,7 @@ class Component extends DCLogic {
         return { img:cp.img, ring: i===s.cur ? '#141414' : '#E4E2DD', op: i===s.cur ? 1 : 0.62,
           onClick:()=>this.setState({cur:i}) }; }),
       curatedGrid: this.pick(this.CURATED_GRID).map(p=>this.deco(p)),
-      aboutPicks: (l=>l.length ? l : all.slice(0,4))(this.pick([7466, 8943, 9508, 9379])).map(p=>this.deco(p)),
+      aboutPicks: (l=>l.length ? l : all.slice(0,4))(this.pick(((typeof window!=='undefined' && Array.isArray(window.IG_NOSOTROS) && window.IG_NOSOTROS.length) ? window.IG_NOSOTROS : [7466, 8943, 9508, 9379]).slice(0,4))).map(p=>this.deco(p)),
       selection: (()=>{ const base=this.selList(), w='calc((100% - ' + (this.selN()-1)*20 + 'px) / ' + this.selN() + ')';
         const list = this.selLoop() ? base.concat(base, base) : base;
         return list.map(p=>({ ...this.deco(p), w })); })(),
