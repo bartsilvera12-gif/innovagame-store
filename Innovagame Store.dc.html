@@ -119,6 +119,7 @@
         </sc-if>
       </div>
       <div style="flex:0 0 auto;display:flex;align-items:center;gap:6px">
+        <button onClick="{{ goMarcas }}" onMouseEnter="{{ openMarcas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border:1px solid #E4E2DD;border-radius:999px;background:#fff;color:#141414;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s" style-hover="border-color:#141414"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>Marcas</button>
         <button onClick="{{ goBodas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border:1px solid #F2C4CB;border-radius:999px;background:#fff;color:#C8102E;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .18s" style-hover="background:#FFF1F3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</button>
         <button onClick="{{ goOfertas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 16px;border:0;border-radius:999px;background:#C8102E;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .18s;margin-right:6px" style-hover="background:#A50D26"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg>Ofertas</button>
         <button onClick="{{ openCart }}" aria-label="Carrito" style="position:relative;display:flex;align-items:center;justify-content:center;border:0;background:transparent;width:40px;height:40px;cursor:pointer;transition:opacity .2s" style-hover="opacity:.65">
@@ -149,6 +150,25 @@
           <button onClick="{{ c.onClick }}" onMouseEnter="{{ c.onEnter }}" style="flex:0 0 auto;height:46px;padding:3px 0 0;border:0;border-bottom:3px solid {{ c.mark }};background:transparent;font-size:{{ catFs }};font-weight:500;white-space:nowrap;cursor:pointer;transition:color .18s,border-color .18s;color:{{ c.color }}" style-hover="color:#fff" title="{{ c.tip }}">{{ c.label }}</button>
         </sc-for>
       </div>
+      <sc-if value="{{ marcasOpen }}">
+        <div onMouseLeave="{{ closeMarcas }}" style="position:absolute;top:46px;left:0;right:0;background:#fff;border-top:3px solid #C8102E;box-shadow:0 28px 50px rgba(0,0,0,.18);z-index:71">
+          <div style="max-width:1560px;margin:0 auto;padding:22px 28px 26px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+              <div style="font-size:18px;font-weight:600">Marcas <span style="font-size:13px;font-weight:500;color:#9B978F">· las más vendidas</span></div>
+              <button onClick="{{ goMarcas }}" style="border:0;background:transparent;color:#C8102E;font-size:14px;font-weight:600;cursor:pointer;border-bottom:1.5px solid #C8102E;padding:2px 0" style-hover="color:#141414;border-color:#141414">Ver las {{ marcasTotal }} marcas →</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px">
+              <sc-for list="{{ marcasTop }}" as="mb" hint-placeholder-count="12">
+                <div onClick="{{ mb.onClick }}" style="position:relative;height:70px;border:1px solid {{ mb.bd }};border-radius:12px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s" style-hover="border-color:#C8102E;box-shadow:0 10px 24px rgba(200,16,46,.10);transform:translateY(-2px)">
+          <sc-if value="{{ mb.hasLogo }}"><img src="{{ mb.logo }}" alt="{{ mb.name }}" loading="lazy" style="max-width:84%;max-height:46px;object-fit:contain"></sc-if>
+          <sc-if value="{{ mb.noLogo }}"><span style="font-size:{{ mb.fs }};font-weight:800;letter-spacing:{{ mb.ls }};font-style:{{ mb.it }};text-transform:uppercase;color:{{ mb.fg }};text-align:center;line-height:1.08;max-width:100%;overflow-wrap:break-word">{{ mb.name }}</span></sc-if>
+          <span style="font-size:11px;color:#9B978F">{{ mb.countLabel }}</span>
+        </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
       <sc-if value="{{ megaOpen }}">
         <div onMouseLeave="{{ closeMega }}" style="position:absolute;top:46px;left:0;right:0;background:#C8102E;color:#fff;border-top:1px solid rgba(255,255,255,.2);box-shadow:0 28px 50px rgba(0,0,0,.18);z-index:70">
           <div style="max-width:1560px;margin:0 auto;padding:26px 28px 30px;display:flex;gap:36px;align-items:flex-start">
@@ -963,11 +983,21 @@
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ tx.marcaspag_titulo }}</h1>
   <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.marcaspag_texto }}</p>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px">
-    <sc-for list="{{ brandsList }}" as="b" hint-placeholder-count="7">
-      <button onClick="{{ b.onClick }}" style="border:1px solid #E4E2DD;background:transparent;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;color:{{ b.color }};transition:all .18s" style-hover="border-color:#141414">{{ b.name }} · {{ b.count }}</button>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax({{ marcaMin }},1fr));gap:10px;margin-bottom:28px">
+    <sc-for list="{{ brandsList }}" as="b" hint-placeholder-count="12">
+        <div onClick="{{ b.onClick }}" style="position:relative;height:84px;border:1px solid {{ b.bd }};border-radius:12px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s" style-hover="border-color:#C8102E;box-shadow:0 10px 24px rgba(200,16,46,.10);transform:translateY(-2px)">
+          <sc-if value="{{ b.hasLogo }}"><img src="{{ b.logo }}" alt="{{ b.name }}" loading="lazy" style="max-width:84%;max-height:46px;object-fit:contain"></sc-if>
+          <sc-if value="{{ b.noLogo }}"><span style="font-size:{{ b.fs }};font-weight:800;letter-spacing:{{ b.ls }};font-style:{{ b.it }};text-transform:uppercase;color:{{ b.fg }};text-align:center;line-height:1.08;max-width:100%;overflow-wrap:break-word">{{ b.name }}</span></sc-if>
+          <span style="font-size:11px;color:#9B978F">{{ b.countLabel }}</span>
+        </div>
     </sc-for>
   </div>
+  <sc-if value="{{ brandIsFiltered }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:-8px 0 18px">
+      <div style="font-size:18px;font-weight:600">Productos de <span style="color:#C8102E">{{ brand }}</span></div>
+      <button onClick="{{ brandClear }}" style="border:1px solid #E4E2DD;background:#fff;border-radius:999px;padding:9px 16px;font-size:13px;cursor:pointer" style-hover="border-color:#C8102E;color:#C8102E">Ver todas las marcas</button>
+    </div>
+  </sc-if>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
     <sc-for list="{{ brandProducts }}" as="p" hint-placeholder-count="6">
       <div style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column;transition:background .2s" style-hover="background:#FAF9F7">
@@ -1880,6 +1910,14 @@ class Component extends DCLogic {
     this.DATA.forEach(p=>{ if(!p.brand) return; (m[p.brand] = m[p.brand] || []).push(p); });
     this._bs = Object.keys(m).sort().map(b=>({ name:b, list:m[b] })); return this._bs;
   }
+  LOGOS_LOCAL = {"ABBA":"brand/marcas/abba.png","ABBATEC":"brand/marcas/abbatec.png","ARNO":"brand/marcas/arno.png","BEKO":"brand/marcas/beko.png","BRAYER":"brand/marcas/brayer.png","CHUWI":"brand/marcas/chuwi.png","COLORMAQ":"brand/marcas/colormaq.png","CONTINENTAL":"brand/marcas/continental.png","COOKE LEWIS":"brand/marcas/cooke-lewis.png","DAKO":"brand/marcas/dako.png","DELL":"brand/marcas/dell.png","ECOSILKON":"brand/marcas/ecosilkon.png","ELECTROLUX":"brand/marcas/electrolux.png","EVOLUTION":"brand/marcas/evolution.png","GEISHA":"brand/marcas/geisha.png","GOODWEATHER":"brand/marcas/goodweather.png","HITACHI":"brand/marcas/hitachi.png","HP":"brand/marcas/hp.png","IMUSA":"brand/marcas/imusa.png","JAMES":"brand/marcas/james.png","KITCHENAID":"brand/marcas/kitchenaid.png","KRUPS":"brand/marcas/krups.png","LG":"brand/marcas/lg.png","MABE":"brand/marcas/mabe.png","MARSON":"brand/marcas/marson.png","MAXELL":"brand/marcas/maxell.png","MICHELIN":"brand/marcas/michelin.png","MONDIAL":"brand/marcas/mondial.png","MOULINEX":"brand/marcas/moulinex.png","NAKAMICHI":"brand/marcas/nakamichi.png","NARDELLI":"brand/marcas/nardelli.png","PATRIMAR":"brand/marcas/patrimar.png","PHILIPS":"brand/marcas/philips.png","PREDATOR":"brand/marcas/predator.png","PRIDE":"brand/marcas/pride.png","QMOVI":"brand/marcas/qmovi.png","REFINATTO":"brand/marcas/refinatto.png","REMINGTON":"brand/marcas/remington.png","RHEEM":"brand/marcas/rheem.png","ROWENTA":"brand/marcas/rowenta.png","SAMSUNG":"brand/marcas/samsung.png","SMARTFY":"brand/marcas/smartfy.png","SONY":"brand/marcas/sony.png","SPEED":"brand/marcas/speed.png","TCL":"brand/marcas/tcl.png","TOKYO INDUSTRIAL":"brand/marcas/tokyo-industrial.png","TOKYO":"brand/marcas/tokyo.png","TRAPP":"brand/marcas/trapp.png","VELOZ":"brand/marcas/veloz.png","VENTISOL":"brand/marcas/ventisol.png","WESTINGHOUSE":"brand/marcas/westinghouse.png","WHIRLPOOL":"brand/marcas/whirlpool.png","XIAOMI":"brand/marcas/xiaomi.png"};
+  brandLogos(){ if(this._bl) return this._bl; const m = Object.assign({}, this.LOGOS_LOCAL), src = (typeof window!=='undefined' && Array.isArray(window.IG_MARCAS)) ? window.IG_MARCAS : [];
+    src.forEach(x=>{ if(x && typeof x.nombre==='string' && typeof x.logo==='string' && /^(https:\/\/|brand\/)/.test(x.logo)) m[x.nombre.toUpperCase()] = x.logo; });
+    return (this._bl = m); }
+  brandTile(b, on, onClick){ const logo = this.brandLogos()[b.name.toUpperCase()] || '', n = b.name, h = [...n].reduce((a,c)=>a + c.charCodeAt(0), 0);
+    return { name:n, count:b.list.length, countLabel: b.list.length===1 ? '1 producto' : b.list.length + ' productos', logo, hasLogo: !!logo, noLogo: !logo,
+      fs: ((this.state && this.state.w) || 1440) < 760 ? (n.length>10 ? '8.5px' : n.length>9 ? '9.5px' : n.length>6 ? '11px' : '14px') : n.length>12 ? '11px' : n.length>9 ? (n.indexOf(' ')<0 ? '11px' : '12.5px') : n.length>6 ? '13px' : '16px', ls: (((this.state && this.state.w) || 1440) < 760 || n.length>9) ? '0' : h%3===0 ? '.06em' : '-.01em', it: h%4===0 ? 'italic' : 'normal',
+      fg: on ? '#C8102E' : '#141414', bd: on ? '#C8102E' : '#ECEAE5', onClick }; }
   hiList(p){
     if(p.feats && p.feats.length) return p.feats.filter(f=>f.length<=46).slice(0,3);
     return (p.specs||[]).filter(x=>['Marca','Modelo','Referencia','Categoría'].indexOf(x[0])<0).slice(0,3).map(x=>x[1]);
@@ -2033,7 +2071,7 @@ class Component extends DCLogic {
   trackPage(){ const s = this.state, pg = s.page || 'home';
     if(pg==='producto') this.track('producto', { pagina:'producto', producto: s.pid }); else this.track('vista', { pagina: pg });
     if(pg==='checkout') this.track('checkout', { pagina:'checkout' }); }
-  go(page){ return () => this.setState({ page, menuOpen:false, searchOpen:false, mega:null, suggestOpen:false }); }
+  go(page){ return () => this.setState({ page, menuOpen:false, searchOpen:false, mega:null, marcasOpen:false, suggestOpen:false, ...(page==='marcas' ? {brand:'Todas'} : {}) }); }
   openProduct(id){ return (e) => { if(e&&e.stopPropagation)e.stopPropagation();
     this._relHover=false; this.setState({ page:'producto', pid:id, gal:0, pq:1, relPage:0, ptab:'desc', descOpen:false, qv:null, zoom:false, lbZ:false, menuOpen:false, searchOpen:false, suggestOpen:false, mega:null }); }; }
   sendOrder(){ const s=this.state, ck=s.ck, erp=typeof window!=='undefined' ? window.IG_ERP : '';
@@ -2378,7 +2416,7 @@ class Component extends DCLogic {
         prods: all.filter(p=>p.cat===megaDef[0] && !p.noImg).slice(0, s.w>=1400 ? 2 : 1).map(p=>({ ...this.deco(p), onOpen:this.openProduct(p.id) })),
         hasProds: all.some(p=>p.cat===megaDef[0]) } : {name:'',subs:[],prods:[],hasProds:false},
       topCats: this.TREE.map((t,i)=>({ name:t[0], tip: (s.w<1400 && /electrodom|Jardin|Belleza|Muebles/.test(t[0])) ? t[0] : '', label: s.w>=1400 ? t[0] : ({'Grandes electrodomésticos':'Grandes electro.','Pequeños electrodomésticos':'Pequeños electro.','Herramientas y Jardinería':'Herramientas','Belleza y cuidado':'Belleza','Muebles y Hogar':'Muebles'}[t[0]] || t[0]), color: (s.cat===t[0] || s.mega===i) ? '#fff' : 'rgba(255,255,255,.86)', mark: (s.cat===t[0] || s.mega===i) ? '#fff' : 'transparent',
-        onEnter:()=>this.setState({mega:i}),
+        onEnter:()=>this.setState({mega:i, marcasOpen:false}),
         onClick:()=>this.setState({page:'catalogo',cat:t[0],sub:'Todas',mega:null,menuOpen:false}) })),
       closeMega:()=>this.setState({mega:null}),
       nav: navDefs.map(d=>({label:d[0],onClick:this.go(d[1])})),
@@ -2533,9 +2571,15 @@ class Component extends DCLogic {
       brandsHome: this.brandStats().filter(b=>b.list.some(p=>!p.noImg)).slice().sort((a,b)=>b.list.length-a.list.length).slice(0,18).map(b=>{ const ps=b.list; return { name:b.name, count: ps.length===1 ? '1 producto' : ps.length+' productos', img: (ps.find(p=>!p.noImg)||ps[0]).img, onClick:()=>this.setState({page:'catalogo', brand:b.name, cat:'Todas', sub:'Todas'}) }; }),
       brandPause:(e)=>{ const r=e.currentTarget.querySelector('[data-brand-run]'); if(r) r.style.animationPlayState='paused'; },
       brandPlay:(e)=>{ const r=e.currentTarget.querySelector('[data-brand-run]'); if(r) r.style.animationPlayState='running'; },
-      brandsList: this.brandStats().map(b=>({ name:b.name, count: b.list.length,
-        active: s.brand===b.name, color: s.brand===b.name ? '#C8102E' : '#141414',
-        onClick:()=>this.setState({brand:b.name}) })),
+      brandsList: this.brandStats().map(b=>this.brandTile(b, s.brand===b.name, ()=>this.setState({brand:b.name}))),
+      marcaMin: s.w>=1020 ? '118px' : '90px',
+      brandIsFiltered: s.brand!=='Todas', brandClear: ()=>this.setState({brand:'Todas'}),
+      marcasOpen: !!s.marcasOpen && s.w>=1020,
+      openMarcas: ()=>{ if(!this.state.marcasOpen) this.setState({marcasOpen:true, mega:null}); },
+      closeMarcas: ()=>this.setState({marcasOpen:false}),
+      marcasTop: this.brandStats().slice().sort((a,b)=>b.list.length-a.list.length).slice(0,30).sort((a,b)=>a.name.localeCompare(b.name))
+        .map(b=>this.brandTile(b, false, ()=>this.setState({page:'marcas', brand:b.name, marcasOpen:false, mega:null}))),
+      marcasTotal: this.brandStats().length,
       ...(()=>{ const bl = s.brand==='Todas' ? all : all.filter(p=>p.brand===s.brand), n = this.lim('brand', s.page+'|'+s.brand);
         return { brandProducts: bl.slice(0,n).map(p=>this.deco(p)), brandHasMore: bl.length>n, brandMore:this.more('brand'),
           brandMoreLabel: 'Mostrar ' + Math.min(24, bl.length-n) + ' más', brandShown: Math.min(n, bl.length), brandTotal: bl.length }; })(),

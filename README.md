@@ -41,6 +41,18 @@ El formato es el mismo de `catalogo/listas-bodas.json` (respaldo):
 - `regalados` lo actualiza el ERP a medida que se venden los regalos.
 - La lista con `"ejemplo": true` es solo de muestra: hay que borrarla cuando el ERP publique listas reales.
 
+## Logos de marcas
+
+La sección **Marcas** (página y panel del encabezado) muestra el nombre de cada marca como texto. Si el ERP define `window.IG_MARCAS` con logos, se usan en lugar del texto:
+
+```js
+window.IG_MARCAS = [
+  { "nombre": "SAMSUNG", "logo": "https://…/samsung.png" }
+];
+```
+
+También sirve una ruta local, por ejemplo `brand/marcas/samsung.png`. El nombre tiene que coincidir con la marca del catálogo (no importan mayúsculas).
+
 Es un sitio estático: no necesita build. En Vercel, importá el repo con el preset **Other** y dejá vacíos el comando de build y el directorio de salida.
 
 Para verlo en local:
