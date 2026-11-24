@@ -240,7 +240,7 @@
       <sc-for list="{{ nav }}" as="n" hint-placeholder-count="10">
         <button onClick="{{ n.onClick }}" style="display:block;width:100%;text-align:left;padding:11px 0;border:0;background:transparent;font-size:15px;color:#4A4843;cursor:pointer">{{ n.label }}</button>
       </sc-for>
-      <a href="https://wa.me/595974800400?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" style="display:block;text-align:center;margin-top:22px;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600">WhatsApp</a>
+      <a href="{{ waInfoMas }}" target="_blank" style="display:block;text-align:center;margin-top:22px;background:#141414;color:#fff;padding:16px;font-size:15px;font-weight:600">WhatsApp</a>
     </div>
   </div>
 </sc-if>
@@ -356,7 +356,7 @@
       </div>
       <div onClick="{{ goSucursales }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path><path d="M3 9h18"></path></svg></span>
-        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Retiro en 2 sucursales</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Casa Central y Sucursal</span></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">{{ retiroTit }}</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">{{ retiroSub }}</span></span>
       </div>
       <div onClick="{{ goCambios }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span>
@@ -1257,7 +1257,7 @@
         <span>Total</span><span>{{ cartTotalF }}</span>
       </div>
       <button onClick="{{ goCheckout }}" style="width:100%;margin-top:20px;border:1px solid #141414;background:#141414;color:#fff;padding:15px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .2s" style-hover="background:transparent;color:#141414">Continuar</button>
-      <a href="https://wa.me/595974800300?text=Hola,+quiero+finalizar+una+compra" target="_blank" style="display:block;text-align:center;margin-top:9px;border:1px solid #E4E2DD;padding:13px;font-size:13.5px">Finalizar por WhatsApp</a>
+      <a href="{{ waVentasFin }}" target="_blank" style="display:block;text-align:center;margin-top:9px;border:1px solid #E4E2DD;padding:13px;font-size:13.5px">Finalizar por WhatsApp</a>
     </div>
   </div>
 </div>
@@ -1456,7 +1456,7 @@
       <p style="margin:12px 0 0;font-size:16px;line-height:1.55;opacity:.93;max-width:34em">Escribinos y te pasamos opciones con precio y disponibilidad real.</p>
     </div>
     <div style="position:relative;display:flex;gap:10px;flex-wrap:wrap">
-      <a href="https://wa.me/595974800300?text=Hola,+quiero+asesoramiento" target="_blank" style="background:#fff;color:#C8102E;padding:15px 26px;font-size:14.5px;font-weight:600">WhatsApp</a>
+      <a href="{{ waVentasAses }}" target="_blank" style="background:#fff;color:#C8102E;padding:15px 26px;font-size:14.5px;font-weight:600">WhatsApp</a>
       <button onClick="{{ goCatalog }}" style="border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;padding:15px 24px;font-size:14.5px;font-weight:500;cursor:pointer;transition:all .2s" style-hover="background:rgba(255,255,255,.14)">Ver catálogo</button>
     </div>
   </div>
@@ -1537,7 +1537,7 @@
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a href="https://wa.me/595974800300" target="_blank" style="height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;transition:transform .2s" style-hover="transform:translateY(-2px);color:#141414"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Escribinos</a>
+        <a href="{{ waVentas }}" target="_blank" style="height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;transition:transform .2s" style-hover="transform:translateY(-2px);color:#141414"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Escribinos</a>
         <button onClick="{{ goSucursales }}" style="height:46px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s" style-hover="background:rgba(255,255,255,.12)">Ver sucursales</button>
       </div>
     </div>
@@ -1547,7 +1547,7 @@
     <div style="max-width:1560px;margin:0 auto;padding:56px 28px 44px;display:flex;flex-wrap:wrap;gap:40px 48px">
       <div style="flex:1.4 1 280px;min-width:0">
         <div onClick="{{ goHome }}" style="display:inline-block;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer"><img src="brand/logo.png" alt="Innovagame" style="height:56px;width:auto;display:block"></div>
-        <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">Tienda de alta tecnología, electrónica, informática y electrodomésticos. Dos sucursales en Asunción y envíos a todo el país.</p>
+        <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">Tienda de alta tecnología, electrónica, informática y electrodomésticos. {{ sucFrase }} y envíos a todo el país.</p>
         <div style="margin-top:22px;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#B9B6B0;line-height:1.6">
           <svg style="flex:0 0 auto;margin-top:2px" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E04B5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
           <div><span style="color:#fff;font-weight:500">Atención</span><br>Lunes a viernes 8:00 – 18:30<br>Sábados 8:00 – 14:00</div>
@@ -1710,7 +1710,7 @@
   </div>
 </sc-if>
 
-<a href="https://wa.me/595974800400?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n" target="_blank" aria-label="Escribinos por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s" style-hover="transform:scale(1.08)">
+<a href="{{ waInfoMas }}" target="_blank" aria-label="Escribinos por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s" style-hover="transform:scale(1.08)">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
 </a>
 
@@ -2020,7 +2020,7 @@ class Component extends DCLogic {
     if(ck.dir.trim().length<3) return this.setState({ckErr:'Escribí la dirección de entrega o la sucursal donde retirás.'});
     if(!erp || window.IG_CATALOG_ERP!==true){
       const txt = 'Hola, quiero hacer este pedido:\n' + s.items.map(i=>i.qty + ' × ' + i.name).join('\n') + '\nNombre: ' + ck.nombre + '\nEntrega: ' + ck.dir + '\nPago: ' + ck.pago;
-      window.open('https://wa.me/595974800300?text=' + encodeURIComponent(txt), '_blank'); return;
+      window.open(this.wa(this.CT.wa_ventas, txt), '_blank'); return;
     }
     if(!this._ckKey) this._ckKey = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
       : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c=>{ const r=Math.random()*16|0; return (c==='x' ? r : (r&3|8)).toString(16); });
@@ -2119,6 +2119,37 @@ class Component extends DCLogic {
     if(d.indexOf('producto:')===0) return this.openProduct(+d.slice(9));
     return this.go('catalogo');
   }
+  CT_DEF = {
+    wa_ventas:'595974800300', wa_info:'595974800400', email:'info@innovagame.com.py',
+    lineas:[ { nombre:'WhatsApp ventas', numero:'595974800300', pie:true }, { nombre:'WhatsApp Casa Central', numero:'595983943254', pie:true },
+             { nombre:'WhatsApp Sucursal', numero:'595974800200', pie:false }, { nombre:'WhatsApp adicional', numero:'595974800500', pie:false } ],
+    sucursales:[
+      { nombre:'Casa Central', direccion:'Av. Choferes del Chaco 1886 esq. Teodoro S. Mongelós, Asunción', telefono:'+595 983 943254', whatsapp:'595983943254',
+        mapa:'https://www.google.com/maps/search/?api=1&query=Choferes+del+Chaco+1886+Asuncion' },
+      { nombre:'Sucursal 2', direccion:'José Asunción Flores 3909 esq. Radio Operadores del Chaco, Asunción', horario:'Lun a Vie 7:00 – 18:30 · Sáb 7:00 – 14:00',
+        telefono:'+595 974 800200', whatsapp:'595974800200', mapa:'https://maps.app.goo.gl/KeHMjVUBGkR8SSU48' } ]
+  };
+  CT = this.contactoDef();
+  contactoDef(){
+    const c = typeof window!=='undefined' && window.IG_CONTACTO, tel = v=>typeof v==='string' && /^595[0-9]{8,10}$/.test(v), txt = v=>typeof v==='string' ? v : '';
+    if(!c || typeof c!=='object' || !tel(c.wa_ventas) || !tel(c.wa_info)) return this.CT_DEF;
+    return {
+      wa_ventas:c.wa_ventas, wa_info:c.wa_info, email: typeof c.email==='string' && c.email.indexOf('@')>0 ? c.email : '',
+      lineas:(Array.isArray(c.lineas) ? c.lineas : []).filter(l=>l && tel(l.numero) && txt(l.nombre)).map(l=>({ nombre:l.nombre, numero:l.numero, pie:!!l.pie })),
+      sucursales:(Array.isArray(c.sucursales) ? c.sucursales : []).filter(x=>x && txt(x.nombre) && txt(x.direccion)).map(x=>({
+        nombre:x.nombre, direccion:x.direccion, horario:txt(x.horario), telefono:txt(x.telefono), whatsapp: tel(x.whatsapp) ? x.whatsapp : '',
+        mapa: typeof x.mapa==='string' && /^https:\/\//.test(x.mapa) ? x.mapa : '' }))
+    };
+  }
+  // "Dos sucursales en Asunción", según las sucursales cargadas en el ERP.
+  sucFrase(){
+    const n = this.CT.sucursales.length, nums = ['Una','Dos','Tres','Cuatro','Cinco','Seis','Siete','Ocho','Nueve','Diez'];
+    if(!n) return 'Atención por WhatsApp';
+    const enAsu = this.CT.sucursales.every(x=>/asunci[oó]n/i.test(x.direccion));
+    return (n===1 ? 'Una sucursal' : nums[n-1] + ' sucursales') + (enAsu ? ' en Asunción' : '');
+  }
+  wa(num, msg){ return 'https://wa.me/' + num + (msg ? '?text=' + encodeURIComponent(msg) : ''); }
+  fmtTel(n){ const d = String(n||''); return d.indexOf('595')===0 ? '+595 ' + d.slice(3,6) + ' ' + d.slice(6) : d; }
   pick(ids){ return ids.map(id=>this.DATA.find(p=>p.id===id)).filter(Boolean); }
   selPages(){ return Math.max(1, Math.ceil(this.selList().length / this.selN())); }
   selLoop(){ return this.selList().length > this.selN(); }
@@ -2298,8 +2329,8 @@ class Component extends DCLogic {
       heroA: this.deco(all.find(p=>p.id===this.HERO.a)),
       heroB: this.deco(all.find(p=>p.id===this.HERO.b)),
       heroC: this.deco(all.find(p=>p.id===this.HERO.c)),
-      ticker: ['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea','Dos sucursales en Asunción']
-        .concat(['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea','Dos sucursales en Asunción'])
+      ticker: ['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea',this.sucFrase()]
+        .concat(['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea',this.sucFrase()])
         .map((t,i)=>({ t, k:i })),
       scene: { tag:sceneDef.tag, img:sceneP.img, alt:sceneP.name, name:sceneP.name, brand:sceneP.brand,
         techline: sceneP.brand + ' / ' + sceneP.model + ' / ' + sceneP.specs[0][1],
@@ -2466,17 +2497,19 @@ class Component extends DCLogic {
         onDec:()=>this.setState(st=>({items:st.items.reduce((acc,x)=>{ if(x.id!==i.id) acc.push(x); else if(x.qty>1) acc.push({...x,qty:x.qty-1}); return acc; },[])})),
         onRemove:()=>this.setState(st=>({items:st.items.filter(x=>x.id!==i.id)})) })),
 
-      sucursales: [
-        { name:'Casa Central', addr:'Av. Choferes del Chaco 1886 esq. Teodoro S. Mongelós, Asunción', tel:'+595 983 943254', wa:'https://wa.me/595983943254', map:'https://www.google.com/maps/search/?api=1&query=Choferes+del+Chaco+1886+Asuncion' },
-        { name:'Sucursal 2', addr:'José Asunción Flores 3909 esq. Radio Operadores del Chaco, Asunción', hrs:'Lun a Vie 7:00 – 18:30 · Sáb 7:00 – 14:00', tel:'+595 974 800200', wa:'https://wa.me/595974800200', map:'https://maps.app.goo.gl/KeHMjVUBGkR8SSU48' }
-      ].map(x=>({ ...x, hasHrs: !!x.hrs, embed:'https://www.google.com/maps?q='+encodeURIComponent(x.addr+', Paraguay')+'&z=16&output=embed' })),
-      contactos: [
-        { k:'WhatsApp ventas', v:'+595 974 800300', href:'https://wa.me/595974800300' },
-        { k:'WhatsApp Casa Central', v:'+595 983 943254', href:'https://wa.me/595983943254' },
-        { k:'WhatsApp Sucursal', v:'+595 974 800200', href:'https://wa.me/595974800200' },
-        { k:'WhatsApp adicional', v:'+595 974 800500', href:'https://wa.me/595974800500' },
-        { k:'Email', v:'info@innovagame.com.py', href:'mailto:info@innovagame.com.py' }
-      ],
+      sucursales: this.CT.sucursales.map(x=>({ name:x.nombre, addr:x.direccion, hrs:x.horario||'', tel:x.telefono || (x.whatsapp ? this.fmtTel(x.whatsapp) : ''),
+        wa: x.whatsapp ? this.wa(x.whatsapp) : this.wa(this.CT.wa_info),
+        map: x.mapa || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(x.direccion + ', Paraguay')) }))
+        .map(x=>({ ...x, hasHrs: !!x.hrs, embed:'https://www.google.com/maps?q='+encodeURIComponent(x.addr+', Paraguay')+'&z=16&output=embed' })),
+      contactos: this.CT.lineas.map(l=>({ k:l.nombre, v:this.fmtTel(l.numero), href:this.wa(l.numero) }))
+        .concat(this.CT.email ? [{ k:'Email', v:this.CT.email, href:'mailto:' + this.CT.email }] : []),
+      sucFrase: this.sucFrase(),
+      waInfoMas: this.wa(this.CT.wa_info, 'Hola, quiero más información'),
+      waVentas: this.wa(this.CT.wa_ventas),
+      waVentasFin: this.wa(this.CT.wa_ventas, 'Hola, quiero finalizar una compra'),
+      waVentasAses: this.wa(this.CT.wa_ventas, 'Hola, quiero asesoramiento'),
+      retiroTit: this.CT.sucursales.length===1 ? 'Retiro en sucursal' : 'Retiro en ' + this.CT.sucursales.length + ' sucursales',
+      retiroSub: (n=>n.length>1 ? n.slice(0,-1).join(', ') + ' y ' + n[n.length-1] : (n[0]||''))(this.CT.sucursales.map(x=>x.nombre)),
       beneficios: [
         { t:'Envío a domicilio', d:'Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.' },
         { t:'Compras garantizadas', d:'En todos nuestros productos.' },
@@ -2540,7 +2573,7 @@ class Component extends DCLogic {
       prodStockFg: prodRaw.stock>0 ? '#1F7A45' : prodRaw.stock===0 ? '#C8102E' : prodRaw.last ? '#9A5B00' : '#6E6B66',
       prodLong: prodRaw.long || prodRaw.desc, prodFeats: (prodRaw.feats||[]).map(t=>({t})), prodHasFeats: !!(prodRaw.feats&&prodRaw.feats.length),
       prodNoImg: !!prodRaw.noImg,
-      finWa: 'https://wa.me/595974800400?text=' + encodeURIComponent('Hola, quiero consultar por la financiación con Fadonet.'),
+      finWa: this.wa(this.CT.wa_info, 'Hola, quiero consultar por la financiación con Fadonet.'),
       finSteps: [
         { n:'1', t:'Elegí tus productos', d:'Recorré el catálogo y armá tu pedido.' },
         { n:'2', t:'Consultá con un asesor', d:'Te contamos las opciones de financiación con Fadonet para tu compra.' },
@@ -2561,7 +2594,7 @@ class Component extends DCLogic {
           const pct = total ? Math.round(got*100/total) : 0;
           boda = { novios: sel.novios, date: fd(sel.fecha), mensaje: sel.mensaje||'', hasMsg: !!sel.mensaje, ejemplo: !!sel.ejemplo, items,
             progressLabel: got + ' de ' + total + ' regalos', pct: pct + '%', pctLabel: pct + '% completado',
-            wa: 'https://wa.me/595974800400?text=' + encodeURIComponent('Hola, quiero hacer un regalo de la lista de bodas de ' + sel.novios + '.') }; }
+            wa: this.wa(this.CT.wa_info, 'Hola, quiero hacer un regalo de la lista de bodas de ' + sel.novios + '.') }; }
         return { bodasLoading: s.bodas===null || s.bodas===undefined, bodasEmpty: Array.isArray(s.bodas) && !list.length, bodaHas: !!sel, boda,
           bodasNavDir: mob ? 'row' : 'column', bodasNavBox: mob ? 'flex-basis:100%' : '',
           bodasList: list.map(b=>{ const on = sel && b.id===sel.id; return { name:b.novios, date:fd(b.fecha),
@@ -2580,16 +2613,13 @@ class Component extends DCLogic {
       prodCmpText: s.compare.indexOf(prodRaw.id)>=0 ? 'Quitar de comparar' : 'Agregar a comparar',
       prodHighlights: this.hiList(prodRaw).map(v=>({v})),
       prodHasHi: this.hiList(prodRaw).length>0,
-      prodWaHref: 'https://wa.me/595974800300?text=' + encodeURIComponent('Hola, quiero consultar por: ' + prodRaw.name),
+      prodWaHref: this.wa(this.CT.wa_ventas, 'Hola, quiero consultar por: ' + prodRaw.name),
       prodGoCat: ()=>this.setState({page:'catalogo', cat:prodRaw.cat, sub:'Todas', mega:null}),
       prodGoSub: ()=>this.setState({page:'catalogo', cat:prodRaw.cat, sub:prodRaw.sub, mega:null}),
       sendForm:()=>this.flash('Gracias. Te respondemos a la brevedad.'),
       toTop:()=>window.scrollTo({top:0, behavior:'smooth'}),
-      footContacts: [
-        { k:'WhatsApp ventas', v:'+595 974 800300', href:'https://wa.me/595974800300', isWa:true },
-        { k:'WhatsApp Casa Central', v:'+595 983 943254', href:'https://wa.me/595983943254', isWa:true },
-        { k:'Email', v:'info@innovagame.com.py', href:'mailto:info@innovagame.com.py', isMail:true }
-      ],
+      footContacts: this.CT.lineas.filter(l=>l.pie).map(l=>({ k:l.nombre, v:this.fmtTel(l.numero), href:this.wa(l.numero), isWa:true }))
+        .concat(this.CT.email ? [{ k:'Email', v:this.CT.email, href:'mailto:' + this.CT.email, isMail:true }] : []),
       demoCheckout:()=>this.flash('Prototipo de diseño: no se procesan pagos reales.'),
       ...(()=>{ const ck=s.ck, set=(k)=>(e)=>this.setState(st=>({ ck:{ ...st.ck, [k]:e.target.value }, ckErr:'' }));
         const regalo = (s.items.find(i=>i.lista)||{}).lista, lb = regalo && (s.bodas||[]).find(b=>b.id===regalo);
