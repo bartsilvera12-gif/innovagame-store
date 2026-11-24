@@ -255,15 +255,15 @@
         <div style="position:relative;background:#fff;color:#141414;padding:clamp(28px,2.6vw,44px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
           <div style="position:absolute;right:-30px;top:-10px;width:150px;height:150px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.07;pointer-events:none"></div>
           <div style="position:absolute;left:-46px;bottom:-26px;width:120px;height:120px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.06;pointer-events:none"></div>
-          <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .15s both">Innovagame</div>
+          <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .15s both">{{ tx.hero_marca }}</div>
           <div>
             <h1 style="margin:0;font-size:clamp(30px,3.4vw,52px);font-weight:600;letter-spacing:-.01em;line-height:1.14">
-              <span style="display:block;animation:igRise .8s cubic-bezier(.22,1,.36,1) .3s both">Tu casa. Tus planes.</span>
-              <span style="display:block;color:#C8102E;animation:igRise .8s cubic-bezier(.22,1,.36,1) .42s both">Todo en Innovagame.</span>
+              <span style="display:block;animation:igRise .8s cubic-bezier(.22,1,.36,1) .3s both">{{ tx.hero_titulo1 }}</span>
+              <span style="display:block;color:#C8102E;animation:igRise .8s cubic-bezier(.22,1,.36,1) .42s both">{{ tx.hero_titulo2 }}</span>
             </h1>
             <div style="width:54px;height:2px;background:#C8102E;margin:26px 0 0;animation:igRise .6s cubic-bezier(.22,1,.36,1) .55s both"></div>
-            <p style="margin:18px 0 0;font-size:15px;line-height:1.6;color:#5A5853;max-width:30ch;animation:igRise .6s cubic-bezier(.22,1,.36,1) .6s both">Tecnología, electrodomésticos y muebles con <span style="color:#C8102E;font-weight:600">envío a domicilio</span> y <span style="color:#C8102E;font-weight:600">garantía de fábrica</span>.</p>
-            <button onClick="{{ goCatalog }}" style="margin-top:24px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:16px 30px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .22s;box-shadow:0 10px 24px rgba(200,16,46,.25);animation:igRise .6s cubic-bezier(.22,1,.36,1) .66s both" style-hover="background:#A50D26">Explorar productos</button>
+            <p style="margin:18px 0 0;font-size:15px;line-height:1.6;color:#5A5853;max-width:30ch;animation:igRise .6s cubic-bezier(.22,1,.36,1) .6s both"><sc-for list="{{ heroTexto }}" as="ht"><sc-if value="{{ ht.hl }}"><span style="color:#C8102E;font-weight:600">{{ ht.t }}</span></sc-if><sc-if value="{{ ht.pl }}"><span>{{ ht.t }}</span></sc-if></sc-for></p>
+            <button onClick="{{ goCatalog }}" style="margin-top:24px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:16px 30px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .22s;box-shadow:0 10px 24px rgba(200,16,46,.25);animation:igRise .6s cubic-bezier(.22,1,.36,1) .66s both" style-hover="background:#A50D26">{{ tx.hero_boton }}</button>
           </div>
         </div>
 
@@ -308,12 +308,12 @@
       <div style="display:flex;flex-direction:column;gap:1px;background:#E4E2DD">
         <div style="position:relative;background:#fff;color:#141414;padding:24px 20px 26px;overflow:hidden">
           <div style="position:absolute;right:-24px;top:-14px;width:110px;height:110px;background:#C8102E;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.08;pointer-events:none"></div>
-          <div style="font:600 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E">Innovagame</div>
+          <div style="font:600 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C8102E">{{ tx.hero_marca }}</div>
           <h1 style="margin:14px 0 0;font-size:clamp(26px,7vw,34px);font-weight:600;letter-spacing:-.01em;line-height:1.14">
-            <span style="display:block;animation:igRise .7s cubic-bezier(.22,1,.36,1) .2s both">Tu casa. Tus planes.</span>
-            <span style="display:block;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .32s both">Todo en Innovagame.</span>
+            <span style="display:block;animation:igRise .7s cubic-bezier(.22,1,.36,1) .2s both">{{ tx.hero_titulo1 }}</span>
+            <span style="display:block;color:#C8102E;animation:igRise .7s cubic-bezier(.22,1,.36,1) .32s both">{{ tx.hero_titulo2 }}</span>
           </h1>
-          <button onClick="{{ goCatalog }}" style="width:100%;margin-top:22px;border:0;background:#C8102E;color:#fff;border-radius:999px;padding:14px;font-size:15px;font-weight:600;cursor:pointer">Explorar productos</button>
+          <button onClick="{{ goCatalog }}" style="width:100%;margin-top:22px;border:0;background:#C8102E;color:#fff;border-radius:999px;padding:14px;font-size:15px;font-weight:600;cursor:pointer">{{ tx.hero_boton }}</button>
         </div>
         <div onClick="{{ heroA.onOpen }}" style="position:relative;background:#fff;display:flex;flex-direction:column;overflow:hidden;animation:igMask .9s cubic-bezier(.76,0,.24,1) both">
           <div data-hero-anim style="position:relative;aspect-ratio:4/3;overflow:hidden">
@@ -352,7 +352,7 @@
     <div style="display:grid;grid-template-columns:{{ benCols }};gap:1px;background:#EFEDE9;border:1px solid #EFEDE9;border-radius:16px;overflow:hidden">
       <div onClick="{{ goEnvios }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v11H1z"></path><path d="M14 8h4l3 3v4h-7"></path><circle cx="5.5" cy="17.5" r="1.8"></circle><circle cx="17.5" cy="17.5" r="1.8"></circle></svg></span>
-        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Envío a domicilio</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Asunción en 24 h hábiles</span></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">{{ tx.tira1_t }}</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">{{ tx.tira1_d }}</span></span>
       </div>
       <div onClick="{{ goSucursales }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path><path d="M3 9h18"></path></svg></span>
@@ -360,19 +360,19 @@
       </div>
       <div onClick="{{ goCambios }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span>
-        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Garantía de fábrica</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">En todos los productos</span></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">{{ tx.tira2_t }}</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">{{ tx.tira2_d }}</span></span>
       </div>
       <div onClick="{{ goFinanciacion }}" style="cursor:pointer;display:flex;flex-direction:{{ benDir }};gap:10px;align-items:{{ benAlign }};padding:{{ benPad }};background:#fff;min-width:0">
         <span style="flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#FDECEE;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect><path d="M2.5 10h19M6.5 15h4"></path></svg></span>
-        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">Financiación Fadonet</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">Pagá en cuotas</span></span>
+        <span style="min-width:0;line-height:1.3"><span style="display:block;font-size:14px;font-weight:600">{{ tx.tira3_t }}</span><span style="display:block;font-size:12.5px;color:#6E6B66;margin-top:2px">{{ tx.tira3_d }}</span></span>
       </div>
     </div>
   </div>
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
       <div>
-        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Categorías</div>
-        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Comprá por categoría.</h2>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.cat_eyebrow }}</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">{{ tx.cat_titulo }}</h2>
       </div>
       <button onClick="{{ goCategorias }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Ver todas →</button>
     </div>
@@ -395,7 +395,7 @@
   <div style="background:#fff;color:#141414;margin-top:8px">
     <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
-        <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Destacados</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;color:#141414">Una selección para empezar.</h2></div>
+        <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.dest_eyebrow }}</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;color:#141414">{{ tx.dest_titulo }}</h2></div>
         <button onClick="{{ selViewAll }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E;transition:all .2s" style-hover="color:#141414;border-color:#141414">{{ selViewAllLabel }} →</button>
       </div>
 
@@ -534,8 +534,8 @@
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4vw,56px) 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px">
       <div>
-        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Recién llegados</div>
-        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Novedades.</h2>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.nov_eyebrow }}</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">{{ tx.nov_titulo }}</h2>
       </div>
       <button onClick="{{ goNovedades }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Ver todas →</button>
     </div>
@@ -568,7 +568,7 @@
   </sc-if>
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid #E4E2DD;padding-bottom:16px">
-      <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Marcas</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">Descubrí por marca.</h2></div>
+      <div><div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.marcas_eyebrow }}</div><h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">{{ tx.marcas_titulo }}</h2></div>
       <button onClick="{{ goMarcas }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Todas las marcas →</button>
     </div>
     <div data-brand-track style="overflow:hidden;border-bottom:1px solid #E4E2DD;padding:clamp(26px,3vw,44px) 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)" onMouseEnter="{{ brandPause }}" onMouseLeave="{{ brandPlay }}">
@@ -599,9 +599,9 @@
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div data-reveal style="background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border:1px solid #F6DCE0;border-radius:20px;color:#141414;padding:clamp(30px,4vw,54px);display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between">
       <div style="flex:1 1 380px;min-width:0">
-        <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Comparador</div>
-        <h2 style="margin:14px 0 0;font-size:clamp(24px,2.8vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.08">Elegí con información,<br>no con dudas.</h2>
-        <p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:440px">Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.</p>
+        <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.comp_eyebrow }}</div>
+        <h2 style="margin:14px 0 0;font-size:clamp(24px,2.8vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.08;white-space:pre-line">{{ tx.comp_titulo }}</h2>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:440px">{{ tx.comp_texto }}</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button onClick="{{ goComparar }}" style="border:0;border-radius:999px;background:#C8102E;color:#fff;padding:14px 26px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s" style-hover="background:#A50D26">Abrir comparador ({{ compareCount }})</button>
@@ -611,8 +611,8 @@
   <div style="max-width:1560px;margin:0 auto;padding:72px 28px 0">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px">
       <div>
-        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Innovagame en persona</div>
-        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">También cerca tuyo.</h2>
+        <div style="font:600 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">{{ tx.suc_eyebrow }}</div>
+        <h2 style="margin:10px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em">{{ tx.suc_titulo }}</h2>
       </div>
       <button onClick="{{ goSucursales }}" style="border:0;background:transparent;color:#C8102E;font-size:14.5px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1.5px solid #C8102E" style-hover="color:#141414;border-color:#141414">Conocé nuestras tiendas →</button>
     </div>
@@ -830,7 +830,7 @@
           <span style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:{{ prodStockFg }};font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;box-shadow:0 1px 3px rgba(20,20,20,.06)"><span style="width:8px;height:8px;border-radius:50%;background:{{ prod.stockDot }};box-shadow:0 0 0 3px {{ prodStockBg }}"></span>{{ prodStockText }}</span>
         </div>
         <div style="margin-top:8px;font-size:clamp(28px,2.6vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.05;color:#141414">{{ prod.priceF }}</div>
-        <div style="margin-top:6px;font-size:12.5px;color:#8C8880">Impuestos incluidos · el precio puede variar según el método de pago</div>
+        <div style="margin-top:6px;font-size:12.5px;color:#8C8880">{{ tx.prod_nota }}</div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px">
           <div style="flex:0 0 auto;display:flex;align-items:center;gap:2px;height:52px;padding:0 6px;border-radius:999px;background:#fff;box-shadow:0 1px 3px rgba(20,20,20,.06)">
             <button onClick="{{ pqDec }}" aria-label="Restar uno" style="width:40px;height:40px;border:0;border-radius:50%;background:#F4F3F0;color:#141414;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s" style-hover="background:#141414;color:#fff"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
@@ -847,7 +847,7 @@
       </div>
 
       <div style="margin-top:12px;display:flex;flex-wrap:wrap;flex-direction:{{ stripDir }};align-items:{{ stripAlign }};gap:{{ stripGap }};padding:{{ stripPad }};border-radius:{{ stripRad }};border:1px solid #EFEDE9;font-size:12.5px;color:#4A4843">
-        <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2F6DB5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v11H1z"></path><path d="M14 8h4l3 3v4h-7"></path><circle cx="5.5" cy="17.5" r="1.8"></circle><circle cx="17.5" cy="17.5" r="1.8"></circle></svg>Envío en 24 h hábiles</span><span style="display:{{ stripDot }};width:3px;height:3px;border-radius:50%;background:#C9C5BE"></span><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C27A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path><path d="M3 9h18"></path></svg>Retiro en sucursal</span><span style="display:{{ stripDot }};width:3px;height:3px;border-radius:50%;background:#C9C5BE"></span><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F7A45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>Garantía de fábrica</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2F6DB5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v11H1z"></path><path d="M14 8h4l3 3v4h-7"></path><circle cx="5.5" cy="17.5" r="1.8"></circle><circle cx="17.5" cy="17.5" r="1.8"></circle></svg>{{ tx.prod_b1 }}</span><span style="display:{{ stripDot }};width:3px;height:3px;border-radius:50%;background:#C9C5BE"></span><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C27A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path><path d="M3 9h18"></path></svg>{{ tx.prod_b2 }}</span><span style="display:{{ stripDot }};width:3px;height:3px;border-radius:50%;background:#C9C5BE"></span><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F7A45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>{{ tx.prod_b3 }}</span>
       </div>
     </div>
   </div>
@@ -946,7 +946,7 @@
 <sc-if value="{{ isCategorias }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Categorías</h1>
-  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">Todas las categorías de la tienda, con sus subcategorías.</p>
+  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.catpag_texto }}</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;border-top:1px solid #E4E2DD;border-left:1px solid #EFEDE9">
     <sc-for list="{{ categoryCards }}" as="c" hint-placeholder-count="8">
       <div onClick="{{ c.onClick }}" data-reveal style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:30px 26px;cursor:pointer;min-height:190px;display:flex;flex-direction:column;transition:background .2s" style-hover="background:#FAF9F7">
@@ -962,7 +962,7 @@
 <sc-if value="{{ isMarcas }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Marcas</h1>
-  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">Elegí una marca para ver sus productos disponibles.</p>
+  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.marcaspag_texto }}</p>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px">
     <sc-for list="{{ brandsList }}" as="b" hint-placeholder-count="7">
       <button onClick="{{ b.onClick }}" style="border:1px solid #E4E2DD;background:transparent;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;color:{{ b.color }};transition:all .18s" style-hover="border-color:#141414">{{ b.name }} · {{ b.count }}</button>
@@ -994,16 +994,16 @@
 <div style="background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border-bottom:1px solid #F3E3E6">
   <div style="max-width:1560px;margin:0 auto;padding:clamp(28px,4vw,52px) 28px">
     <div style="display:inline-flex;align-items:center;gap:8px;color:#C8102E;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase"><svg width="15" height="15" viewBox="0 0 24 24" fill="#C8102E"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</div>
-    <h1 style="margin:10px 0 0;font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.03em">Regalá lo que necesitan para su nuevo hogar.</h1>
-    <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:620px">Elegí la lista de los novios, mirá qué regalos faltan y agregalos al carrito. Las listas se actualizan desde Innovagame.</p>
+    <h1 style="margin:10px 0 0;font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.03em">{{ tx.bodas_titulo }}</h1>
+    <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#6E6B66;max-width:620px">{{ tx.bodas_texto }}</p>
   </div>
 </div>
 <div style="max-width:1560px;margin:0 auto;padding:28px 28px 0">
   <sc-if value="{{ bodasLoading }}"><div style="padding:60px 0;text-align:center;color:#8C8880;font-size:14px">Cargando listas…</div></sc-if>
   <sc-if value="{{ bodasEmpty }}">
     <div style="border:1px dashed #E4D3D6;border-radius:16px;padding:60px 20px;text-align:center">
-      <div style="font-size:17px;font-weight:600">Todavía no hay listas publicadas</div>
-      <p style="margin:8px 0 0;font-size:14px;color:#6E6B66">Si sos novio o novia y querés armar tu lista, escribinos por WhatsApp.</p>
+      <div style="font-size:17px;font-weight:600">{{ tx.bodas_vacio_t }}</div>
+      <p style="margin:8px 0 0;font-size:14px;color:#6E6B66">{{ tx.bodas_vacio_d }}</p>
     </div>
   </sc-if>
   <sc-if value="{{ bodaHas }}">
@@ -1064,9 +1064,9 @@
 <div style="position:relative;overflow:hidden;background:linear-gradient(120deg,#141414 0%,#2A1015 55%,#8A0A20 100%);color:#fff">
   <div style="position:absolute;right:-120px;top:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.5),transparent 70%);pointer-events:none"></div>
   <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(34px,5vw,70px) 28px">
-    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Financiación · Fadonet</div>
-    <h1 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;max-width:760px">Llevá lo que necesitás y pagalo en cuotas con Fadonet.</h1>
-    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#E7C9CE;max-width:620px">Financiá tus compras en Innovagame a través de Fadonet. Nuestros asesores te informan las opciones disponibles para tu compra.</p>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">{{ tx.fin_eyebrow }}</div>
+    <h1 style="margin:14px 0 0;font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;max-width:760px">{{ tx.fin_titulo }}</h1>
+    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#E7C9CE;max-width:620px">{{ tx.fin_texto }}</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
       <a href="{{ finWa }}" target="_blank" style="height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#141414;font-size:14.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px" style-hover="color:#141414;transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1FAF53" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Consultar financiación</a>
       <button onClick="{{ goCatalog }}" style="height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;font-size:14.5px;font-weight:500;cursor:pointer" style-hover="background:rgba(255,255,255,.12)">Ver productos</button>
@@ -1074,7 +1074,7 @@
   </div>
 </div>
 <div style="max-width:1560px;margin:0 auto;padding:clamp(28px,4vw,52px) 28px 0">
-  <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em">Cómo funciona</h2>
+  <h2 style="margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em">{{ tx.fin_pasos_t }}</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:18px">
     <sc-for list="{{ finSteps }}" as="fs" hint-placeholder-count="4">
       <div style="border:1px solid #ECEAE5;border-radius:16px;padding:20px">
@@ -1086,13 +1086,13 @@
   </div>
   <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:16px">
     <div style="flex:1 1 380px;min-width:0;border-radius:18px;padding:clamp(20px,2.6vw,30px);background:linear-gradient(135deg,#FFF5F6 0%,#FBF3EA 100%);border:1px solid #F6DCE0">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#A50D26">Condiciones y beneficios</div>
-      <div style="margin-top:8px;font-size:18px;font-weight:600">Plazos, requisitos y tasas</div>
-      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">En este espacio vamos a publicar las condiciones vigentes de financiación con Fadonet. Mientras tanto, consultalas con nuestros asesores por WhatsApp o en cualquiera de nuestras sucursales.</p>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#A50D26">{{ tx.fin_cond_eyebrow }}</div>
+      <div style="margin-top:8px;font-size:18px;font-weight:600">{{ tx.fin_cond_titulo }}</div>
+      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">{{ tx.fin_cond_texto }}</p>
     </div>
     <div style="flex:1 1 300px;min-width:0;border-radius:18px;padding:clamp(20px,2.6vw,30px);border:1px solid #ECEAE5">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B978F">Tené en cuenta</div>
-      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">Los precios publicados son al contado. El precio final puede variar según el método de pago y la financiación elegida.</p>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B978F">{{ tx.fin_nota_t }}</div>
+      <p style="margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4A4843">{{ tx.fin_nota_d }}</p>
     </div>
   </div>
 </div>
@@ -1101,7 +1101,7 @@
 <sc-if value="{{ isOfertas }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Ofertas</h1>
-  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66;max-width:540px">Productos marcados como oferta en la tienda. Los precios mostrados son los publicados; no publicamos descuentos ni plazos que no estén confirmados.</p>
+  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66;max-width:540px">{{ tx.ofertas_texto }}</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
     <sc-for list="{{ offers }}" as="p" hint-placeholder-count="2">
       <div style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column">
@@ -1118,8 +1118,8 @@
   </div>
   <sc-if value="{{ noOffers }}">
     <div style="border:1px dashed #E4E2DD;border-radius:6px;padding:clamp(36px,5vw,64px) 24px;text-align:center">
-      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;color:#141414">Por ahora no hay ofertas.</div>
-      <p style="margin:8px auto 0;max-width:420px;font-size:14.5px;line-height:1.5;color:#6E6B66">Estamos preparando las próximas. Mientras tanto, mirá el catálogo completo con precios y stock actualizados.</p>
+      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;color:#141414">{{ tx.ofertas_vacio_t }}</div>
+      <p style="margin:8px auto 0;max-width:420px;font-size:14.5px;line-height:1.5;color:#6E6B66">{{ tx.ofertas_vacio_d }}</p>
       <button onClick="{{ goCatalog }}" style="margin-top:20px;border:0;border-radius:999px;background:#C8102E;color:#fff;padding:14px 26px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s" style-hover="background:#141414">Ver el catálogo →</button>
     </div>
   </sc-if>
@@ -1148,7 +1148,7 @@
 <sc-if value="{{ isComparar }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Comparar</h1>
-  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">Hasta tres productos de la misma subcategoría, ficha contra ficha.</p>
+  <p style="margin:0 0 26px;font-size:15px;color:#6E6B66">{{ tx.comparar_texto }}</p>
   <sc-if value="{{ compareEmpty }}">
     <div style="border:1px dashed #D8D4CD;padding:70px 20px;text-align:center">
       <div style="font-size:16px;font-weight:600">Todavía no agregaste productos</div>
@@ -1270,7 +1270,7 @@
       <div style="width:54px;height:54px;border-radius:50%;background:#E8F5EC;color:#1F7A45;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px">✓</div>
       <h1 style="margin:20px 0 8px;font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.03em">¡Recibimos tu pedido!</h1>
       <p style="margin:0;font-size:15px;line-height:1.6;color:#6E6B66">Pedido <strong style="color:#141414">{{ ckNumero }}</strong> · Total <strong style="color:#141414">{{ ckTotal }}</strong></p>
-      <p style="margin:12px 0 0;font-size:14.5px;line-height:1.6;color:#6E6B66">Un asesor de Innovagame te va a contactar para confirmar el stock, el pago y la entrega.</p>
+      <p style="margin:12px 0 0;font-size:14.5px;line-height:1.6;color:#6E6B66">{{ tx.pedido_ok_texto }}</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px">
         <sc-if value="{{ hasCkLink }}"><a href="{{ ckLink }}" target="_blank" style="border:1px solid #141414;background:#141414;color:#fff;padding:13px 22px;font-size:14px;font-weight:600">Ver mi pedido</a></sc-if>
         <button onClick="{{ ckNew }}" style="border:1px solid #E4E2DD;background:#fff;padding:13px 22px;font-size:14px;cursor:pointer">Seguir comprando</button>
@@ -1279,7 +1279,7 @@
   </sc-if>
   <sc-if value="{{ ckForm }}">
   <h1 style="margin:0 0 6px;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">Checkout</h1>
-  <p style="margin:0 0 26px;font-size:14.5px;color:#6E6B66">Dejanos tus datos y confirmá el pedido. Un asesor te contacta para coordinar el pago y la entrega: no se cobra nada en línea.</p>
+  <p style="margin:0 0 26px;font-size:14.5px;color:#6E6B66">{{ tx.checkout_texto }}</p>
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
     <div style="flex:2 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px">
       <input value="{{ ckNombre }}" onChange="{{ onCkNombre }}" autocomplete="name" placeholder="Nombre y apellido" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
@@ -1343,7 +1343,7 @@
 <sc-if value="{{ isSucursales }}">
 <div style="max-width:1560px;margin:0 auto;padding:26px 28px 0">
   <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C8102E">Sucursales</div>
-  <h1 style="margin:14px 0 26px;font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.035em">Innovagame, también cerca tuyo.</h1>
+  <h1 style="margin:14px 0 26px;font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.035em">{{ tx.sucpag_titulo }}</h1>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
     <sc-for list="{{ sucursales }}" as="su" hint-placeholder-count="2">
       <div data-reveal style="border:1px solid #E4E2DD">
@@ -1373,7 +1373,7 @@
     <div style="position:relative;flex:1 1 440px;min-width:0;padding:clamp(40px,6vw,96px) 28px clamp(40px,5vw,80px);display:flex;flex-direction:column;justify-content:center">
       <img src="brand/logo-white.png" alt="Innovagame" style="align-self:flex-start;height:clamp(64px,6vw,96px);width:auto;display:block;animation:igRise .9s cubic-bezier(.22,1,.36,1) .1s both">
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#FBD3D8;margin-top:clamp(28px,3vw,44px);animation:igRise .7s cubic-bezier(.22,1,.36,1) .25s both">Sobre nosotros</div>
-      <h1 aria-label="Somos Innovagame." style="margin:14px 0 0;font-size:clamp(40px,5.6vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.98;display:flex;flex-wrap:wrap;column-gap:.24em">
+      <h1 aria-label="{{ tx.nos_titulo }}" style="margin:14px 0 0;font-size:clamp(40px,5.6vw,84px);font-weight:700;letter-spacing:-.04em;line-height:.98;display:flex;flex-wrap:wrap;column-gap:.24em">
         <sc-for list="{{ aboutFold }}" as="fw" hint-placeholder-count="2">
           <span style="display:inline-flex;white-space:nowrap">
             <sc-for list="{{ fw.chars }}" as="fc">
@@ -1382,7 +1382,7 @@
           </span>
         </sc-for>
       </h1>
-      <p style="margin:26px 0 0;font-size:clamp(16px,1.25vw,18px);line-height:1.65;color:#FFF4F5;max-width:32em;animation:igRise .9s cubic-bezier(.22,1,.36,1) 1s both">Innovagame es una tienda de electrónica, informática y electrodomésticos con dos locales en Asunción y venta online a todo el país. Trabajamos con marcas como Beko, Hisense, Tokyo, Notavel, Patrimar y Qmovi, en categorías que van desde grandes electrodomésticos y climatización hasta muebles, herramientas y deportes.</p>
+      <p style="margin:26px 0 0;font-size:clamp(16px,1.25vw,18px);line-height:1.65;color:#FFF4F5;max-width:32em;animation:igRise .9s cubic-bezier(.22,1,.36,1) 1s both">{{ tx.nos_texto }}</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;animation:igRise .9s cubic-bezier(.22,1,.36,1) 1.15s both">
         <button onClick="{{ goCatalog }}" style="border:1px solid #fff;background:#fff;color:#141414;padding:15px 26px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .2s" style-hover="background:#141414;border-color:#141414;color:#fff">Ver catálogo</button>
         <button onClick="{{ goSucursales }}" style="border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;padding:15px 24px;font-size:14.5px;font-weight:500;cursor:pointer;transition:all .2s" style-hover="background:rgba(255,255,255,.12)">Nuestras sucursales</button>
@@ -1396,8 +1396,8 @@
 
 <div style="background:#141414;color:#fff">
   <div style="max-width:1560px;margin:0 auto;padding:clamp(36px,4.5vw,60px) 28px">
-    <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#F79AA4">Cómo trabajamos</div>
-    <h2 style="margin:16px 0 clamp(26px,3vw,40px);font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.15;max-width:16em">Precio publicado, stock real y alguien que atiende.</h2>
+    <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#F79AA4">{{ tx.nos_como_eyebrow }}</div>
+    <h2 style="margin:16px 0 clamp(26px,3vw,40px);font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.15;max-width:16em">{{ tx.nos_como_titulo }}</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1px;background:#2A2A2A">
       <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="4">
         <div data-reveal style="background:#141414;padding:30px 26px;transition:background .3s" style-hover="background:#1E1E1E">
@@ -1452,8 +1452,8 @@
   <div style="position:relative;overflow:hidden;background:#C8102E;color:#fff;padding:clamp(28px,4vw,52px);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
     <div style="position:absolute;right:-30px;top:-20px;width:150px;height:150px;background:#fff;clip-path:polygon(40% 0,100% 0,60% 50%,100% 100%,40% 100%,0 50%);opacity:.1;pointer-events:none"></div>
     <div style="position:relative">
-      <h2 style="margin:0;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.03em;line-height:1.12">¿Te ayudamos a elegir?</h2>
-      <p style="margin:12px 0 0;font-size:16px;line-height:1.55;opacity:.93;max-width:34em">Escribinos y te pasamos opciones con precio y disponibilidad real.</p>
+      <h2 style="margin:0;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.03em;line-height:1.12">{{ tx.nos_ayuda_t }}</h2>
+      <p style="margin:12px 0 0;font-size:16px;line-height:1.55;opacity:.93;max-width:34em">{{ tx.nos_ayuda_d }}</p>
     </div>
     <div style="position:relative;display:flex;gap:10px;flex-wrap:wrap">
       <a href="{{ waVentasAses }}" target="_blank" style="background:#fff;color:#C8102E;padding:15px 26px;font-size:14.5px;font-weight:600">WhatsApp</a>
@@ -1532,8 +1532,8 @@
       <div style="display:flex;align-items:center;gap:16px;min-width:0">
         <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span>
         <div style="min-width:0">
-          <div style="font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.01em">¿Necesitás ayuda para elegir?</div>
-          <div style="font-size:14px;color:#FBE4E7;margin-top:3px">Nuestros asesores te responden por WhatsApp, de lunes a sábado.</div>
+          <div style="font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.01em">{{ tx.pie_ayuda_t }}</div>
+          <div style="font-size:14px;color:#FBE4E7;margin-top:3px">{{ tx.pie_ayuda_d }}</div>
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -1547,10 +1547,10 @@
     <div style="max-width:1560px;margin:0 auto;padding:56px 28px 44px;display:flex;flex-wrap:wrap;gap:40px 48px">
       <div style="flex:1.4 1 280px;min-width:0">
         <div onClick="{{ goHome }}" style="display:inline-block;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer"><img src="brand/logo.png" alt="Innovagame" style="height:56px;width:auto;display:block"></div>
-        <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">Tienda de alta tecnología, electrónica, informática y electrodomésticos. {{ sucFrase }} y envíos a todo el país.</p>
+        <p style="margin:20px 0 0;font-size:14px;line-height:1.7;color:#B9B6B0;max-width:330px">{{ pieTexto }}</p>
         <div style="margin-top:22px;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#B9B6B0;line-height:1.6">
           <svg style="flex:0 0 auto;margin-top:2px" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E04B5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-          <div><span style="color:#fff;font-weight:500">Atención</span><br>Lunes a viernes 8:00 – 18:30<br>Sábados 8:00 – 14:00</div>
+          <div><span style="color:#fff;font-weight:500">Atención</span><br><span style="white-space:pre-line">{{ tx.pie_atencion }}</span></div>
         </div>
       </div>
       <div style="flex:1 1 160px;min-width:0">
@@ -1597,7 +1597,7 @@
 
     <div style="background:#141516">
       <div style="max-width:1560px;margin:0 auto;padding:18px 96px 18px 28px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;font-size:12.5px;color:#8F8C86">
-        <span>© 2026 Innovagame · Asunción, Paraguay · Precios en guaraníes</span>
+        <span>{{ tx.pie_copy }}</span>
         <button onClick="{{ toTop }}" style="display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:#B9B6B0;font-size:12.5px;cursor:pointer;padding:6px 0" style-hover="color:#fff">Volver arriba<span style="width:26px;height:26px;border-radius:50%;background:#2A2B2E;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></span></button>
       </div>
     </div>
@@ -2119,6 +2119,85 @@ class Component extends DCLogic {
     if(d.indexOf('producto:')===0) return this.openProduct(+d.slice(9));
     return this.go('catalogo');
   }
+  // Textos de la tienda: los de ERP › Tienda web › Textos; los vacíos o sin ERP, los de siempre.
+  DOCS_DEF = /*DOCS*/{
+      'como-comprar':{ title:'Cómo comprar', intro:'Podés comprar desde la web o coordinar con un asesor por WhatsApp. Aceptamos efectivo, transferencia y tarjetas de crédito.',
+        blocks:[['01','Elegí tu producto','Buscá por nombre, marca o modelo, o navegá las categorías. En cada ficha vas a ver precio y disponibilidad real.'],
+                ['02','Agregá al carrito','Podés modificar cantidades y revisar el subtotal antes de continuar.'],
+                ['03','Elegí cómo pagar','Efectivo, transferencia o tarjetas de crédito, según las condiciones vigentes publicadas en la tienda.'],
+                ['04','Recibilo o retiralo','Coordinamos el envío o el retiro en Casa Central o Sucursal.']] },
+      'envios':{ title:'Políticas de envío', intro:'Podés retirar tu pedido en cualquiera de nuestras dos sucursales o recibirlo en tu domicilio. Coordinás el método de entrega con nuestros asesores al finalizar la compra.',
+        blocks:[['01','Retiro en ambas sucursales','Casa Central (Avda. Choferes del Chaco N°1886) o Sucursal 2 (José Asunción Flores 3909 esq. Radio Operadores del Chaco), una vez confirmada la disponibilidad.'],
+                ['02','Envío a domicilio','Disponible para todos nuestros productos. El costo varía según la zona.'],
+                ['03','Asunción y Gran Asunción','24 horas hábiles, con pedidos realizados hasta las 11:00.'],
+                ['04','Interior del país','72 horas hábiles, con pedidos realizados hasta las 14:00.']],
+        sections:[
+          { h:'Retiro en nuestras sucursales', ps:['Podés retirar tus productos en cualquiera de nuestras dos sucursales desde el momento de confirmar el pago, o pasar a abonar ahí mismo:', 'Casa Central: Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós, Asunción.', 'Sucursal 2: José Asunción Flores 3909 esquina Radio Operadores del Chaco, Asunción. Horario: lunes a viernes de 7:00 a 18:30 y sábados de 7:00 a 14:00.', 'Al finalizar la compra, indicá a nuestros asesores en qué sucursal preferís retirar.'] },
+          { h:'¿Cuándo puedo retirar mi pedido en la sucursal elegida?', ps:['Podés retirar tu pedido una vez confirmada su disponibilidad con nuestros asesores.'] },
+          { h:'¿Qué documentación debo presentar para retirar mi pedido?', ps:['Se deberá presentar el comprobante de pago junto con la cédula de identidad.'] },
+          { h:'¿Puede un tercero retirar mi pedido?', ps:['Sí, con aviso e identificación previa por parte del comprador.'] },
+          { h:'Envíos a domicilio', ps:['Al momento de finalizar la compra, podrás elegir el método de entrega con nuestros asesores, quienes tomarán tus datos para la entrega del pedido.'] },
+          { h:'¿Todos los productos pueden ser entregados en mi domicilio?', ps:['El envío a domicilio está disponible para todos nuestros productos.'] },
+          { h:'¿Cuál es el costo del envío?', ps:['El costo de envío varía dependiendo de la zona. Podés consultarlo con nuestros asesores al momento de finalizar tu compra.'] },
+          { h:'¿Cuánto demora el producto en llegar a mi domicilio?', ps:['Siempre que el pedido sea realizado hasta las 11:00 horas, se podrá entregar en el transcurso de la tarde del mismo día. Después de ese horario, la entrega se agendará para la tarde siguiente. El tiempo de demora puede variar según la zona donde te encuentres.', 'Asunción y Gran Asunción: 24 horas hábiles, siempre que el pedido sea realizado hasta las 11:00 horas.', 'Interior del país: 72 horas hábiles, siempre que el pedido sea realizado hasta las 14:00 horas.'] },
+          { h:'¿Puedo coordinar la entrega de mi pedido?', ps:['Podés coordinar la entrega con nuestros asesores una vez finalizada la compra. Para realizar algún cambio o modificación en la entrega, comunicate con nosotros por WhatsApp de lunes a viernes de 8:00 a 18:30 y sábados de 8:00 a 14:00, o escribinos a info@innovagame.com.py.'] },
+          { h:'¿Puede un tercero recibir mi pedido?', ps:['Sí, siempre que sea una persona mayor de 18 años, con documentación en mano, que se encuentre en el punto de entrega.'] },
+          { h:'¿Qué incluye el servicio de envío a domicilio?', ps:['El envío incluye solamente el traslado del producto hasta el punto de entrega indicado. En el caso de departamentos, se transportarán los artículos que quepan en el ascensor o que puedan subirse por las escaleras.', 'Nuestro personal no está autorizado a realizar trabajos ajenos a la entrega, ni a montar o desmontar productos, ni a retirar artículos ajenos a la entrega.'] }
+        ] },
+      'cambios':{ title:'Cambios y devoluciones', intro:'Al recibir tu pedido, verificá completamente su estado y funcionamiento. Los reclamos por fallas de fábrica se procesan dentro de las 48 horas siguientes a la recepción.',
+        blocks:[['01','Revisá al recibir','Los cambios por fallas o averías solo se procesan si el reclamo se hace dentro de las 48 horas.'],
+                ['02','Garantía de fábrica','Reparación, ajuste o cambio sin cargo durante el período de garantía del fabricante.'],
+                ['03','Devoluciones','Dentro de las 48 horas de la compra, con factura y el producto completo en su embalaje original.'],
+                ['04','Contacto','Por WhatsApp o a info@innovagame.com.py.']],
+        sections:[
+          { h:'Plazo para reclamos', ps:['Al momento de recibir el pedido, verificá completamente su estado y funcionamiento. Los cambios de mercaderías con fallas o averías solo se procesarán si el reclamo se realiza dentro de las 48 horas siguientes a la recepción de los productos, siempre que se trate de desperfectos de fábrica.'] },
+          { h:'Qué cubre la garantía', ps:['La garantía incluye en todos los casos la reparación, ajuste o cambio del artículo que presente fallas o averías de origen, sin cargo alguno, durante el período de garantía otorgado por el fabricante. No así las roturas por sobrecarga o los desperfectos ocasionados por mal uso.', 'Podés consultar la garantía y los plazos de cada producto con nuestros asesores.'] },
+          { h:'Qué no cubre la garantía', ps:['La garantía no cubre problemas con software, actualizaciones de BIOS o drivers, respaldo de datos, mantenimiento de piezas quebradas, casos fortuitos, fuerza mayor ni la intervención de personal técnico no autorizado.', 'Tampoco se consideran en garantía las roturas originadas por golpes.'] },
+          { h:'Cómo hacer un reclamo', ps:['Si tenés algún reclamo o necesitás realizar un cambio por un desperfecto de fabricación, comunicate con nosotros a los números publicados en nuestras páginas o por e-mail a info@innovagame.com.py.'] },
+          { h:'Si recibiste un producto distinto al solicitado', ps:['Si el motivo del cambio es una diferencia entre lo solicitado y lo entregado, debés rechazar la entrega y solicitar el reemplazo del producto de inmediato, comunicándote con nosotros por WhatsApp, e-mail o cualquiera de nuestros canales de atención, indicando el error.'] },
+          { h:'Si el producto ya no está disponible', ps:['El comprador deberá elegir entre:', 'a) El cambio por otro producto disponible en el local, de menor o igual valor.', 'b) La reversión de la compra, siempre que sea dentro de las 48 horas posteriores a la compra.'] },
+          { h:'Requisitos para la devolución', ps:['El producto devuelto debe ir acompañado de la factura legal donde figuren la fecha de compra y el modelo del producto.', 'Solo se recibirán devoluciones dentro de las 48 horas de efectuada la compra.', 'Las mercaderías deben estar completas, con manuales, discos, caja y embalaje original en buen estado.', 'Las devoluciones se harán por otros productos de igual o mayor valor. En ningún caso se devuelve el efectivo, cheques u otras formas de pago.'] }
+        ] },
+      'terminos':{ title:'Términos y condiciones', intro:'Leé atentamente estos términos y condiciones antes de realizar una compra con nosotros.',
+        blocks:[['01','Mayores de 18','Al registrarte declarás bajo juramento ser mayor de 18 años.'],
+                ['02','Precios al contado','Los precios publicados son exclusivamente para compras al contado.'],
+                ['03','Sujeto a stock','Todas las compras están sujetas al stock y precio informados.'],
+                ['04','Consultas','Comunicate con nuestros asesores por cualquiera de los canales de atención.']],
+        sections:[
+          { h:'Uso del sitio', ps:['Este sitio web es provisto por INNOVAGAME como servicio para sus clientes. Para cualquier consulta o reclamo, podés comunicarte con nuestros asesores a través de nuestros canales de atención al cliente.', 'Al registrarse como usuario de la página web, usted acepta las reglas de uso y declara bajo juramento ser mayor de 18 años de edad. En el caso de ser menor de edad, los padres o encargados serán exclusivamente responsables por el uso de la página web por parte de estos, incluyendo cualquier cargo o costo incurrido como consecuencia del uso.', 'Si usted no está de acuerdo con todos y cada uno de los términos de estas reglas, absténgase de usar la página web.'] },
+          { h:'Precios', ps:['Los precios expuestos son exclusivamente para compras al contado y están sujetos a variaciones dependiendo del método de pago.'] },
+          { h:'Importante', ps:['Pueden darse situaciones en que algunos ítems de su pedido sean excluidos, ya sea por limitaciones en las cantidades disponibles para la compra, faltantes de mercadería en las respectivas secciones, inexactitudes o errores en el producto o la información, o problemas identificados en los precios. Para su seguridad, eventualmente podemos requerirle información o realizar verificaciones adicionales antes de aceptar cualquier pedido.', 'Si se cancela todo o parte de su pedido, o si se necesita información adicional para aceptarlo, nuestros asesores se pondrán en contacto con usted.', 'Todas las compras efectuadas estarán sujetas al stock y precio informados. Debido a las demoras propias de las actualizaciones del sistema, es posible que el mismo permita realizar una compra que luego deba ser anulada por falta de stock o inexactitudes en el precio. En ese caso se le informará en el e-mail de confirmación o por vía telefónica.'] }
+        ] },
+      'privacidad':{ title:'Política de privacidad', intro:'Estamos comprometidos con la seguridad de los datos de nuestros usuarios. Esta política establece cómo INNOVAGAME usa y protege la información que nos proporcionás al utilizar el sitio web.',
+        blocks:[['01','Datos que pedimos','Nombre, domicilio, correo electrónico y los necesarios para pedidos, entregas o facturación.'],
+                ['02','Para qué los usamos','Registro de usuarios y pedidos, y mejora de nuestros productos y servicios.'],
+                ['03','No los vendemos','No vendemos, cedemos ni distribuimos tus datos sin tu consentimiento.'],
+                ['04','Cambios','Cualquier modificación a esta política se comunicará en nuestras páginas.']],
+        sections:[
+          { h:'Compromiso', ps:['Se solicita completar los campos de información personal con el fin de que usted pueda ser identificado, con la seguridad de que esa información solo se empleará de acuerdo con los términos de este documento.'] },
+          { h:'Información que recopilamos', ps:['El sitio web le solicitará información personal, como nombre, domicilio y dirección de correo electrónico, entre otros. Asimismo, cuando sea necesario, podrá requerirse información específica para procesar un pedido o realizar una entrega o facturación.'] },
+          { h:'Uso de la información', ps:['Este sitio web emplea la información con el fin de proporcionar el mejor servicio a sus clientes, particularmente para mantener un registro de usuarios y de pedidos, en caso de que aplique, y mejorar nuestros productos y servicios.', 'Usted siempre tiene la posibilidad de elegir no ofrecer información, aunque esta pueda ser necesaria para realizar una compra o utilizar funciones como mi cuenta, mis órdenes, favoritos y otras.'] },
+          { h:'Protección de los datos', ps:['INNOVAGAME está comprometido con mantener segura la información de sus clientes y garantiza que no habrá ningún uso indebido de la misma.', 'Nuestra empresa no venderá, cederá ni distribuirá la información personal recopilada sin su consentimiento, salvo que sea requerido por un juez mediante una orden judicial.'] },
+          { h:'Modificaciones', ps:['La empresa se reserva el derecho de cambiar o modificar los términos de la presente Política de Privacidad en cualquier momento, y comunicará cualquier cambio a través de nuestras páginas.'] }
+        ] }
+    }/*FIN*/;
+  TX_DEF = Object.assign(/*TXS*/{"hero_marca": "Innovagame", "hero_titulo1": "Tu casa. Tus planes.", "hero_titulo2": "Todo en Innovagame.", "hero_boton": "Explorar productos", "tira1_t": "Envío a domicilio", "tira1_d": "Asunción en 24 h hábiles", "tira2_t": "Garantía de fábrica", "tira2_d": "En todos los productos", "tira3_t": "Financiación Fadonet", "tira3_d": "Pagá en cuotas", "cat_eyebrow": "Categorías", "cat_titulo": "Comprá por categoría.", "dest_eyebrow": "Destacados", "dest_titulo": "Una selección para empezar.", "nov_eyebrow": "Recién llegados", "nov_titulo": "Novedades.", "marcas_eyebrow": "Marcas", "marcas_titulo": "Descubrí por marca.", "comp_eyebrow": "Comparador", "comp_texto": "Agregá hasta tres productos de la misma subcategoría y compará ficha contra ficha antes de decidir.", "suc_eyebrow": "Innovagame en persona", "suc_titulo": "También cerca tuyo.", "prod_nota": "Impuestos incluidos · el precio puede variar según el método de pago", "prod_b1": "Envío en 24 h hábiles", "prod_b2": "Retiro en sucursal", "prod_b3": "Garantía de fábrica", "catpag_texto": "Todas las categorías de la tienda, con sus subcategorías.", "marcaspag_texto": "Elegí una marca para ver sus productos disponibles.", "ofertas_texto": "Productos marcados como oferta en la tienda. Los precios mostrados son los publicados; no publicamos descuentos ni plazos que no estén confirmados.", "ofertas_vacio_t": "Por ahora no hay ofertas.", "ofertas_vacio_d": "Estamos preparando las próximas. Mientras tanto, mirá el catálogo completo con precios y stock actualizados.", "comparar_texto": "Hasta tres productos de la misma subcategoría, ficha contra ficha.", "bodas_titulo": "Regalá lo que necesitan para su nuevo hogar.", "bodas_texto": "Elegí la lista de los novios, mirá qué regalos faltan y agregalos al carrito. Las listas se actualizan desde Innovagame.", "bodas_vacio_t": "Todavía no hay listas publicadas", "bodas_vacio_d": "Si sos novio o novia y querés armar tu lista, escribinos por WhatsApp.", "fin_eyebrow": "Financiación · Fadonet", "fin_titulo": "Llevá lo que necesitás y pagalo en cuotas con Fadonet.", "fin_texto": "Financiá tus compras en Innovagame a través de Fadonet. Nuestros asesores te informan las opciones disponibles para tu compra.", "fin_pasos_t": "Cómo funciona", "fin_cond_eyebrow": "Condiciones y beneficios", "fin_cond_titulo": "Plazos, requisitos y tasas", "fin_cond_texto": "En este espacio vamos a publicar las condiciones vigentes de financiación con Fadonet. Mientras tanto, consultalas con nuestros asesores por WhatsApp o en cualquiera de nuestras sucursales.", "fin_nota_t": "Tené en cuenta", "fin_nota_d": "Los precios publicados son al contado. El precio final puede variar según el método de pago y la financiación elegida.", "checkout_texto": "Dejanos tus datos y confirmá el pedido. Un asesor te contacta para coordinar el pago y la entrega: no se cobra nada en línea.", "pedido_ok_texto": "Un asesor de Innovagame te va a contactar para confirmar el stock, el pago y la entrega.", "sucpag_titulo": "Innovagame, también cerca tuyo.", "nos_texto": "Innovagame es una tienda de electrónica, informática y electrodomésticos con dos locales en Asunción y venta online a todo el país. Trabajamos con marcas como Beko, Hisense, Tokyo, Notavel, Patrimar y Qmovi, en categorías que van desde grandes electrodomésticos y climatización hasta muebles, herramientas y deportes.", "nos_como_eyebrow": "Cómo trabajamos", "nos_como_titulo": "Precio publicado, stock real y alguien que atiende.", "nos_ayuda_t": "¿Te ayudamos a elegir?", "nos_ayuda_d": "Escribinos y te pasamos opciones con precio y disponibilidad real.", "pie_ayuda_t": "¿Necesitás ayuda para elegir?", "pie_ayuda_d": "Nuestros asesores te responden por WhatsApp, de lunes a sábado.", "pie_copy": "© 2026 Innovagame · Asunción, Paraguay · Precios en guaraníes", "hero_texto": "Tecnología, electrodomésticos y muebles con *envío a domicilio* y *garantía de fábrica*.", "comp_titulo": "Elegí con información,\nno con dudas.", "pie_atencion": "Lunes a viernes 8:00 – 18:30\nSábados 8:00 – 14:00", "pie_texto": "Tienda de alta tecnología, electrónica, informática y electrodomésticos. {sucursales} y envíos a todo el país.", "nos_titulo": "Somos Innovagame.", "ben1_t": "Envío a domicilio", "ben1_d": "Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.", "ben2_t": "Compras garantizadas", "ben2_d": "En todos nuestros productos.", "ben3_t": "Pago rápido y seguro", "ben3_d": "Efectivo, transferencia y tarjetas de crédito.", "ben4_t": "Soporte en línea", "ben4_d": "Estamos acá para ayudarte.", "fin1_t": "Elegí tus productos", "fin1_d": "Recorré el catálogo y armá tu pedido.", "fin2_t": "Consultá con un asesor", "fin2_d": "Te contamos las opciones de financiación con Fadonet para tu compra.", "fin3_t": "Presentá los requisitos", "fin3_d": "Nuestros asesores te indican la documentación necesaria.", "fin4_t": "Recibí o retirá", "fin4_d": "Envío a domicilio o retiro en cualquiera de nuestras dos sucursales."}/*FIN*/, this.docsDef());
+  TX = (d=>{ const e = (typeof window!=='undefined' && window.IG_TEXTOS && typeof window.IG_TEXTOS==='object') ? window.IG_TEXTOS : {}, t = {};
+    Object.keys(d).forEach(k=>{ t[k] = (typeof e[k]==='string' && e[k].trim()) ? e[k] : d[k]; }); return t; })(this.TX_DEF);
+  docsDef(){ const t = {};
+    Object.keys(this.DOCS_DEF).forEach(id=>{ const d = this.DOCS_DEF[id], k = 'doc_' + id.replace(/-/g,'_') + '_';
+      t[k+'titulo'] = d.title; t[k+'intro'] = d.intro;
+      d.blocks.forEach((b,i)=>{ t[k+'b'+(i+1)+'t'] = b[1]; t[k+'b'+(i+1)+'d'] = b[2]; });
+      t[k+'cuerpo'] = (d.sections||[]).map(x=>'## ' + x.h + '\n' + x.ps.join('\n')).join('\n\n'); });
+    return t; }
+  docsTx(){ const out = {};
+    Object.keys(this.DOCS_DEF).forEach(id=>{ const k = 'doc_' + id.replace(/-/g,'_') + '_', T = this.TX;
+      out[id] = { title: T[k+'titulo'], intro: T[k+'intro'],
+        blocks: [1,2,3,4].map(i=>['0'+i, T[k+'b'+i+'t'], T[k+'b'+i+'d']]).filter(b=>b[1]),
+        sections: String(T[k+'cuerpo']||'').split(/\n\s*\n/).map(c=>{ const ls = c.split('\n').map(x=>x.trim()).filter(Boolean);
+          if(!ls.length) return null; const h = ls[0].indexOf('## ')===0 ? ls.shift().slice(3).trim() : '';
+          return { h, ps: ls }; }).filter(x=>x && (x.h || x.ps.length)) }; });
+    return out; }
   CT_DEF = {
     wa_ventas:'595974800300', wa_info:'595974800400', email:'info@innovagame.com.py',
     lineas:[ { nombre:'WhatsApp ventas', numero:'595974800300', pie:true }, { nombre:'WhatsApp Casa Central', numero:'595983943254', pie:true },
@@ -2227,67 +2306,7 @@ class Component extends DCLogic {
       ['Comparar','comparar'],['Favoritos','favoritos'],['Carrito','carrito'],['Sucursales','sucursales'],
       ['Nosotros','nosotros'],['Contacto','contacto'],['Mi cuenta','mi-cuenta']];
 
-    const docs = {
-      'como-comprar':{ title:'Cómo comprar', intro:'Podés comprar desde la web o coordinar con un asesor por WhatsApp. Aceptamos efectivo, transferencia y tarjetas de crédito.',
-        blocks:[['01','Elegí tu producto','Buscá por nombre, marca o modelo, o navegá las categorías. En cada ficha vas a ver precio y disponibilidad real.'],
-                ['02','Agregá al carrito','Podés modificar cantidades y revisar el subtotal antes de continuar.'],
-                ['03','Elegí cómo pagar','Efectivo, transferencia o tarjetas de crédito, según las condiciones vigentes publicadas en la tienda.'],
-                ['04','Recibilo o retiralo','Coordinamos el envío o el retiro en Casa Central o Sucursal.']] },
-      'envios':{ title:'Políticas de envío', intro:'Podés retirar tu pedido en cualquiera de nuestras dos sucursales o recibirlo en tu domicilio. Coordinás el método de entrega con nuestros asesores al finalizar la compra.',
-        blocks:[['01','Retiro en ambas sucursales','Casa Central (Avda. Choferes del Chaco N°1886) o Sucursal 2 (José Asunción Flores 3909 esq. Radio Operadores del Chaco), una vez confirmada la disponibilidad.'],
-                ['02','Envío a domicilio','Disponible para todos nuestros productos. El costo varía según la zona.'],
-                ['03','Asunción y Gran Asunción','24 horas hábiles, con pedidos realizados hasta las 11:00.'],
-                ['04','Interior del país','72 horas hábiles, con pedidos realizados hasta las 14:00.']],
-        sections:[
-          { h:'Retiro en nuestras sucursales', ps:['Podés retirar tus productos en cualquiera de nuestras dos sucursales desde el momento de confirmar el pago, o pasar a abonar ahí mismo:', 'Casa Central: Avda. Choferes del Chaco N°1886 esquina Teodoro S. Mongelós, Asunción.', 'Sucursal 2: José Asunción Flores 3909 esquina Radio Operadores del Chaco, Asunción. Horario: lunes a viernes de 7:00 a 18:30 y sábados de 7:00 a 14:00.', 'Al finalizar la compra, indicá a nuestros asesores en qué sucursal preferís retirar.'] },
-          { h:'¿Cuándo puedo retirar mi pedido en la sucursal elegida?', ps:['Podés retirar tu pedido una vez confirmada su disponibilidad con nuestros asesores.'] },
-          { h:'¿Qué documentación debo presentar para retirar mi pedido?', ps:['Se deberá presentar el comprobante de pago junto con la cédula de identidad.'] },
-          { h:'¿Puede un tercero retirar mi pedido?', ps:['Sí, con aviso e identificación previa por parte del comprador.'] },
-          { h:'Envíos a domicilio', ps:['Al momento de finalizar la compra, podrás elegir el método de entrega con nuestros asesores, quienes tomarán tus datos para la entrega del pedido.'] },
-          { h:'¿Todos los productos pueden ser entregados en mi domicilio?', ps:['El envío a domicilio está disponible para todos nuestros productos.'] },
-          { h:'¿Cuál es el costo del envío?', ps:['El costo de envío varía dependiendo de la zona. Podés consultarlo con nuestros asesores al momento de finalizar tu compra.'] },
-          { h:'¿Cuánto demora el producto en llegar a mi domicilio?', ps:['Siempre que el pedido sea realizado hasta las 11:00 horas, se podrá entregar en el transcurso de la tarde del mismo día. Después de ese horario, la entrega se agendará para la tarde siguiente. El tiempo de demora puede variar según la zona donde te encuentres.', 'Asunción y Gran Asunción: 24 horas hábiles, siempre que el pedido sea realizado hasta las 11:00 horas.', 'Interior del país: 72 horas hábiles, siempre que el pedido sea realizado hasta las 14:00 horas.'] },
-          { h:'¿Puedo coordinar la entrega de mi pedido?', ps:['Podés coordinar la entrega con nuestros asesores una vez finalizada la compra. Para realizar algún cambio o modificación en la entrega, comunicate con nosotros por WhatsApp de lunes a viernes de 8:00 a 18:30 y sábados de 8:00 a 14:00, o escribinos a info@innovagame.com.py.'] },
-          { h:'¿Puede un tercero recibir mi pedido?', ps:['Sí, siempre que sea una persona mayor de 18 años, con documentación en mano, que se encuentre en el punto de entrega.'] },
-          { h:'¿Qué incluye el servicio de envío a domicilio?', ps:['El envío incluye solamente el traslado del producto hasta el punto de entrega indicado. En el caso de departamentos, se transportarán los artículos que quepan en el ascensor o que puedan subirse por las escaleras.', 'Nuestro personal no está autorizado a realizar trabajos ajenos a la entrega, ni a montar o desmontar productos, ni a retirar artículos ajenos a la entrega.'] }
-        ] },
-      'cambios':{ title:'Cambios y devoluciones', intro:'Al recibir tu pedido, verificá completamente su estado y funcionamiento. Los reclamos por fallas de fábrica se procesan dentro de las 48 horas siguientes a la recepción.',
-        blocks:[['01','Revisá al recibir','Los cambios por fallas o averías solo se procesan si el reclamo se hace dentro de las 48 horas.'],
-                ['02','Garantía de fábrica','Reparación, ajuste o cambio sin cargo durante el período de garantía del fabricante.'],
-                ['03','Devoluciones','Dentro de las 48 horas de la compra, con factura y el producto completo en su embalaje original.'],
-                ['04','Contacto','Por WhatsApp o a info@innovagame.com.py.']],
-        sections:[
-          { h:'Plazo para reclamos', ps:['Al momento de recibir el pedido, verificá completamente su estado y funcionamiento. Los cambios de mercaderías con fallas o averías solo se procesarán si el reclamo se realiza dentro de las 48 horas siguientes a la recepción de los productos, siempre que se trate de desperfectos de fábrica.'] },
-          { h:'Qué cubre la garantía', ps:['La garantía incluye en todos los casos la reparación, ajuste o cambio del artículo que presente fallas o averías de origen, sin cargo alguno, durante el período de garantía otorgado por el fabricante. No así las roturas por sobrecarga o los desperfectos ocasionados por mal uso.', 'Podés consultar la garantía y los plazos de cada producto con nuestros asesores.'] },
-          { h:'Qué no cubre la garantía', ps:['La garantía no cubre problemas con software, actualizaciones de BIOS o drivers, respaldo de datos, mantenimiento de piezas quebradas, casos fortuitos, fuerza mayor ni la intervención de personal técnico no autorizado.', 'Tampoco se consideran en garantía las roturas originadas por golpes.'] },
-          { h:'Cómo hacer un reclamo', ps:['Si tenés algún reclamo o necesitás realizar un cambio por un desperfecto de fabricación, comunicate con nosotros a los números publicados en nuestras páginas o por e-mail a info@innovagame.com.py.'] },
-          { h:'Si recibiste un producto distinto al solicitado', ps:['Si el motivo del cambio es una diferencia entre lo solicitado y lo entregado, debés rechazar la entrega y solicitar el reemplazo del producto de inmediato, comunicándote con nosotros por WhatsApp, e-mail o cualquiera de nuestros canales de atención, indicando el error.'] },
-          { h:'Si el producto ya no está disponible', ps:['El comprador deberá elegir entre:', 'a) El cambio por otro producto disponible en el local, de menor o igual valor.', 'b) La reversión de la compra, siempre que sea dentro de las 48 horas posteriores a la compra.'] },
-          { h:'Requisitos para la devolución', ps:['El producto devuelto debe ir acompañado de la factura legal donde figuren la fecha de compra y el modelo del producto.', 'Solo se recibirán devoluciones dentro de las 48 horas de efectuada la compra.', 'Las mercaderías deben estar completas, con manuales, discos, caja y embalaje original en buen estado.', 'Las devoluciones se harán por otros productos de igual o mayor valor. En ningún caso se devuelve el efectivo, cheques u otras formas de pago.'] }
-        ] },
-      'terminos':{ title:'Términos y condiciones', intro:'Leé atentamente estos términos y condiciones antes de realizar una compra con nosotros.',
-        blocks:[['01','Mayores de 18','Al registrarte declarás bajo juramento ser mayor de 18 años.'],
-                ['02','Precios al contado','Los precios publicados son exclusivamente para compras al contado.'],
-                ['03','Sujeto a stock','Todas las compras están sujetas al stock y precio informados.'],
-                ['04','Consultas','Comunicate con nuestros asesores por cualquiera de los canales de atención.']],
-        sections:[
-          { h:'Uso del sitio', ps:['Este sitio web es provisto por INNOVAGAME como servicio para sus clientes. Para cualquier consulta o reclamo, podés comunicarte con nuestros asesores a través de nuestros canales de atención al cliente.', 'Al registrarse como usuario de la página web, usted acepta las reglas de uso y declara bajo juramento ser mayor de 18 años de edad. En el caso de ser menor de edad, los padres o encargados serán exclusivamente responsables por el uso de la página web por parte de estos, incluyendo cualquier cargo o costo incurrido como consecuencia del uso.', 'Si usted no está de acuerdo con todos y cada uno de los términos de estas reglas, absténgase de usar la página web.'] },
-          { h:'Precios', ps:['Los precios expuestos son exclusivamente para compras al contado y están sujetos a variaciones dependiendo del método de pago.'] },
-          { h:'Importante', ps:['Pueden darse situaciones en que algunos ítems de su pedido sean excluidos, ya sea por limitaciones en las cantidades disponibles para la compra, faltantes de mercadería en las respectivas secciones, inexactitudes o errores en el producto o la información, o problemas identificados en los precios. Para su seguridad, eventualmente podemos requerirle información o realizar verificaciones adicionales antes de aceptar cualquier pedido.', 'Si se cancela todo o parte de su pedido, o si se necesita información adicional para aceptarlo, nuestros asesores se pondrán en contacto con usted.', 'Todas las compras efectuadas estarán sujetas al stock y precio informados. Debido a las demoras propias de las actualizaciones del sistema, es posible que el mismo permita realizar una compra que luego deba ser anulada por falta de stock o inexactitudes en el precio. En ese caso se le informará en el e-mail de confirmación o por vía telefónica.'] }
-        ] },
-      'privacidad':{ title:'Política de privacidad', intro:'Estamos comprometidos con la seguridad de los datos de nuestros usuarios. Esta política establece cómo INNOVAGAME usa y protege la información que nos proporcionás al utilizar el sitio web.',
-        blocks:[['01','Datos que pedimos','Nombre, domicilio, correo electrónico y los necesarios para pedidos, entregas o facturación.'],
-                ['02','Para qué los usamos','Registro de usuarios y pedidos, y mejora de nuestros productos y servicios.'],
-                ['03','No los vendemos','No vendemos, cedemos ni distribuimos tus datos sin tu consentimiento.'],
-                ['04','Cambios','Cualquier modificación a esta política se comunicará en nuestras páginas.']],
-        sections:[
-          { h:'Compromiso', ps:['Se solicita completar los campos de información personal con el fin de que usted pueda ser identificado, con la seguridad de que esa información solo se empleará de acuerdo con los términos de este documento.'] },
-          { h:'Información que recopilamos', ps:['El sitio web le solicitará información personal, como nombre, domicilio y dirección de correo electrónico, entre otros. Asimismo, cuando sea necesario, podrá requerirse información específica para procesar un pedido o realizar una entrega o facturación.'] },
-          { h:'Uso de la información', ps:['Este sitio web emplea la información con el fin de proporcionar el mejor servicio a sus clientes, particularmente para mantener un registro de usuarios y de pedidos, en caso de que aplique, y mejorar nuestros productos y servicios.', 'Usted siempre tiene la posibilidad de elegir no ofrecer información, aunque esta pueda ser necesaria para realizar una compra o utilizar funciones como mi cuenta, mis órdenes, favoritos y otras.'] },
-          { h:'Protección de los datos', ps:['INNOVAGAME está comprometido con mantener segura la información de sus clientes y garantiza que no habrá ningún uso indebido de la misma.', 'Nuestra empresa no venderá, cederá ni distribuirá la información personal recopilada sin su consentimiento, salvo que sea requerido por un juez mediante una orden judicial.'] },
-          { h:'Modificaciones', ps:['La empresa se reserva el derecho de cambiar o modificar los términos de la presente Política de Privacidad en cualquier momento, y comunicará cualquier cambio a través de nuestras páginas.'] }
-        ] }
-    };
+    const docs = this.docsTx();
     const docDef = docs[s.doc] || docs['como-comprar'];
 
     return {
@@ -2329,9 +2348,6 @@ class Component extends DCLogic {
       heroA: this.deco(all.find(p=>p.id===this.HERO.a)),
       heroB: this.deco(all.find(p=>p.id===this.HERO.b)),
       heroC: this.deco(all.find(p=>p.id===this.HERO.c)),
-      ticker: ['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea',this.sucFrase()]
-        .concat(['Envío a domicilio: Asunción y Gran Asunción en 24 h hábiles','Compras garantizadas en todos nuestros productos','Pago rápido y seguro: efectivo, transferencia y tarjetas','Soporte en línea',this.sucFrase()])
-        .map((t,i)=>({ t, k:i })),
       scene: { tag:sceneDef.tag, img:sceneP.img, alt:sceneP.name, name:sceneP.name, brand:sceneP.brand,
         techline: sceneP.brand + ' / ' + sceneP.model + ' / ' + sceneP.specs[0][1],
         priceF:this.fmt(sceneP.price), stockLabel: sceneP.stock>0 ? 'En stock' : 'Sin stock',
@@ -2417,7 +2433,7 @@ class Component extends DCLogic {
       edWordColor: this.SHOW[s.ed||0].word,
       edWord: all.find(p=>p.id===this.SHOW[s.ed||0].id).sub,
       edWordSize: 'min(' + (100/Math.max(6, all.find(p=>p.id===this.SHOW[s.ed||0].id).sub.length)).toFixed(2) + 'cqw, 84px)',
-      aboutFold: (()=>{ let k=0; return 'Somos Innovagame.'.split(' ').map(w=>({ chars: Array.from(w).map(c=>({ c, d: (0.35+(k++)*0.04).toFixed(3)+'s' })) })); })(),
+      aboutFold: (()=>{ let k=0; return String(this.TX.nos_titulo).split(' ').map(w=>({ chars: Array.from(w).map(c=>({ c, d: (0.35+(k++)*0.04).toFixed(3)+'s' })) })); })(),
       foldWords: (()=>{ let k=0; return 'Objetos bien elegidos'.split(' ').map(w=>({ chars: Array.from(w).map(c=>({ c, d: ((k++)*0.045).toFixed(3)+'s' })) })); })(),
       edThumbs: this.SHOW.map((x,i)=>{ const p=all.find(d=>d.id===x.id); return { img:p.img, name:p.name, ring: i===(s.ed||0) ? '#141414' : 'transparent', onClick:()=>this.edPick(i) }; }),
       edImg: all.find(p=>p.id===this.SHOW[s.ed||0].id).img.replace('-home_default/','-large_default/'),
@@ -2504,18 +2520,16 @@ class Component extends DCLogic {
       contactos: this.CT.lineas.map(l=>({ k:l.nombre, v:this.fmtTel(l.numero), href:this.wa(l.numero) }))
         .concat(this.CT.email ? [{ k:'Email', v:this.CT.email, href:'mailto:' + this.CT.email }] : []),
       sucFrase: this.sucFrase(),
+      tx: this.TX,
+      heroTexto: String(this.TX.hero_texto).split('*').map((t,i)=>({ t, hl: i%2===1, pl: i%2===0 })).filter(x=>x.t),
+      pieTexto: String(this.TX.pie_texto).split('{sucursales}').join(this.sucFrase()),
       waInfoMas: this.wa(this.CT.wa_info, 'Hola, quiero más información'),
       waVentas: this.wa(this.CT.wa_ventas),
       waVentasFin: this.wa(this.CT.wa_ventas, 'Hola, quiero finalizar una compra'),
       waVentasAses: this.wa(this.CT.wa_ventas, 'Hola, quiero asesoramiento'),
       retiroTit: this.CT.sucursales.length===1 ? 'Retiro en sucursal' : 'Retiro en ' + this.CT.sucursales.length + ' sucursales',
       retiroSub: (n=>n.length>1 ? n.slice(0,-1).join(', ') + ' y ' + n[n.length-1] : (n[0]||''))(this.CT.sucursales.map(x=>x.nombre)),
-      beneficios: [
-        { t:'Envío a domicilio', d:'Asunción y Gran Asunción en 24 h hábiles; interior del país en 72 h hábiles.' },
-        { t:'Compras garantizadas', d:'En todos nuestros productos.' },
-        { t:'Pago rápido y seguro', d:'Efectivo, transferencia y tarjetas de crédito.' },
-        { t:'Soporte en línea', d:'Estamos acá para ayudarte.' }
-      ],
+      beneficios: [1,2,3,4].map(i=>({ t:this.TX['ben'+i+'_t'], d:this.TX['ben'+i+'_d'] })).filter(b=>b.t),
       docTitle:docDef.title, docIntro:docDef.intro, docBlocks:docDef.blocks.map(b=>({n:b[0],t:b[1],d:b[2]})),
       docSections:(docDef.sections||[]).map(x=>({ h:x.h, ps:x.ps.map(tx=>({tx})) })), hasDocSections:!!(docDef.sections&&docDef.sections.length),
       docTabs:[['como-comprar','Cómo comprar'],['envios','Envíos'],['cambios','Cambios y devoluciones'],['terminos','Términos y condiciones'],['privacidad','Privacidad']].map(d=>({
@@ -2574,12 +2588,7 @@ class Component extends DCLogic {
       prodLong: prodRaw.long || prodRaw.desc, prodFeats: (prodRaw.feats||[]).map(t=>({t})), prodHasFeats: !!(prodRaw.feats&&prodRaw.feats.length),
       prodNoImg: !!prodRaw.noImg,
       finWa: this.wa(this.CT.wa_info, 'Hola, quiero consultar por la financiación con Fadonet.'),
-      finSteps: [
-        { n:'1', t:'Elegí tus productos', d:'Recorré el catálogo y armá tu pedido.' },
-        { n:'2', t:'Consultá con un asesor', d:'Te contamos las opciones de financiación con Fadonet para tu compra.' },
-        { n:'3', t:'Presentá los requisitos', d:'Nuestros asesores te indican la documentación necesaria.' },
-        { n:'4', t:'Recibí o retirá', d:'Envío a domicilio o retiro en cualquiera de nuestras dos sucursales.' }
-      ],
+      finSteps: [1,2,3,4].map(i=>({ n:String(i), t:this.TX['fin'+i+'_t'], d:this.TX['fin'+i+'_d'] })).filter(f=>f.t),
       ...(()=>{ const list = s.bodas || [], mob = s.w<1020;
         const fd = f=>{ if(!f) return ''; const d = new Date(f+'T12:00:00'); return isNaN(d) ? f : d.toLocaleDateString('es-PY',{day:'numeric',month:'long',year:'numeric'}); };
         const sel = list.find(b=>b.id===s.boda) || list[0];
