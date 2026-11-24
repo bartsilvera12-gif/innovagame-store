@@ -664,12 +664,16 @@
     <h1 style="margin:0;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.03em">{{ cat }}</h1>
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
       <span style="font:400 12px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66">{{ resultCount }} productos</span>
-      <select value="{{ sort }}" onChange="{{ onSort }}" style="height:38px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
-        <option value="relevancia">Relevancia</option>
-        <option value="menor">Menor precio</option>
-        <option value="mayor">Mayor precio</option>
-        <option value="nombre">Nombre A-Z</option>
-      </select>
+      <div data-dd style="position:relative;min-width:180px">
+          <button type="button" onClick="{{ ddSort.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddSort.open }}" style="width:100%;height:38px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddSort.bd }};padding:0 12px;font-size:13.5px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddSort.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddSort.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddSort.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);right:0;left:auto;min-width:100%;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddSort.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
     </div>
   </div>
   <sc-if value="{{ isMobile }}">
@@ -696,39 +700,59 @@
       </div>
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Subcategoría</div>
-        <select value="{{ sub }}" onChange="{{ onSub }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
-          <sc-for list="{{ filterSubs }}" as="sb" hint-placeholder-count="5">
-            <option value="{{ sb }}">{{ sb }}</option>
-          </sc-for>
-        </select>
+        <div data-dd style="position:relative;width:100%">
+          <button type="button" onClick="{{ ddSub.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddSub.open }}" style="width:100%;height:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddSub.bd }};padding:0 12px;font-size:13.5px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddSub.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddSub.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddSub.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddSub.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
       </div>
       <sc-if value="{{ hasTipos }}">
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Tipo</div>
-        <select value="{{ tipoVal }}" onChange="{{ onTipo }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
-          <sc-for list="{{ filterTipos }}" as="tp" hint-placeholder-count="5">
-            <option value="{{ tp }}">{{ tp }}</option>
-          </sc-for>
-        </select>
+        <div data-dd style="position:relative;width:100%">
+          <button type="button" onClick="{{ ddTipo.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddTipo.open }}" style="width:100%;height:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddTipo.bd }};padding:0 12px;font-size:13.5px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddTipo.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddTipo.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddTipo.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddTipo.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
       </div>
       </sc-if>
       <sc-if value="{{ hasCaps }}">
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Capacidad</div>
-        <select value="{{ capVal }}" onChange="{{ onCap }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
-          <sc-for list="{{ filterCaps }}" as="cp" hint-placeholder-count="5">
-            <option value="{{ cp.v }}">{{ cp.l }}</option>
-          </sc-for>
-        </select>
+        <div data-dd style="position:relative;width:100%">
+          <button type="button" onClick="{{ ddCap.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddCap.open }}" style="width:100%;height:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddCap.bd }};padding:0 12px;font-size:13.5px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddCap.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddCap.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddCap.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddCap.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
       </div>
       </sc-if>
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Marca</div>
-        <select value="{{ brand }}" onChange="{{ onBrand }}" style="width:100%;height:40px;border:1px solid #E4E2DD;padding:0 10px;font-size:13.5px;background:#FAF9F7;outline:none">
-          <sc-for list="{{ filterBrands }}" as="b" hint-placeholder-count="6">
-            <option value="{{ b }}">{{ b }}</option>
-          </sc-for>
-        </select>
+        <div data-dd style="position:relative;width:100%">
+          <button type="button" onClick="{{ ddBrand.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddBrand.open }}" style="width:100%;height:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddBrand.bd }};padding:0 12px;font-size:13.5px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddBrand.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddBrand.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddBrand.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddBrand.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
       </div>
       <div>
         <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-bottom:10px">Precio hasta</div>
@@ -1332,13 +1356,16 @@
       </div>
       </sc-if>
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-top:10px">Medio de pago</div>
-      <select value="{{ ckPago }}" onChange="{{ onCkPago }}" style="height:50px;border:1px solid #E4E2DD;padding:0 13px;font-size:15px;background:#FAF9F7;outline:none">
-        <option>Efectivo</option>
-        <option>Transferencia</option>
-        <option>Tarjeta de crédito</option>
-        <option>Tarjeta de débito</option>
-        <option>Financiación</option>
-      </select>
+      <div data-dd style="position:relative;width:100%">
+          <button type="button" onClick="{{ ddPago.toggle }}" aria-haspopup="listbox" aria-expanded="{{ ddPago.open }}" style="width:100%;height:50px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid {{ ddPago.bd }};padding:0 12px;font-size:15px;font-family:inherit;background:#FAF9F7;color:#141414;cursor:pointer;text-align:left;outline:none;transition:border-color .15s" style-hover="border-color:#141414"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ddPago.label }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6B66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transition:transform .2s;transform:{{ ddPago.rot }}"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <sc-if value="{{ ddPago.open }}">
+            <div role="listbox" style="position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:70;background:#fff;border:1px solid #E4E2DD;box-shadow:0 18px 40px rgba(0,0,0,.12);max-height:300px;overflow-y:auto;padding:4px 0">
+              <sc-for list="{{ ddPago.items }}" as="opt">
+                <div role="option" aria-selected="{{ opt.on }}" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;font-size:15px;line-height:1.3;cursor:pointer;white-space:nowrap;color:{{ opt.fg }};font-weight:{{ opt.fw }};background:{{ opt.bg }}" style-hover="background:#F4F3F0"><span>{{ opt.l }}</span><sc-if value="{{ opt.on }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
       <textarea value="{{ ckNota }}" onChange="{{ onCkNota }}" placeholder="Comentarios (opcional)" rows="3" style="border:1px solid #E4E2DD;padding:12px 15px;font-size:15px;background:#FAF9F7;outline:none;font-family:inherit;resize:vertical"></textarea>
       <sc-if value="{{ hasCkRegalo }}"><div style="font-size:13.5px;color:#A50D26;background:#FDECEE;padding:10px 13px">{{ ckRegalo }}</div></sc-if>
       <sc-if value="{{ hasCkErr }}"><div style="font-size:13.5px;color:#C8102E;background:#FDECEE;padding:10px 13px">{{ ckErr }}</div></sc-if>
@@ -2160,8 +2187,10 @@ class Component extends DCLogic {
     fetch((typeof window!=='undefined' && window.IG_BODAS_URL) || 'catalogo/listas-bodas.json', { cache:'no-store' })
       .then(r=>r.ok ? r.json() : { listas:[] }).then(d=>this.setState({ bodas: Array.isArray(d && d.listas) ? d.listas : [] }))
       .catch(()=>this.setState({ bodas: [] }));
-    this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
+    this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.dd){ this.setState({dd:null}); return; } if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
     window.addEventListener('keydown', this._esc);
+    this._ddFuera = (e)=>{ if(this.state.dd && !(e.target && e.target.closest && e.target.closest('[data-dd]'))) this.setState({dd:null}); };
+    document.addEventListener('mousedown', this._ddFuera); document.addEventListener('touchstart', this._ddFuera, { passive:true });
     this.setupFold();
     // Link directo a un producto (?producto=<id>): lo usan el catálogo de Facebook/Instagram y los links compartidos.
     const dl = this.productoDeUrl();
@@ -2171,7 +2200,14 @@ class Component extends DCLogic {
   // Un producto importado que se unió a uno propio (ERP, receta 207) ya no está: su link lleva al propio ('alias').
   // Entrar al catálogo desde el menú, una categoría o la portada arranca sin la búsqueda ni la marca de
   // antes (si no, una búsqueda vieja deja el catálogo con pocos productos). Lo que pide q o brand lo manda.
-  setState(u, cb){ if(u && typeof u==='object' && u.page==='catalogo') u = Object.assign({ q:'', brand:'Todas' }, u); return super.setState(u, cb); }
+  setState(u, cb){ if(u && typeof u==='object' && u.page==='catalogo') u = Object.assign({ q:'', brand:'Todas' }, u);
+    if(u && typeof u==='object' && 'page' in u && !('dd' in u)) u = Object.assign({ dd:null }, u); return super.setState(u, cb); }
+  // Selector propio (reemplaza a los <select> del navegador): uno abierto a la vez (state.dd).
+  dd(id, value, opts, pick){ const open = this.state.dd===id, sel = opts.find(o=>o.v===value) || opts[0];
+    return { label: sel ? sel.l : '', open, bd: open ? '#141414' : '#E4E2DD', rot: open ? 'rotate(180deg)' : 'none',
+      toggle: ()=>this.setState(st=>({ dd: st.dd===id ? null : id })),
+      items: opts.map(o=>{ const on = o.v===value; return { l:o.l, on, fg: on ? '#C8102E' : '#141414', fw: on ? '600' : '400', bg: on ? '#FFF5F6' : '#fff',
+        onClick: ()=>{ this.setState({ dd:null }); pick(o.v); } }; }) }; }
   productoDeUrl(){ try { const n = +new URLSearchParams(location.search).get('producto'); if(!n) return null;
     if(this.DATA.some(d=>d.id===n)) return n; const a = this.DATA.find(d=>Array.isArray(d.alias) && d.alias.indexOf(n)>=0); return a ? a.id : null; } catch(e){ return null; } }
   // La dirección sigue al producto abierto (para compartirlo); fuera de un producto, vuelve a la de la tienda.
@@ -2186,7 +2222,7 @@ class Component extends DCLogic {
     this.syncLater();
     this.reveal();
   }
-  componentWillUnmount(){ window.removeEventListener('resize',this._r); window.removeEventListener('keydown',this._esc); clearInterval(this._hint); clearInterval(this._edT); clearInterval(this._selT); clearInterval(this._relT); clearTimeout(this._selSnap); clearTimeout(this._hs); clearTimeout(this._tt); clearTimeout(this._rt); clearTimeout(this._imgT); }
+  componentWillUnmount(){ window.removeEventListener('resize',this._r); window.removeEventListener('keydown',this._esc); document.removeEventListener('mousedown',this._ddFuera); document.removeEventListener('touchstart',this._ddFuera); clearInterval(this._hint); clearInterval(this._edT); clearInterval(this._selT); clearInterval(this._relT); clearTimeout(this._selSnap); clearTimeout(this._hs); clearTimeout(this._tt); clearTimeout(this._rt); clearTimeout(this._imgT); }
   selN(){ return (this.state.w||1440)>=1020 ? 4 : 2; }
   selPool(){ const f = this.DATA.filter(p=>p.featured); return f.length ? f : this.DATA; }
   selList(){ const s=this.state, all=this.selPool(), list = s.selCat==='Todos' ? all : all.filter(p=>p.cat===s.selCat); return (list.length ? list : all).slice(0,16); }
@@ -2410,6 +2446,11 @@ class Component extends DCLogic {
       q:s.q, hasQ:s.q.length>0, cat:s.cat, sub:s.sub, brand:s.brand, max:s.max||priceCap, priceCap, maxF: s.max ? this.fmt(s.max) : 'Sin límite',
       tipoVal, filterTipos:['Todas'].concat(tipos), hasTipos: tipos.length>1,
       onTipo:(e)=>this.setState({tipo:{k:s.cat+'|'+s.sub, v:e.target.value}}),
+      ddSort: this.dd('sort', s.sort, [{v:'relevancia',l:'Relevancia'},{v:'menor',l:'Menor precio'},{v:'mayor',l:'Mayor precio'},{v:'nombre',l:'Nombre A-Z'}], v=>this.setState({sort:v})),
+      ddSub: this.dd('sub', s.sub, ['Todas'].concat(s.cat==='Todas'?[]:(this.TREE.find(t=>t[0]===s.cat)||['',[]])[1]).map(x=>({v:x,l:x})), v=>this.setState({sub:v})),
+      ddTipo: this.dd('tipo', tipoVal, ['Todas'].concat(tipos).map(x=>({v:x,l:x})), v=>this.setState({tipo:{k:s.cat+'|'+s.sub, v}})),
+      ddCap: this.dd('cap', capVal, [{ v:'Todas', l:'Todas' }].concat(capsHere.map(c=>({ v:c.name, l:c.name + ' (' + c.count + ')' }))), v=>this.setState({cap:{k:capKey, v}})),
+      ddBrand: this.dd('brand', s.brand, ['Todas'].concat(this.brandStats().map(b=>b.name)).map(x=>({v:x,l:x})), v=>this.setState({brand:v})),
       capVal, hasCaps: capsHere.length>1, filterCaps: [{ v:'Todas', l:'Todas' }].concat(capsHere.map(c=>({ v:c.name, l:c.name + ' (' + c.count + ')' }))),
       onCap:(e)=>this.setState({cap:{k:capKey, v:e.target.value}}),
       capChips: capsHere.length>1 ? [{ name:'Todas', count:'' }].concat(capsHere.map(c=>({ name:c.name, count:c.count }))).map(c=>{ const on = c.name===capVal; return { name:c.name, count:c.count,
@@ -2746,6 +2787,7 @@ class Component extends DCLogic {
         return { ckNombre:ck.nombre, ckDoc:ck.doc, ckEmail:ck.email, ckTel:ck.tel, ckDir:ck.dir, ckPago:ck.pago, ckNota:ck.nota,
           ckEntOps: [opc(!retiro, 'Envío a domicilio', pon('ent','domicilio'))].concat(sucs.length ? [opc(retiro, 'Retiro en sucursal', pon('ent','retiro'))] : []),
           ckEsDom: !retiro, ckEsRet: retiro, ckSucOps: sucs.map(n=>opc(n===sucSel, n, pon('suc', n))),
+          ddPago: this.dd('pago', ck.pago, ['Efectivo','Transferencia','Tarjeta de crédito','Tarjeta de débito','Financiación'].map(x=>({v:x,l:x})), v=>this.setState(st=>({ ck:{ ...st.ck, pago:v }, ckErr:'' }))),
           onCkNombre:set('nombre'), onCkDoc:set('doc'), onCkEmail:set('email'), onCkTel:set('tel'), onCkDir:set('dir'), onCkPago:set('pago'), onCkNota:set('nota'),
           ckErr:s.ckErr, hasCkErr:!!s.ckErr, ckBusy:s.ckBusy, ckBtn: s.ckBusy ? 'Enviando pedido…' : 'Confirmar pedido',
           ckDone:!!s.ckDone, ckForm:!s.ckDone, ckNumero:s.ckDone ? s.ckDone.numero : '', ckTotal:s.ckDone ? s.ckDone.total : '',
