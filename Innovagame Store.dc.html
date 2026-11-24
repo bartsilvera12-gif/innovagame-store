@@ -1898,7 +1898,7 @@ class Component extends DCLogic {
     const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
       if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
-        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, nuevo:!!c.nuevo, alias:c.alias,
+        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, featOrd:+c.featured||0, nuevo:!!c.nuevo, alias:c.alias,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
@@ -2224,7 +2224,8 @@ class Component extends DCLogic {
   }
   componentWillUnmount(){ window.removeEventListener('resize',this._r); window.removeEventListener('keydown',this._esc); document.removeEventListener('mousedown',this._ddFuera); document.removeEventListener('touchstart',this._ddFuera); clearInterval(this._hint); clearInterval(this._edT); clearInterval(this._selT); clearInterval(this._relT); clearTimeout(this._selSnap); clearTimeout(this._hs); clearTimeout(this._tt); clearTimeout(this._rt); clearTimeout(this._imgT); }
   selN(){ return (this.state.w||1440)>=1020 ? 4 : 2; }
-  selPool(){ const f = this.DATA.filter(p=>p.featured); return f.length ? f : this.DATA; }
+  // Destacados en el orden de Tienda web › Destacados del ERP (featured = posición; los sin posición, al final).
+  selPool(){ const ord = p=>+(p.featOrd || p.featured) || 1000, f = this.DATA.filter(p=>p.featured).sort((a,b)=>ord(a)-ord(b)); return f.length ? f : this.DATA; }
   selList(){ const s=this.state, all=this.selPool(), list = s.selCat==='Todos' ? all : all.filter(p=>p.cat===s.selCat); return (list.length ? list : all).slice(0,16); }
   // Un producto fijo del diseño; si el ERP lo oculta, otro parecido con foto (nunca undefined).
   porId(id, parecido){ const D=this.DATA; return D.find(p=>p.id===id) || (parecido && D.find(p=>parecido(p) && !p.noImg)) || D.find(p=>!p.noImg) || D[0]; }
