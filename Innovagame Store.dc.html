@@ -2112,10 +2112,10 @@ class Component extends DCLogic {
     this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
     window.addEventListener('keydown', this._esc);
     this.setupFold();
-    this.trackPage();
+    this._trkKey = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); this.trackPage();
   }
   componentDidUpdate(pp, ps){
-    if(ps.page!==this.state.page || (this.state.page==='producto' && ps.pid!==this.state.pid)) this.trackPage();
+    { const k = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); if(this._trkKey!==k){ this._trkKey = k; this.trackPage(); } }  // el runtime no pasa el estado anterior
     if(this._lastPage!==this.state.page){ const first=this._lastPage===undefined; this._lastPage=this.state.page; if(!first){ try{ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; }catch(e){} } }
     this.syncLater();
     this.reveal();
