@@ -1288,7 +1288,18 @@
         <input value="{{ ckEmail }}" onChange="{{ onCkEmail }}" type="email" autocomplete="email" placeholder="Email (opcional)" style="flex:1 1 180px;min-width:0;height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
       </div>
       <input value="{{ ckDoc }}" onChange="{{ onCkDoc }}" placeholder="Cédula o RUC (opcional, para la factura)" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
-      <input value="{{ ckDir }}" onChange="{{ onCkDir }}" autocomplete="street-address" placeholder="Dirección de entrega o sucursal de retiro" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+      <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-top:10px">Entrega</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ ckEntOps }}" as="eo"><button onClick="{{ eo.onClick }}" style="flex:1 1 150px;min-height:46px;padding:8px 12px;border:1px solid {{ eo.bd }};background:{{ eo.bg }};color:{{ eo.fg }};font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s">{{ eo.label }}</button></sc-for>
+      </div>
+      <sc-if value="{{ ckEsDom }}">
+      <input value="{{ ckDir }}" onChange="{{ onCkDir }}" autocomplete="street-address" placeholder="Dirección de entrega (calle, número, barrio y ciudad)" style="height:50px;border:1px solid #E4E2DD;padding:0 15px;font-size:15px;background:#FAF9F7;outline:none">
+      </sc-if>
+      <sc-if value="{{ ckEsRet }}">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ ckSucOps }}" as="so"><button onClick="{{ so.onClick }}" style="flex:1 1 150px;min-height:46px;padding:8px 12px;border:1px solid {{ so.bd }};background:{{ so.bg }};color:{{ so.fg }};font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s">{{ so.label }}</button></sc-for>
+      </div>
+      </sc-if>
       <div style="font:500 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#9B978F;margin-top:10px">Medio de pago</div>
       <select value="{{ ckPago }}" onChange="{{ onCkPago }}" style="height:50px;border:1px solid #E4E2DD;padding:0 13px;font-size:15px;background:#FAF9F7;outline:none">
         <option>Efectivo</option>
@@ -1722,7 +1733,7 @@ class Component extends DCLogic {
     page:'home', selCat:'Todos', selPos:0, selAnim:true, qv:null, qvImg:0, pq:1, hi:0, ed:0, pid:7466, scene:0, acc:0, cur:0, menuOpen:false, searchOpen:false, cartOpen:false, suggestOpen:false,
     mega:null, w:1440, q:'', cat:'Todas', sub:'Todas', brand:'Todas', max:0, tipo:null, limTick:0,
     sort:'relevancia', onlyStock:false, gal:0, items:[], favs:[], compare:[], toast:'', doc:'como-comprar',
-    ck:{ nombre:'', doc:'', email:'', tel:'', dir:'', pago:'Efectivo', nota:'' }, ckBusy:false, ckErr:'', ckDone:null
+    ck:{ nombre:'', doc:'', email:'', tel:'', dir:'', ent:'domicilio', suc:'', pago:'Efectivo', nota:'' }, ckBusy:false, ckErr:'', ckDone:null
   };
 
   IMG = 'https://www.innovagame.com.py/';
@@ -2017,9 +2028,11 @@ class Component extends DCLogic {
     if(ck.nombre.trim().length<3) return this.setState({ckErr:'Escribí tu nombre y apellido.'});
     if(ck.tel.replace(/\D/g,'').length<6) return this.setState({ckErr:'Escribí un teléfono de contacto.'});
     if(ck.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ck.email.trim())) return this.setState({ckErr:'Revisá el email.'});
-    if(ck.dir.trim().length<3) return this.setState({ckErr:'Escribí la dirección de entrega o la sucursal donde retirás.'});
+    const sucs = this.CT.sucursales.map(x=>x.nombre), retiro = ck.ent==='retiro' && sucs.length>0, suc = retiro ? (ck.suc && sucs.indexOf(ck.suc)>=0 ? ck.suc : sucs[0]) : '';
+    if(!retiro && ck.dir.trim().length<3) return this.setState({ckErr:'Escribí la dirección de entrega.'});
+    const entrega = retiro ? 'Retiro en ' + suc : ck.dir.trim();
     if(!erp || window.IG_CATALOG_ERP!==true){
-      const txt = 'Hola, quiero hacer este pedido:\n' + s.items.map(i=>i.qty + ' × ' + i.name).join('\n') + '\nNombre: ' + ck.nombre + '\nEntrega: ' + ck.dir + '\nPago: ' + ck.pago;
+      const txt = 'Hola, quiero hacer este pedido:\n' + s.items.map(i=>i.qty + ' × ' + i.name).join('\n') + '\nNombre: ' + ck.nombre + '\nEntrega: ' + entrega + '\nPago: ' + ck.pago;
       window.open(this.wa(this.CT.wa_ventas, txt), '_blank'); return;
     }
     if(!this._ckKey) this._ckKey = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
@@ -2028,8 +2041,8 @@ class Component extends DCLogic {
     this.setState({ckBusy:true, ckErr:''});
     fetch(erp + '/api/publico/tienda/pedido', { method:'POST', headers:{'content-type':'application/json'},
       body: JSON.stringify({ idempotency_key:this._ckKey, lista,
-        cliente:{ nombre:ck.nombre.trim(), documento:ck.doc.trim()||null, telefono:ck.tel.trim(), email:ck.email.trim()||null, direccion:ck.dir.trim() },
-        entrega:ck.dir.trim(), pago:ck.pago, nota:ck.nota.trim()||null,
+        cliente:{ nombre:ck.nombre.trim(), documento:ck.doc.trim()||null, telefono:ck.tel.trim(), email:ck.email.trim()||null, direccion:retiro ? null : ck.dir.trim() },
+        entrega, entrega_tipo: retiro ? 'retiro' : 'domicilio', pago:ck.pago, nota:ck.nota.trim()||null,
         items: s.items.map(i=>({ id:i.id, cantidad:i.qty })) }) })
       .then(r=>r.json().catch(()=>({ok:false})))
       .then(d=>{ if(!d || !d.ok) throw new Error((d && d.error) || 'No se pudo enviar el pedido. Probá de nuevo o escribinos por WhatsApp.');
@@ -2632,7 +2645,12 @@ class Component extends DCLogic {
       demoCheckout:()=>this.flash('Prototipo de diseño: no se procesan pagos reales.'),
       ...(()=>{ const ck=s.ck, set=(k)=>(e)=>this.setState(st=>({ ck:{ ...st.ck, [k]:e.target.value }, ckErr:'' }));
         const regalo = (s.items.find(i=>i.lista)||{}).lista, lb = regalo && (s.bodas||[]).find(b=>b.id===regalo);
+        const sucs = this.CT.sucursales.map(x=>x.nombre), retiro = ck.ent==='retiro' && sucs.length>0, sucSel = (ck.suc && sucs.indexOf(ck.suc)>=0) ? ck.suc : sucs[0];
+        const pon = (k, v)=>()=>this.setState(st=>({ ck:{ ...st.ck, [k]:v }, ckErr:'' }));
+        const opc = (on, label, onClick)=>({ label, onClick, bd: on ? '#C8102E' : '#E4E2DD', bg: on ? '#FFF5F6' : '#fff', fg: on ? '#C8102E' : '#141414' });
         return { ckNombre:ck.nombre, ckDoc:ck.doc, ckEmail:ck.email, ckTel:ck.tel, ckDir:ck.dir, ckPago:ck.pago, ckNota:ck.nota,
+          ckEntOps: [opc(!retiro, 'Envío a domicilio', pon('ent','domicilio'))].concat(sucs.length ? [opc(retiro, 'Retiro en sucursal', pon('ent','retiro'))] : []),
+          ckEsDom: !retiro, ckEsRet: retiro, ckSucOps: sucs.map(n=>opc(n===sucSel, n, pon('suc', n))),
           onCkNombre:set('nombre'), onCkDoc:set('doc'), onCkEmail:set('email'), onCkTel:set('tel'), onCkDir:set('dir'), onCkPago:set('pago'), onCkNota:set('nota'),
           ckErr:s.ckErr, hasCkErr:!!s.ckErr, ckBusy:s.ckBusy, ckBtn: s.ckBusy ? 'Enviando pedido…' : 'Confirmar pedido',
           ckDone:!!s.ckDone, ckForm:!s.ckDone, ckNumero:s.ckDone ? s.ckDone.numero : '', ckTotal:s.ckDone ? s.ckDone.total : '',
