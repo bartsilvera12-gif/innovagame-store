@@ -2112,10 +2112,19 @@ class Component extends DCLogic {
     this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
     window.addEventListener('keydown', this._esc);
     this.setupFold();
-    this._trkKey = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); this.trackPage();
+    // Link directo a un producto (?producto=<id>): lo usan el catálogo de Facebook/Instagram y los links compartidos.
+    const dl = this.productoDeUrl();
+    if(dl){ this.setState({ page:'producto', pid:dl, gal:0, pq:1, relPage:0, ptab:'desc' }); }
+    else { this._trkKey = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); this.trackPage(); }
   }
+  productoDeUrl(){ try { const n = +new URLSearchParams(location.search).get('producto'); return n && this.DATA.some(d=>d.id===n) ? n : null; } catch(e){ return null; } }
+  // La dirección sigue al producto abierto (para compartirlo); fuera de un producto, vuelve a la de la tienda.
+  syncUrl(){ try { const q = new URLSearchParams(location.search), en = this.state.page==='producto' ? String(this.state.pid) : null;
+    if((q.get('producto')||null)===en) return;
+    if(en) q.set('producto', en); else q.delete('producto');
+    const qs = q.toString(); history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + location.hash); } catch(e){} }
   componentDidUpdate(pp, ps){
-    { const k = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); if(this._trkKey!==k){ this._trkKey = k; this.trackPage(); } }  // el runtime no pasa el estado anterior
+    { const k = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); if(this._trkKey!==k){ this._trkKey = k; this.trackPage(); this.syncUrl(); } }  // el runtime no pasa el estado anterior
     if(this._lastPage!==this.state.page){ const first=this._lastPage===undefined; this._lastPage=this.state.page; if(!first){ try{ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; }catch(e){} } }
     this.syncLater();
     this.reveal();
