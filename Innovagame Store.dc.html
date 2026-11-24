@@ -95,7 +95,7 @@
           <sc-if value="{{ hasQ }}">
             <button onClick="{{ clearQ }}" style="border:0;background:transparent;color:#9B978F;font-size:17px;cursor:pointer;padding:0 4px">×</button>
           </sc-if>
-          <button onClick="{{ goCatalog }}" aria-label="Buscar" style="flex:0 0 34px;width:34px;height:34px;border:0;border-radius:50%;background:#C8102E;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s" style-hover="background:#141414">
+          <button onClick="{{ goBuscar }}" aria-label="Buscar" style="flex:0 0 34px;width:34px;height:34px;border:0;border-radius:50%;background:#C8102E;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s" style-hover="background:#141414">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
           </button>
         </div>
@@ -114,11 +114,12 @@
             <sc-if value="{{ noSuggest }}">
               <div style="padding:22px;text-align:center;font-size:13.5px;color:#6E6B66">Sin resultados para esa búsqueda.</div>
             </sc-if>
-            <div onClick="{{ goCatalog }}" style="border-top:1px solid #EFEDE9;margin-top:6px;padding:13px 10px;font:500 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;cursor:pointer">Ver todo el catálogo →</div>
+            <div onClick="{{ goBuscar }}" style="border-top:1px solid #EFEDE9;margin-top:6px;padding:13px 10px;font:500 11px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;cursor:pointer">Ver todos los resultados →</div>
           </div>
         </sc-if>
       </div>
       <div style="flex:0 0 auto;display:flex;align-items:center;gap:6px">
+        <button onClick="{{ goCatalogoCompleto }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border:1px solid #E4E2DD;border-radius:999px;background:#fff;color:#141414;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s" style-hover="border-color:#141414"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h10"></path></svg>Catálogo</button>
         <button onClick="{{ goMarcas }}" onMouseEnter="{{ openMarcas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border:1px solid #E4E2DD;border-radius:999px;background:#fff;color:#141414;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s" style-hover="border-color:#141414"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>Marcas</button>
         <button onClick="{{ goBodas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border:1px solid #F2C4CB;border-radius:999px;background:#fff;color:#C8102E;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .18s" style-hover="background:#FFF1F3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"></path></svg>Lista de bodas</button>
         <button onClick="{{ goOfertas }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 16px;border:0;border-radius:999px;background:#C8102E;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .18s;margin-right:6px" style-hover="background:#A50D26"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg>Ofertas</button>
@@ -2638,6 +2639,11 @@ class Component extends DCLogic {
         label:d[1], color: s.doc===d[0] ? '#141414' : '#9B978F', mark: s.doc===d[0] ? '#C8102E' : 'transparent',
         onClick:()=>this.setState({doc:d[0]}) })),
 
+      // Catálogo completo: sin búsqueda, marca, categoría ni filtros.
+      goCatalogoCompleto:()=>this.setState({page:'catalogo', cat:'Todas', sub:'Todas', tipo:null, cap:null, max:0, onlyStock:false,
+        menuOpen:false, searchOpen:false, mega:null, marcasOpen:false, suggestOpen:false}),
+      // La lupa y "ver todo" del buscador: el catálogo con lo que se escribió.
+      goBuscar:()=>{ this.trackSearch(true); this.setState({page:'catalogo', q:this.state.q, cat:'Todas', sub:'Todas', menuOpen:false, searchOpen:false, mega:null, suggestOpen:false}); },
       goHome:this.go('home'), goBodas:this.go('bodas'), goFinanciacion:this.go('financiacion'), goCatalog:this.go('catalogo'), goOfertas:this.go('ofertas'), goNovedades:this.go('novedades'),
       goComparar:this.go('comparar'), goFavoritos:this.go('favoritos'), goCarrito:()=>this.setState({page:'carrito',cartOpen:false}),
       goCheckout:this.go('checkout'), goSucursales:this.go('sucursales'), goNosotros:this.go('nosotros'),
