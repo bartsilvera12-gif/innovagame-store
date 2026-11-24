@@ -2068,6 +2068,14 @@ class Component extends DCLogic {
     if(primero){ b.referente = document.referrer && document.referrer.indexOf(location.host) < 0 ? document.referrer : null; b.utm_source = q.get('utm_source'); b.utm_campaign = q.get('utm_campaign'); }
     navigator.sendBeacon(erp + '/api/publico/tienda/evento', new Blob([JSON.stringify(b)], { type: 'text/plain' }));
   } catch(e){} }
+  // Búsquedas para el ERP (receta 205): cuando deja de escribir (1,2 s) o aprieta Enter, el texto y
+  // cuántos productos encontró. El ERP junta lo escrito de a poco en una sola búsqueda.
+  trackSearch(ya){ clearTimeout(this._qT);
+    const enviar = () => { const t = (this.state.q || '').trim(), n = this.norm(t).replace(/\s+/g, ' ');
+      if(n.length < 2 || n === this._qEnviado) return; this._qEnviado = n;
+      const qw = n.split(' ').filter(Boolean), res = this.DATA.filter(p => qw.every(w => p._q.indexOf(w) >= 0)).length;
+      this.track('busqueda', { pagina: this.state.page || 'home', busqueda: t.slice(0, 200), resultados: res }); };
+    if(ya) enviar(); else this._qT = setTimeout(enviar, 1200); }
   trackPage(){ const s = this.state, pg = s.page || 'home';
     if(pg==='producto') this.track('producto', { pagina:'producto', producto: s.pid }); else this.track('vista', { pagina: pg });
     if(pg==='checkout') this.track('checkout', { pagina:'checkout' }); }
@@ -2163,6 +2171,7 @@ class Component extends DCLogic {
     const qs = q.toString(); history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + location.hash); } catch(e){} }
   componentDidUpdate(pp, ps){
     { const k = this.state.page + '|' + (this.state.page==='producto' ? this.state.pid : ''); if(this._trkKey!==k){ this._trkKey = k; this.trackPage(); this.syncUrl(); } }  // el runtime no pasa el estado anterior
+    if(this._qUlt!==this.state.q){ this._qUlt = this.state.q; this.trackSearch(false); }
     if(this._lastPage!==this.state.page){ const first=this._lastPage===undefined; this._lastPage=this.state.page; if(!first){ try{ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; }catch(e){} } }
     this.syncLater();
     this.reveal();
@@ -2644,7 +2653,7 @@ class Component extends DCLogic {
       closeQuick:()=>{ this.setState({qv:null}); this._selHover=false; },
       onSearch:(e)=>this.setState({q:e.target.value, suggestOpen:true}),
       onSearchFocus:()=>this.setState({suggestOpen:true}),
-      onSearchKey:(e)=>{ if(e.key==='Enter') this.setState({page:'catalogo',suggestOpen:false,searchOpen:false,cat:'Todas',sub:'Todas'}); },
+      onSearchKey:(e)=>{ if(e.key==='Enter'){ this.trackSearch(true); this.setState({page:'catalogo',suggestOpen:false,searchOpen:false,cat:'Todas',sub:'Todas'}); } },
       clearQ:()=>this.setState({q:'',suggestOpen:false}),
       showSuggest: s.suggestOpen && s.q.trim().length>0,
       suggestions: sugg.slice(0,5).map(p=>this.deco(p)),
