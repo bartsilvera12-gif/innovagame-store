@@ -2019,6 +2019,20 @@ class Component extends DCLogic {
   isTouch(){ return typeof window!=='undefined' && !!window.matchMedia && window.matchMedia('(hover: none)').matches; }
 
   fmt(n){ return Math.round(n).toLocaleString('de-DE') + ' Gs.'; }
+  // Visitas para el ERP (Reportes › Dashboard de ventas › Tienda web). Anónimo: ids al azar del
+  // navegador, sin datos personales. sendBeacon con texto plano: no frena la página ni pide CORS.
+  track(tipo, extra){ try { const erp = typeof window!=='undefined' ? window.IG_ERP : ''; if(!erp || !navigator.sendBeacon) return;
+    const id = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
+    let vis = null, ses = null; try { vis = localStorage.getItem('ig_vis'); if(!vis){ vis = id(); localStorage.setItem('ig_vis', vis); } } catch(e){ vis = this._vis || (this._vis = id()); }
+    try { ses = sessionStorage.getItem('ig_ses'); if(!ses){ ses = id(); sessionStorage.setItem('ig_ses', ses); } } catch(e){ ses = this._ses || (this._ses = id()); }
+    const q = new URLSearchParams(location.search), primero = !this._track1; this._track1 = true;
+    const b = Object.assign({ visitante: vis, sesion: ses, tipo: tipo, dispositivo: (window.innerWidth||1024) < 768 ? 'movil' : 'escritorio' }, extra || {});
+    if(primero){ b.referente = document.referrer && document.referrer.indexOf(location.host) < 0 ? document.referrer : null; b.utm_source = q.get('utm_source'); b.utm_campaign = q.get('utm_campaign'); }
+    navigator.sendBeacon(erp + '/api/publico/tienda/evento', new Blob([JSON.stringify(b)], { type: 'text/plain' }));
+  } catch(e){} }
+  trackPage(){ const s = this.state, pg = s.page || 'home';
+    if(pg==='producto') this.track('producto', { pagina:'producto', producto: s.pid }); else this.track('vista', { pagina: pg });
+    if(pg==='checkout') this.track('checkout', { pagina:'checkout' }); }
   go(page){ return () => this.setState({ page, menuOpen:false, searchOpen:false, mega:null, suggestOpen:false }); }
   openProduct(id){ return (e) => { if(e&&e.stopPropagation)e.stopPropagation();
     this._relHover=false; this.setState({ page:'producto', pid:id, gal:0, pq:1, relPage:0, ptab:'desc', descOpen:false, qv:null, zoom:false, lbZ:false, menuOpen:false, searchOpen:false, suggestOpen:false, mega:null }); }; }
@@ -2052,7 +2066,7 @@ class Component extends DCLogic {
       .catch(e=>this.setState({ ckBusy:false, ckErr:e.message || 'No se pudo enviar el pedido.' }));
   }
   flash(m){ clearTimeout(this._tt); this.setState({toast:m}); this._tt=setTimeout(()=>this.setState({toast:''}),2200); }
-  add(p, n, lista){ return (e)=>{ if(e&&e.stopPropagation)e.stopPropagation(); const q = Math.max(1, n || 1);
+  add(p, n, lista){ return (e)=>{ if(e&&e.stopPropagation)e.stopPropagation(); const q = Math.max(1, n || 1); this.track('carrito', { producto: p.id });
     this.setState(s=>{ const items=s.items.slice(); const i=items.findIndex(x=>x.id===p.id);
       if(i>=0) items[i]={...items[i],qty:items[i].qty+q,lista:lista||items[i].lista}; else items.push({id:p.id,name:p.name,brand:p.brand,price:p.price,img:p.img,qty:q,lista:lista||null});
       return {items}; });
@@ -2098,8 +2112,10 @@ class Component extends DCLogic {
     this._esc = (e)=>{ if(e.key!=='Escape') return; if(this.state.zoom){ this.setState({zoom:false, lbZ:false}); return; } if(this.state.qv!==null){ this.setState({qv:null}); this._selHover=false; } };
     window.addEventListener('keydown', this._esc);
     this.setupFold();
+    this.trackPage();
   }
   componentDidUpdate(pp, ps){
+    if(ps.page!==this.state.page || (this.state.page==='producto' && ps.pid!==this.state.pid)) this.trackPage();
     if(this._lastPage!==this.state.page){ const first=this._lastPage===undefined; this._lastPage=this.state.page; if(!first){ try{ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; }catch(e){} } }
     this.syncLater();
     this.reveal();
