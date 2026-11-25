@@ -1886,14 +1886,20 @@ class Component extends DCLogic {
 
   DATA = this.mergeCatalog(this.BASE, (typeof window!=='undefined' && window.IG_CATALOG) || []);
 
+  // Subcategorías específicas (receta 209 del ERP: los tipos pasaron a ser la subcategoría). Este es el
+  // orden en el menú y los filtros; una subcategoría nueva que venga del ERP se agrega al final.
   TREE_ORDER = [
-    ['Electrónica', ['Audio','TV y Video','Telefonía','Informática','Cámaras']],
-    ['Grandes electrodomésticos', ['Refrigeración','Lavado','Cocinas','Termocalefón','Vinotecas','Cocina Industrial']],
-    ['Pequeños electrodomésticos', ['Cocina','Limpieza','Hogar','Salud','Más para tu cocina','Equipamiento de auto']],
-    ['Belleza y cuidado', ['Cuidado personal','Bienestar']],
+    ['Electrónica', ['Televisores','Soporte para tv','TV y Video','Parlantes inalámbricos','Parlantes profesionales','Barras de sonido','Auriculares','Autoradios',
+      'Celulares y accesorios','Computadoras','Tablets','Informática','Cámaras','Audio','Telefonía']],
+    ['Grandes electrodomésticos', ['Heladeras','Congeladores','Exhibidores','Frigobares','Refrigeración','Lavarropas','Secarropas','Lavasecarropas','Centrifugas',
+      'Cocinas','Anafes','Hornos','Campanas y purificadores','Lavavajillas','Asaderas','Balanzas comerciales','Accesorios de Gastronomía','Termocalefón','Vinotecas','Cocina Industrial']],
+    ['Pequeños electrodomésticos', ['Microondas','Freidoras','Licuadoras','Batidoras','Cafeteras','Multiprocesadoras','Tostadoras','Sandwicheras','Exprimidores','Hervidoras',
+      'Jarras eléctricas','Jugueras','Mixers','Grilleras','Ollas eléctricas','Placas eléctricas','Moledoras de carne','Mixteras','Bebederos','Fabricadora de hielo','Barriles',
+      'Encendedores eléctricos','Planchas de ropa','Aspiradoras','Hidrolavadoras','Nebulizadores','Salud','Hogar','Más para tu cocina','Equipamiento de auto','Otros']],
+    ['Belleza y cuidado', ['Cortapelos','Alisadores','Planchitas de pelo','Afeitadoras faciales','Secadores de pelo','Onduladoras','Cepillos','Depiladoras','Cuidado personal','Humidificadores']],
     ['Climatización', ['Aires acondicionados','Ventiladores','Estufas']],
-    ['Herramientas y Jardinería', ['Accesorios de Jardín','Herramientas eléctricas','Otros Accesorios']],
-    ['Deportes', ['Bicicletas','Caminadoras','Fitness','Multiejercicios']],
+    ['Herramientas y Jardinería', ['Cortacésped','Bordeadoras','Desmalezadoras','Accesorios de Jardín','Fabricadoras comerciales','Forrajeras','Otros Accesorios']],
+    ['Deportes', ['Bicicletas','Caminadoras','Fitness','Multiejercicios','Movilidad eléctrica']],
     ['Muebles y Hogar', ['Racks','Paneles','Soportes','Muebles de hogar','Muebles de Cocina','Living/Sofá/Sofá Cama','Cunas','Comedor','Sommier','Roperos','Mesas de luz','Aparadores','Oficina','Sillas','Colchones','Otros muebles']],
     ['Promociones', ['Combos']]
   ];
@@ -1906,8 +1912,8 @@ class Component extends DCLogic {
     const erp = typeof window!=='undefined' && window.IG_CATALOG_ERP===true;
     const out = base.filter(b=>!erp || byId[b.id]).map(b=>{ const c = byId[b.id], sub = fixSub[b.sub] || b.sub;
       if(!c) return { ...b, sub, tag:sub };
-      if(erp) return { ...b, sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
-        tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, featOrd:+c.featured||0, nuevo:!!c.nuevo, alias:c.alias,
+      if(erp) return { ...b, cat:c.cat||b.cat, sub:c.sub||sub, name:c.name, brand:c.brand||b.brand, price:c.price, stock:c.stock==null ? null : c.stock, offer:!!c.oldPrice, oldPrice:c.oldPrice,
+        tipo:c.tipo, tag:c.tipo||c.sub||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last, desc:c.desc||b.desc, featured:!!c.featured, featOrd:+c.featured||0, nuevo:!!c.nuevo, alias:c.alias,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img };
       return { ...b, sub, tipo:c.tipo, tag:c.tipo||sub, ref:c.ref, raw:c.raw, long:c.long, feats:c.feats, url:c.url, last:c.last,
         images: c.images.length ? c.images : [b.img], img: c.images[0] || b.img }; });
@@ -1924,19 +1930,19 @@ class Component extends DCLogic {
     const n = String(p.raw || p.name || '').toUpperCase(), num = x=>parseFloat(String(x).replace(/\./g,'').replace(',','.'));
     const fmtK = v=>Math.round(v).toLocaleString('de-DE');
     if(p.sub==='Aires acondicionados'){ const m = n.match(/(\d{1,3}[.,]?\d{3})\s*\.?\s*BTU/); if(m){ const v = num(m[1]); return [fmtK(v) + ' BTU', v]; } }
-    if(p.tipo==='Televisores'){ const m = n.match(/(\d{2,3})\s*(?:"|”|''|PULG)/); if(m){ const v = +m[1]; return [v + '"', v]; } }
-    if(p.sub==='Refrigeración'){ const m = n.match(/(\d{2,4})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1];
+    if(p.sub==='Televisores' || p.tipo==='Televisores'){ const m = n.match(/(\d{2,3})\s*(?:"|”|''|PULG)/); if(m){ const v = +m[1]; return [v + '"', v]; } }
+    if(['Heladeras','Congeladores','Exhibidores','Frigobares','Refrigeración'].indexOf(p.sub)>=0){ const m = n.match(/(\d{2,4})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1];
       return v<200 ? ['Hasta 199 L',1] : v<400 ? ['200 a 399 L',2] : v<600 ? ['400 a 599 L',3] : ['600 L o más',4]; } }
-    if(p.sub==='Lavado' && /^(LAVA|SECA|CENTR)/.test(n)){ const m = n.match(/(\d{1,2}(?:[.,]\d)?)\s*KGS?\b/); if(m){ const v = num(m[1]);
+    if(['Lavarropas','Secarropas','Lavasecarropas','Centrifugas','Lavado'].indexOf(p.sub)>=0 && /^(LAVA|SECA|CENTR)/.test(n)){ const m = n.match(/(\d{1,2}(?:[.,]\d)?)\s*KGS?\b/); if(m){ const v = num(m[1]);
       return v<8 ? ['Hasta 7 kg',1] : v<11 ? ['8 a 10 kg',2] : v<15 ? ['11 a 14 kg',3] : ['15 kg o más',4]; } }
-    if(p.tipo==='Microondas'){ const m = n.match(/(\d{2})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1]; return [v + ' L', v]; } }
+    if(p.sub==='Microondas' || p.tipo==='Microondas'){ const m = n.match(/(\d{2})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1]; return [v + ' L', v]; } }
     return null;
   }
   CAT_FOTOS_LOCAL = { 'Promociones':'brand/categorias/promociones.webp', 'Belleza y cuidado':'brand/categorias/belleza-cuidado.webp', 'Electrónica':'brand/categorias/electronica.webp',
     'Grandes electrodomésticos':'brand/categorias/grandes-electrodomesticos.webp', 'Pequeños electrodomésticos':'brand/categorias/pequenos-electrodomesticos.webp',
     'Telefonía y celulares':'brand/categorias/telefonia.webp', 'Climatización':'brand/categorias/climatizacion.webp',
     'Herramientas y Jardinería':'brand/categorias/herramientas-jardineria.webp', 'Deportes':'brand/categorias/deportes.webp', 'Muebles y Hogar':'brand/categorias/muebles-hogar.webp' };
-  TIPO_GROUPS = { 'Lavarropas': ['Lavarropas carga frontal','Lavarropas carga superior'] };
+  TIPO_GROUPS = {};
   tipoMatch(p, t){ return p.tipo===t || (this.TIPO_GROUPS[t]||[]).indexOf(p.tipo)>=0; }
   capsIn(list){ const m = {}; list.forEach(p=>{ if(p.cap){ (m[p.cap] = m[p.cap] || { name:p.cap, n:p.capN, count:0 }).count++; } });
     return Object.values(m).sort((a,b)=>a.n-b.n); }
@@ -2254,7 +2260,7 @@ class Component extends DCLogic {
       { etiqueta:'Financiación · Fiadonet', titulo:'Llevalo hoy y pagalo en cuotas.', texto:'Financiá tus compras con Fiadonet. Consultá plazos y requisitos con nuestros asesores.',
         boton:'Conocé cómo financiar', img: img(9386, p=>p.sub==='Racks'), destino:'financiacion' },
       { etiqueta:'Lista de bodas', titulo:'Todo para su nuevo hogar.', texto:'Buscá la lista de los novios y elegí el regalo perfecto.',
-        boton:'Ver listas', img: img(7466, p=>p.sub==='Refrigeración'), destino:'bodas' }
+        boton:'Ver listas', img: img(7466, p=>p.sub==='Heladeras'), destino:'bodas' }
     ];
   }
   bannerIr(d){
@@ -2536,18 +2542,18 @@ class Component extends DCLogic {
         icTag: b.destino!=='financiacion' && b.destino!=='bodas', onClick: this.bannerIr(b.destino) })),
       featCols: s.w>=1200 ? 'repeat(6,minmax(0,1fr))' : s.w>=760 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       featCats: [
-        { name:'Televisores', cat:'Electrónica', sub:'TV y Video', tipo:'Televisores', pid:null },
-        { name:'Heladeras', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Heladeras', pid:null },
-        { name:'Congeladores', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Congeladores', pid:null },
-        { name:'Exhibidores', cat:'Grandes electrodomésticos', sub:'Refrigeración', tipo:'Exhibidores', pid:null },
-        { name:'Microondas', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Microondas', pid:null },
-        { name:'Lavarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Lavarropas', pid:null },
-        { name:'Secarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Secarropas', pid:null },
-        { name:'Lavasecarropas', cat:'Grandes electrodomésticos', sub:'Lavado', tipo:'Lavasecarropas', pid:null },
-        { name:'Airfry', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Freidoras', pid:null },
-        { name:'Cafeteras', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Cafeteras', pid:null },
-        { name:'Hornos de empotrar', cat:'Grandes electrodomésticos', sub:'Cocinas', tipo:'Hornos de empotrar', pid:null },
-        { name:'Bebederos', cat:'Pequeños electrodomésticos', sub:'Cocina', tipo:'Bebederos', pid:null }
+        { name:'Televisores', cat:'Electrónica', sub:'Televisores', pid:null },
+        { name:'Heladeras', cat:'Grandes electrodomésticos', sub:'Heladeras', pid:null },
+        { name:'Congeladores', cat:'Grandes electrodomésticos', sub:'Congeladores', pid:null },
+        { name:'Exhibidores', cat:'Grandes electrodomésticos', sub:'Exhibidores', pid:null },
+        { name:'Microondas', cat:'Pequeños electrodomésticos', sub:'Microondas', pid:null },
+        { name:'Lavarropas', cat:'Grandes electrodomésticos', sub:'Lavarropas', pid:null },
+        { name:'Secarropas', cat:'Grandes electrodomésticos', sub:'Secarropas', pid:null },
+        { name:'Lavasecarropas', cat:'Grandes electrodomésticos', sub:'Lavasecarropas', pid:null },
+        { name:'Airfry', cat:'Pequeños electrodomésticos', sub:'Freidoras', pid:null },
+        { name:'Cafeteras', cat:'Pequeños electrodomésticos', sub:'Cafeteras', pid:null },
+        { name:'Hornos de empotrar', cat:'Grandes electrodomésticos', sub:'Hornos', tipo:'De empotrar', pid:null },
+        { name:'Bebederos', cat:'Pequeños electrodomésticos', sub:'Bebederos', pid:null }
       ].map(f=>{ const ps = all.filter(p=>p.cat===f.cat && p.sub===f.sub && (!f.tipo || this.tipoMatch(p, f.tipo)));
         const pick = (f.pid && ps.find(p=>p.id===f.pid && !p.noImg)) || ps.find(p=>!p.noImg) || ps[0];
         return { name:f.name, img: pick ? pick.img : this.NOIMG, count: ps.length + ' productos',
@@ -2598,9 +2604,9 @@ class Component extends DCLogic {
       edMove:(e)=>{ const el=e.currentTarget.querySelector('[data-ed-tilt]'); if(!el) return; const r=e.currentTarget.getBoundingClientRect(); const nx=((e.clientX-r.left)/r.width)*2-1, ny=((e.clientY-r.top)/r.height)*2-1; el.style.transform='scale(1.06) translate('+(-nx*10).toFixed(1)+'px,'+(-ny*8).toFixed(1)+'px)'; },
       edLeave:(e)=>{ const el=e.currentTarget.querySelector('[data-ed-tilt]'); if(el) el.style.transform=''; },
       spaces: [
-        { label:'La cocina', note:'Refrigeración, cocinas y todo lo que se usa todos los días.', p:this.deco(this.porId(7466, x=>x.sub==='Refrigeración')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Refrigeración'}) },
+        { label:'La cocina', note:'Refrigeración, cocinas y todo lo que se usa todos los días.', p:this.deco(this.porId(7466, x=>x.sub==='Heladeras')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Heladeras'}) },
         { label:'El living', note:'Televisores, audio y muebles pensados para la pantalla.', p:this.deco(this.porId(9379, x=>x.sub==='Racks')), onClick:()=>this.setState({page:'catalogo',cat:'Muebles y Hogar',sub:'Racks'}) },
-        { label:'El lavadero', note:'Lavado de carga superior y frontal, con stock real.', p:this.deco(this.porId(9454, x=>x.sub==='Lavado')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Lavado'}) },
+        { label:'El lavadero', note:'Lavado de carga superior y frontal, con stock real.', p:this.deco(this.porId(9454, x=>x.sub==='Lavarropas')), onClick:()=>this.setState({page:'catalogo',cat:'Grandes electrodomésticos',sub:'Lavarropas'}) },
         { label:'Tu comodidad', note:'Climatización y ventilación para el verano paraguayo.', p:this.deco(this.porId(9508, x=>x.cat==='Climatización')), onClick:()=>this.setState({page:'catalogo',cat:'Climatización',sub:'Todas'}) }
       ],
       favItems: all.filter(p=>s.favs.indexOf(p.id)>=0).map(p=>this.deco(p)), favCount:s.favs.length, favEmpty:s.favs.length===0,
