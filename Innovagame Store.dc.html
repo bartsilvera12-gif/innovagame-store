@@ -409,11 +409,11 @@
     <div style="display:grid;grid-template-columns:{{ catTileCols }};gap:clamp(12px,1.6vw,20px)">
       <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="9">
         <div onClick="{{ a.onClick }}" style="display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0" style-hover="transform:translateY(-3px)">
-          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #EFEDE9;display:flex;align-items:center;justify-content:center;padding:{{ a.pad }};transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(0,0,0,.14)">
+          <div style="position:relative;aspect-ratio:{{ a.ar }};border-radius:20px;overflow:hidden;background:#fff;border:{{ a.bd }};display:flex;align-items:center;justify-content:center;padding:{{ a.pad }};transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(0,0,0,.14)">
             <sc-if value="{{ a.hasImg }}"><img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:{{ a.fit }};display:block"></sc-if>
           </div>
           <div style="display:flex;flex-direction:column;gap:3px;padding:0 4px">
-            <span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ a.name }}</span>
+            <sc-if value="{{ a.conNombre }}"><span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ a.name }}</span></sc-if>
             <span style="font-size:12.5px;color:#FF0009;font-weight:600;white-space:nowrap">{{ a.cnt }} →</span>
           </div>
         </div>
@@ -1932,6 +1932,10 @@ class Component extends DCLogic {
     if(p.tipo==='Microondas'){ const m = n.match(/(\d{2})\s*(?:L|LT|LTS|LITROS)\b/); if(m){ const v = +m[1]; return [v + ' L', v]; } }
     return null;
   }
+  CAT_FOTOS_LOCAL = { 'Promociones':'brand/categorias/promociones.webp', 'Electrónica':'brand/categorias/electronica.webp',
+    'Grandes electrodomésticos':'brand/categorias/grandes-electrodomesticos.webp', 'Pequeños electrodomésticos':'brand/categorias/pequenos-electrodomesticos.webp',
+    'Telefonía y celulares':'brand/categorias/telefonia.webp', 'Climatización':'brand/categorias/climatizacion.webp',
+    'Herramientas y Jardinería':'brand/categorias/herramientas-jardineria.webp', 'Deportes':'brand/categorias/deportes.webp', 'Muebles y Hogar':'brand/categorias/muebles-hogar.webp' };
   TIPO_GROUPS = { 'Lavarropas': ['Lavarropas carga frontal','Lavarropas carga superior'] };
   tipoMatch(p, t){ return p.tipo===t || (this.TIPO_GROUPS[t]||[]).indexOf(p.tipo)>=0; }
   capsIn(list){ const m = {}; list.forEach(p=>{ if(p.cap){ (m[p.cap] = m[p.cap] || { name:p.cap, n:p.capN, count:0 }).count++; } });
@@ -2511,9 +2515,11 @@ class Component extends DCLogic {
         const on = i===s.acc;
         const cn = all.filter(x=>x.cat===t[0]).length;
         // Receta 210: la foto genérica de Tienda web › Categorías ocupa todo el recuadro; sin foto, la de un producto entera.
-        const cf = (typeof window!=='undefined' && window.IG_CAT_FOTOS && typeof window.IG_CAT_FOTOS[t[0]]==='string' && /^https:\/\//.test(window.IG_CAT_FOTOS[t[0]])) ? window.IG_CAT_FOTOS[t[0]] : '';
+        const erpF = (typeof window!=='undefined' && window.IG_CAT_FOTOS && typeof window.IG_CAT_FOTOS[t[0]]==='string' && /^https:\/\//.test(window.IG_CAT_FOTOS[t[0]])) ? window.IG_CAT_FOTOS[t[0]] : '';
+        // Fotos de la tienda (ya traen el nombre de la categoría escrito); la del ERP manda sobre estas.
+        const loc = erpF ? '' : (this.CAT_FOTOS_LOCAL[t[0]] || ''), cf = erpF || loc;
         return { name:t[0], cnt: cn===1 ? '1 producto' : cn + ' productos', img: cf || (ap ? ap.img : ''), alt: cf ? t[0] : (ap ? ap.name : t[0]),
-          fit: cf ? 'cover' : 'contain', pad: cf ? '0' : 'clamp(14px,1.8vw,24px)',
+          fit: cf ? 'cover' : 'contain', pad: cf ? '0' : 'clamp(14px,1.8vw,24px)', ar: loc ? '1/1' : '1/.82', bd: loc ? '0' : '1px solid #EFEDE9', conNombre: !loc,
           hasImg: !!(cf || ap), noImg: !(cf || ap), subs:t[1].slice(0,3).join(' · '), subsAll:t[1].join(' · '),
           num: String(i+1).padStart(2,'0'), on, off:!on, grow: on ? 7 : 1, bg: on ? '#FFFFFF' : '#F5F4F1',
           rowBg: on ? '#FF0009' : 'transparent', rowFg: on ? '#fff' : '#000000', rowSub: on ? 'rgba(255,255,255,.8)' : '#8C8880',
