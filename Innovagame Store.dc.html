@@ -409,10 +409,8 @@
     <div style="display:grid;grid-template-columns:{{ catTileCols }};gap:clamp(12px,1.6vw,20px)">
       <sc-for list="{{ accordion }}" as="a" hint-placeholder-count="9">
         <div onClick="{{ a.onClick }}" style="display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0" style-hover="transform:translateY(-3px)">
-          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,#FFF6F7 0%,#FCE1E6 100%);display:flex;align-items:center;justify-content:center;padding:clamp(14px,1.8vw,24px);transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(255,0,9,.16)">
-            <div style="position:absolute;right:-18%;top:-30%;width:62%;height:160%;background:#FF0009;transform:rotate(18deg);opacity:.9;border-radius:24px"></div>
-            <div style="position:absolute;right:-6%;top:-30%;width:10%;height:160%;background:#FF8A97;transform:rotate(18deg);opacity:.55"></div>
-            <sc-if value="{{ a.hasImg }}"><img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="position:relative;max-width:88%;max-height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(20,20,20,.18))"></sc-if>
+          <div style="position:relative;aspect-ratio:1/.82;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #EFEDE9;display:flex;align-items:center;justify-content:center;padding:{{ a.pad }};transition:box-shadow .25s" style-hover="box-shadow:0 18px 40px rgba(0,0,0,.14)">
+            <sc-if value="{{ a.hasImg }}"><img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:{{ a.fit }};display:block"></sc-if>
           </div>
           <div style="display:flex;flex-direction:column;gap:3px;padding:0 4px">
             <span style="font-size:clamp(15px,1.3vw,17px);font-weight:600;line-height:1.25">{{ a.name }}</span>
@@ -2512,8 +2510,11 @@ class Component extends DCLogic {
         const ap = all.find(x=>x.cat===t[0] && !x.noImg) || all.find(x=>x.cat===t[0]);
         const on = i===s.acc;
         const cn = all.filter(x=>x.cat===t[0]).length;
-        return { name:t[0], cnt: cn===1 ? '1 producto' : cn + ' productos', img: ap ? ap.img : '', alt: ap ? ap.name : t[0],
-          hasImg: !!ap, noImg: !ap, subs:t[1].slice(0,3).join(' · '), subsAll:t[1].join(' · '),
+        // Receta 210: la foto genérica de Tienda web › Categorías ocupa todo el recuadro; sin foto, la de un producto entera.
+        const cf = (typeof window!=='undefined' && window.IG_CAT_FOTOS && typeof window.IG_CAT_FOTOS[t[0]]==='string' && /^https:\/\//.test(window.IG_CAT_FOTOS[t[0]])) ? window.IG_CAT_FOTOS[t[0]] : '';
+        return { name:t[0], cnt: cn===1 ? '1 producto' : cn + ' productos', img: cf || (ap ? ap.img : ''), alt: cf ? t[0] : (ap ? ap.name : t[0]),
+          fit: cf ? 'cover' : 'contain', pad: cf ? '0' : 'clamp(14px,1.8vw,24px)',
+          hasImg: !!(cf || ap), noImg: !(cf || ap), subs:t[1].slice(0,3).join(' · '), subsAll:t[1].join(' · '),
           num: String(i+1).padStart(2,'0'), on, off:!on, grow: on ? 7 : 1, bg: on ? '#FFFFFF' : '#F5F4F1',
           rowBg: on ? '#FF0009' : 'transparent', rowFg: on ? '#fff' : '#000000', rowSub: on ? 'rgba(255,255,255,.8)' : '#8C8880',
           onEnter:()=>{ if(s.acc!==i) this.setState({acc:i}); },
