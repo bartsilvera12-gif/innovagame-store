@@ -777,7 +777,7 @@
           </sc-for>
         </div>
       </sc-if>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
+      <div style="display:grid;grid-template-columns:{{ catResCols }};gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
         <sc-for list="{{ results }}" as="p" hint-placeholder-count="9">
           <div class="ig-card" onMouseEnter="{{ cardEnter }}" onMouseLeave="{{ cardLeave }}" style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column;transition:background .25s" style-hover="background:#FAF9F7">
             <div onClick="{{ p.onOpen }}" style="position:relative;cursor:pointer;aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden">
@@ -793,7 +793,7 @@
               </div>
             </div>
             <div style="font:500 9.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9B978F;margin-top:20px">{{ p.brand }}</div>
-            <div onClick="{{ p.onOpen }}" style="font-size:14px;font-weight:500;line-height:1.35;margin-top:8px;cursor:pointer;min-height:3.9em">{{ p.name }}</div>
+            <div onClick="{{ p.onOpen }}" style="font-size:14px;font-weight:500;line-height:1.35;margin-top:8px;cursor:pointer;min-height:3.9em;overflow-wrap:anywhere">{{ p.name }}</div>
             <div style="font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:6px">{{ p.priceF }}</div>
             <div style="font:400 10.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;color:#6E6B66;margin-top:8px">{{ p.stockLabel }}</div>
           </div>
@@ -1026,14 +1026,14 @@
       <button onClick="{{ brandClear }}" style="border:1px solid #E4E2DD;background:#fff;border-radius:999px;padding:9px 16px;font-size:13px;cursor:pointer" style-hover="border-color:#FF0009;color:#FF0009">Ver todas las marcas</button>
     </div>
   </sc-if>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
+  <div style="display:grid;grid-template-columns:{{ catResCols }};gap:0;border-top:1px solid #EFEDE9;border-left:1px solid #EFEDE9">
     <sc-for list="{{ brandProducts }}" as="p" hint-placeholder-count="6">
       <div style="border-right:1px solid #EFEDE9;border-bottom:1px solid #EFEDE9;padding:24px 20px 20px;display:flex;flex-direction:column;transition:background .2s" style-hover="background:#FAF9F7">
         <div onClick="{{ p.onOpen }}" style="cursor:pointer;aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden">
           <img src="{{ p.img }}" alt="{{ p.name }}" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .35s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.05)">
         </div>
         <div style="font:500 9.5px/1 'Bw Modelica SS01','Bw Modelica',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9B978F;margin-top:20px">{{ p.brand }}</div>
-        <div onClick="{{ p.onOpen }}" style="font-size:14px;font-weight:500;line-height:1.35;margin-top:8px;cursor:pointer;min-height:3.9em">{{ p.name }}</div>
+        <div onClick="{{ p.onOpen }}" style="font-size:14px;font-weight:500;line-height:1.35;margin-top:8px;cursor:pointer;min-height:3.9em;overflow-wrap:anywhere">{{ p.name }}</div>
         <div style="font-size:16.5px;font-weight:600;margin-top:6px">{{ p.priceF }}</div>
         <button onClick="{{ p.onAdd }}" style="margin-top:14px;border:1px solid #000000;background:transparent;padding:11px 0;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="background:#000000;color:#fff">Agregar</button>
       </div>
@@ -2553,6 +2553,8 @@ class Component extends DCLogic {
         return { name:f.name, img: pick ? pick.img : this.NOIMG, count: ps.length + ' productos',
           onClick:()=>this.setState({page:'catalogo', cat:f.cat, sub:f.sub, tipo: f.tipo ? {k:f.cat+'|'+f.sub, v:f.tipo} : null, cap:null, mega:null}) }; }),
       gridCols: s.w>=1020 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      // Catálogo y página de marca: 4 por fila en computadora (3 en pantallas medianas, 2 en el celular).
+      catResCols: s.w>=900 ? 'repeat(4,minmax(0,1fr))' : s.w>=600 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       curated: this.deco(all.find(p=>p.id===this.CURATED[s.cur]) || all[0]),
       curatedThumbs: this.CURATED.map((id,i)=>{ const cp = all.find(p=>p.id===id) || all[0];
         return { img:cp.img, ring: i===s.cur ? '#000000' : '#E4E2DD', op: i===s.cur ? 1 : 0.62,
